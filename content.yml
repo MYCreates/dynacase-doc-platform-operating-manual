@@ -1,5 +1,7 @@
 book:
-    title: "Dynacase 3.2 Installation & Exploitation"
+    title: "Installation & Exploitation"
+    module: "Dynacase Platform"
+    version: "3.2"
     edition: "1"
     chapters: 
         - number:   "1"
