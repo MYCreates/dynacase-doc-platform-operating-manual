@@ -223,7 +223,7 @@ ci-dessus</td>
 <tr>
     <td>Instructions divers</td>
     <td>Par défaut : &lt;process command="programs/update_catalog" /&gt; Et
-toutes les instructions que vous avez pu ajouter lors de votre projet</td
+toutes les instructions que vous avez pu ajouter lors de votre projet</td>
 </tr>
 </tbody>
 </table>
