@@ -2,36 +2,36 @@
 
 ## Depuis une version 3.0
 
-L'upgrade en version 3.2 depuis une version 3.0 n'est pas supportée, et nécessite donc au pré-alable de passer en version 3.1.
+L'upgrade en version 3.2 depuis une version 3.0 n'est pas supportée, et nécessite donc au préalable de passer en version 3.1.
 
 ## Depuis une version 3.1
 
-### Import de familles/documents
+### importation de familles/documents
 
 #### Utilisation de `importDocuments`
-L'import des familles et des documents doit être effectué avec le script d'API `importDocuments`, qui remplace l'ancien script d'import `freedom_import`, et effectue un contrôle plus strict et précis sur les éléments importés.
+L'importation des familles et des documents doit être effectuée avec le script d'API `importDocuments`, qui remplace l'ancien script d'importation `freedom_import`, et effectue un contrôle plus strict et précis sur les éléments importés.
 
-Vous devez donc modifier vos fichiers `info.xml`, et/ou vos procédures d'import, pour utiliser `importDocuments` à la place de `freedom_import`.
+Vous devez donc modifier vos fichiers d'importation présents dans `info.xml`, et/ou vos procédures d'importation, pour utiliser `importDocuments` à la place de `freedom_import`.
 
 #### Structure fichiers ODS
 
-L'import de vos familles peut nécéssiter un découpage de votre fichier ODS en sous-fichiers ODS autonomes en termes de dépendances, et importer ceux-ci dans l'ordre adéquat.
+L'importation de vos familles peut nécessiter un découpage de votre fichier ODS/CSV en sous-fichiers ODS/CSV autonomes en termes de dépendances, et importer ceux-ci dans l'ordre adéquat.
 
-En effet, les contrôles plus stricts imposés lors de l'import, interdisent les références à des éléments qui n'existent pas. Il vous faut donc importer vos éléments dans le bon ordre.
+En effet, les contrôles plus stricts imposés lors de l'importation, interdisent les références à des éléments qui n'existent pas. Il vous faut donc importer vos éléments dans l'ordre de dépendance.
 
 Pour cela, nous préconisons le découpage suivant :
 
 1. Un fichier pour la structure de vos familles qui contient les attributs, le paramétrage des attributs, mais ne contient pas de références aux profils (CPROFID, DPROFID), aux cycles (WID), etc.
-2. Un fichier d'import des documents qui contient l'import des documments comme les profils et les cycles.
+2. Un fichier d'importation des documents systèmes qui contient l'importation des documents comme les profils et les cycles.
 3. Un fichier de paramétrage qui va appliquer le paramétrage des profils, des cycles, etc. sur les familles précédemment importées.
 
 ### Fichiers méthodes de famille
 
-Un contrôle plus strict est applliqué sur les fichiers méthodes.
+Un contrôle plus strict est appliqué sur les fichiers méthodes.
 
 #### Déclaration explicite `class X extends Y`
 
-Tous les fichiers de méthodes doivent être ré-écrit sous la forme d'une classe PHP standard, dérivant de la classe d'une autre famille ou de la classe "Doc", à l'aide des tags de commentaires `@begin-method-ignore` et `@end-method-ignore`.
+Tous les fichiers de méthodes doivent être réécrits sous la forme d'une classe PHP standard, dérivant de la classe d'une autre famille ou de la classe "Doc", à l'aide des tags de commentaires `@begin-method-ignore` et `@end-method-ignore`.
 
 Exemple :
 
@@ -60,7 +60,7 @@ Exemple :
 
 #### Méthodes de contrôle de vue (`@templateController`)
 
-Les méthodes utilisées comme contrôleur de vue doivent être déclarées avec un tag de commentaire `@templateController`.
+Les méthodes utilisées comme contrôleur de vue doivent être déclarées avec un tag de commentaire `@templateController`. Dans le cas contraire, un message d'erreur sera affiché à la place de la vue.
 
 Le tag `@templateController` permet de déclarer explicitement les méthodes utilisables comme contrôleur de vue, et d'interdire l'utilisation de toute autre méthode.
 
@@ -130,6 +130,8 @@ Exemple :
      * @end-method-ignore
      */
 
+Cette notation est aussi obligatoire pour les menus déclarant un appel de la forme `::myMethod()`. Dans ce cas, la méthode `myMethod` doit avoir aussi le tag `@apiExpose`.
+
 #### Méthodes utilisables comme critère de recherche (`@searchLabel`)
 
 Les méthodes utilisables comme critère de recherche doivent être déclarées avec un tag de commentaire `@searchLabel` et `@searchType`.
@@ -171,7 +173,7 @@ Exemple :
 
 Les droits négatifs ne sont plus supportés.
 
-Si vous avez utilisé les droits négatifs (boules rouge dans les profils) il vous faudra ré-écrire ceux-ci en utilisant la notion de rôles.
+Si vous avez utilisé les droits négatifs (boules rouges dans les profils) il vous faudra réécrire ceux-ci en utilisant la notion de rôles.
 
 La structure de la table `docperm` et les interfaces de saisie des droits ont été modifiés pour prendre en compte ce nouveau fonctionnement.
 
@@ -179,22 +181,29 @@ La structure de la table `docperm` et les interfaces de saisie des droits ont é
 
 Nous préconisons de ne plus gérer les droits par des groupes mais de se baser sur le système des rôles.
 
-### Familles du "Carnet d'adresse" (USER, SOCIETY et SITE)
+Pour savoir si vous avez des droits négatifs, vous pouvez utiliser la requête suivante :
+
+    [sql]
+    # SELECT * from docperm where unacl != 0;
+
+S'il n'y a aucune ligne retournée, aucun droit négatif n'est posé.
+### Familles du "Carnet d'adresses" (USER, SOCIETY et SITE)
 
 Les familles `USER`, `SOCIETY` et `SITE` sont désormais fournies par le module `dynacase-contact`.
 
 Le lien de parenté entre `IUSER` et `USER` n'existe plus, et `IUSER` devient à présent une famille "top-level" sans parents.
 
-Lors de la migration, l'application "Carnet d'adresse" est désactivée. Pour la ré-activer, il vous faudra installer le module `dynacase-contact`.
+Lors de la migration, l'application "Carnet d'adresse" est désactivée. Pour la réactiver, il vous faudra installer le module `dynacase-contacts`.
 
 ### Envoi de mails
 
-Par défaut, les adresses de courriel des utilisateurs ne sont plus visible pour l'envoi de courriels (par l'icône "enveloppe" par exemple). Seules les familles déclarés avec un tag `MAILRECIPIENT` sont utilisables pour l'envoi de courriels.
+Par défaut, les adresses de courriel des utilisateurs ne sont plus visibles pour l'envoi de courriels (depuis l'icône "enveloppe" présent sur les documents). Seules les familles déclarés avec un tag `MAILRECIPIENT` sont utilisables pour l'envoi de courriels.
 
-Pour ré-activer l'ancien fonctionnement sur les `ISUER` (et `LDAPUSER`) il vous faudra mettre à jour ces familles pour positionner ce tag `MAILRECIPIENT`.
+Pour réactiver l'ancien fonctionnement sur les `IUSER` (et `LDAPUSER`) il vous faudra mettre à jour ces familles pour positionner ce tag `MAILRECIPIENT`.
 
 > ☞ Voir chapitre "2.1.9. Déclarer une famille comme destinataire de courriel" du manuel de référence.
 
+Le module `dynacase-contacts` déclare la famille `USER` comme destinataire de courriel (il possède le tag `MAILRECIPIENT`).
 ### Valeur par défaut DEFAULT
 
 Par le passé (version < 3.2), lors de la déclaration d'une famille, la déclaration d'une valeur par défaut sur un attribut d'une famille mère n'avait pas de répercussion sur la valeur par défaut de cet attribut sur une famille fille.
@@ -205,13 +214,13 @@ La valeur par défaut d'un attribut remonte donc les liens de parenté à la rec
 
 ### Familles système
 
-Vos familles de cycle de vie doivent être déclarés système à l'aide du mot-clef `USEFOR` avec la valeur `SW`.
+Vos familles de cycle de vie doivent être déclarés "système" à l'aide du mot-clef `USEFOR` avec la valeur `SW`.
 
-> ☞ Voir chapitre "2.1.2.6.2. Caractéristiques générales" du menuel de référence pour l'utilisation du mot-clef `USEFOR`.
+> ☞ Voir chapitre "2.1.2.6.2. Caractéristiques générales" du manuel de référence pour l'utilisation du mot-clef `USEFOR`.
 
-La classification, en familles système et familles non-système, des familles livrés par défaut a été modifié.
+La classification, en familles système et familles non-système, des familles livrées par défaut a été modifiée.
 
-Les familles qui ont été basculées en familles système sont :
+Les familles qui ont été basculées en familles "système" sont :
 
       id  |      name      | usefor
     ------+----------------+--------
