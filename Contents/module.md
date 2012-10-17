@@ -1,20 +1,25 @@
-# Format module webinst
+# Format des modules webinst
 
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
 webinst et mettre en œuvre ces éléments pour construire un module d'exemple
-qu'on nommera `dynacase-foo`.
+que nous nommerons *dynacase-foo*.
 
 Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
-les notions d'Applications et d'Actions de Dynacase et du fonctionnement
+les notions d'Applications et d'Actions de Dynacase et le fonctionnement
 général de ceux-ci.
 
-## Fichier *info.xml*
+## Fichier `info.xml`
 
 Le fichier `info.xml` permet de décrire le module Dynacase en fournissant en
-particulier la version du module, une description, des dépendances avec
-d'autres modules Dynacase, un ensemble de paramètres, un descriptif des
-évolutions (changelog), et un ensemble d'action de pre-install, post-install,
-etc.
+particulier :
+
+* le nom du module,
+* la version du module,
+* une description,
+* une liste de dépendances avec d'autres modules Dynacase,
+* un ensemble d'action de pre-install, post-install,
+* un ensemble de paramètres,
+* un descriptif des évolutions (changelog)
 
 ### Exemple de fichier de info.xml
 
@@ -77,33 +82,58 @@ etc.
 
 ### Préambule Module
 
-La racine du document `info.xml` est un tag `<module>` avec les attributs
-suivants :
+La racine du document `info.xml` est un tag `<module>` avec les attributs suivants :
 
-* **name** : le nom du module
-* **version** : la version du module (sous la forme `N.N.N`)
-* **release** : le numéro de release de la version
-* **basecomponent** : `yes` ou `no`, permet de spécifier si le module est un module de base (optionnel, par défaut la valeur est `no`)
-* **author** : l'auteur du module (ex. `John Doe  <john.doe@example.net>`)(optionnel)
-* **licence** : licence du module (optionnel)
-* **vendor** : fournisseur du module (ex. `ACME Corp.`)(optionnel)
+name
+:   le nom du module
 
+version
+:   la version du module (sous la forme `N.N.N`)
+
+release
+:   le numéro de release de la version
+
+basecomponent
+:   `yes` ou `no`, permet de spécifier si le module est un module de base.
+    Dans ce cas, son installation sera obligatoire.  
+    *Optionnel*, par défaut : `no`
+
+author
+:   l'auteur du module (ex. `John Doe  <john.doe@example.net>`)  
+    *optionnel*
+
+licence
+:   licence du module  
+    *optionnel*
+    FIXME: préciser le fonctionnement (fichier , etc.)
+
+vendor
+:   fournisseur du module (ex. `ACME Corp.`)  
+    *optionnel*
+
+Exemple :
 
     [xml]
     <?xml version="1.0"?>
-    <module name="dynacase-foo" version="1.2.3" release="rc1"
-            author="John Doe &lt;john.doe@example.net&gt;" licence="GPLV2" vendor="ACME Corp.">
+    <module
+        name="dynacase-foo"
+        version="1.2.3"
+        release="rc1"
+        author="John Doe &lt;john.doe@example.net&gt;"
+        licence="GPLV2"
+        vendor="ACME Corp."
+    >
 
-      [...]
+    […]
 
     </module>
 
 ### Description
 
-Le module peut fournir une description textuelle pour expliciter le rôle du
-module. On pourra fournir des descriptions localisés en utilisant l'attribut `lang`.
+Le module peut fournir une description textuelle pour expliciter le rôle du module.
+On pourra fournir des descriptions localisées en utilisant l'attribut `lang`.
 
-Exemple :
+Exemple :
 
     [xml]
     <description lang="fr">Ce module permet à Dynacase de se connecter à FOO</description>
@@ -114,22 +144,27 @@ Exemple :
 Les dépendances permettent d'exprimer qu'un module requiert d'autres modules
 Dynacase avec eventuellement une contrainte sur la version de ceux-ci.
 
-Le tag `<requires>` est composés d'éléments `<module>` qui ont les attributs
-suivants :
+Le tag `<requires>` est composés d'éléments `<module>` qui ont les attributs suivants :
 
-* **name** : le nom du module Dynacase requis
-* **version** : la version que le module requis doit avoir
-* **comp** : opérateur de comparaison de version : `lt` (<), `le` (<=), `gt`
-  (>), `ge` (>=), `eq` (==) ou `ne` (!=)
+name
+:   le nom du module Dynacase requis
+
+version
+:   la version que le module requis doit avoir
+
+comp
+:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
 
 Le module peut aussi exprimer une contrainte sur la version de l'installeur lui
-même à l'aide de l'élément `<installer>`.  Dans ce cas, les attributs sont :
+même à l'aide de l'élément `<installer>`.  Dans ce cas, les attributs sont :
 
-* **version** : la version de l'installeur que requiert le module
-* **comp** : opérateur de comparaison de version : `lt` (<), `le` (<=), `gt`
-  (>), `ge` (>=), `eq` (==) ou `ne` (!=)
+version
+:   la version de l'installeur que requiert le module
 
-Exemple :
+comp
+:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
+
+Exemple :
 
       [xml]
       <requires>
@@ -139,163 +174,99 @@ Exemple :
       <requires>
 
 Dans cet exemple, le module requiert un installeur avec une version >= 1.0, le
-module dynacase-bar en version >= 2.0 et le module dynacase-baz en version >
-1.9.
+module dynacase-bar en version >= 2.0 et le module dynacase-baz en version >1.9.
 
 ### Organisation des instructions d'importation des familles/documents
 
 Les contrôles d’importation vérifient la validité des différentes structures et
 des relations entre les documents.
 
-L’ordre que nous préconisons est le suivant :
+L’ordre que nous préconisons est le suivant :
 
-<table>
-<thead>
-<tr>
-    <td><em>Définition</em></td>
-    <td><em>Description de l’opération</em></td>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td>Définition de l’application</td>
-    <td>Instructions de définition de l’application.  Lors de l’installation,
-l'instruction se résume à &lt;process command="programs/record_application
-@APPNAME@"/&gt;, lors de l’upgrade &lt;process command="programs/pre_migration
-@APPNAME@"/&gt;&lt;process command="programs/record_application
-@APPNAME@"/&gt;</td>
-</tr>
-<tr>
-    <td>Groupes et utilisateurs</td>
-    <td>Document qui importe les groupes et les utilisateurs utilisés dans
-cette application</td>
-</tr>
-<tr>
-    <td>Droits</td>
-    <td>Document associant les droits spécifiques (ACL) à l’application aux
-groupes et aux utilisateurs importés ci-dessus</td>
-</tr>
-<tr>
-    <td>Famille(s) père(s)</td>
-    <td>Si la famille en cours possède une famille père qui n’est pas déjà
-existante, vous devez l’importer avec l’ensemble de ses dépendances</td>
-</tr>
-<tr>
-    <td>Structure de la famille en cours</td>
-    <td>Uniquement la structure de la famille en terme
-d’attributs/paramètres</td>
-</tr>
-<tr>
-    <td>Famille de workflow</td>
-    <td>Définition de la famille de workflow associée à la famille en
-cours.</td>
-</tr>
-<tr>
-    <td>Paramétrage du workflow</td>
-    <td>Document de workflow et paramétrage associé à celui-ci (profil dédié,
-masque, timer,...) (si besoin, ie un workflow est associé à la famille et il
-n’a pas déjà été importé)</td>
-</tr>
-<tr>
-    <td>Paramétrage de la famille</td>
-    <td>Documents associés à la famille (profil de document, profil de famille,
-contrôle dédié, etc...)</td>
-</tr>
-<tr>
-    <td>Propriétés de la famille</td>
-    <td>Ensemble des propriétés de la familles (icône, label, référence du
-profil de famille, référence du profil de document par défaut, référence du
-contrôle de vue, référence du cycle de vie associé...)</td>
-</tr>
-<tr>
-    <td>Documents de la famille en cours</td>
-    <td>Éventuels documents de la famille en cours d’importation</td>
-</tr>
-<tr>
-    <td>Famille(s) suivante(s)</td>
-    <td>Autres familles de l’application, éventuellement héritant de la famille
-ci-dessus</td>
-</tr>
-<tr>
-    <td>Fin de la définition de l’application</td>
-    <td>&lt;process command="programs/post_migration @APPNAME@" /&gt;</td>
-</tr>
-<tr>
-    <td>Instructions divers</td>
-    <td>Par défaut : &lt;process command="programs/update_catalog" /&gt; Et
-toutes les instructions que vous avez pu ajouter lors de votre projet</td>
-</tr>
-</tbody>
-</table>
+| Définition                                       | Description de l’opération                                                                                                                                                                                                                                                                                                  |
+| -                                                | -                                                                                                                                                                                                                                                                                                                           |
+| Définition de l’application                      | Instructions de définition de l’application. <br> Lors de l’installation, l'instruction se résume à `<process command="programs/record_application @APPNAME@"/>`. <br> Lors de l’upgrade, elle devient `<process command="programs/pre_migration @APPNAME@"/>` `<process command="programs/record_application @APPNAME@"/>` |
+| Groupes et utilisateurs                          | Document qui importe les groupes et les utilisateurs utilisés dans cette application                                                                                                                                                                                                                                        |
+| Droits                                           | Document associant les droits spécifiques à l’application (ACL) aux groupes et aux utilisateurs importés auparavant                                                                                                                                                                                                         |
+| Famille(s) père(s)                               | Si la famille en cours possède une famille père qui n’est pas déjà existante, vous devez l’importer avec l’ensemble de ses dépendances                                                                                                                                                                                      |
+| Structure de la famille en cours                 | Uniquement la structure de la famille en terme d’attributs/paramètres                                                                                                                                                                                                                                                       |
+| Famille de workflow                              | Définition de la famille de workflow associée à la famille en cours.                                                                                                                                                                                                                                                        |
+| Paramétrage du workflow                          | Documents de workflow et de paramétrage associés (profils dédiés, masques, timers…)                                                                                                                                                                                                                                         |
+| Paramétrage de la famille                        | Documents associés à la famille (profil de document, profil de famille, contrôle dédié, etc...)                                                                                                                                                                                                                             |
+| Propriétés de la famille                         | Ensemble des propriétés de la famille (icône, label, référence du profil de famille, référence du profil de document par défaut, référence du contrôle de vue, référence du cycle de vie associé…)                                                                                                                          |
+| Documents de la famille en cours                 | Éventuels documents de la famille en cours d’importation                                                                                                                                                                                                                                                                    |
+| Famille(s) suivante(s)                           | Autres familles de l’application, éventuellement héritant de la famille en cours                                                                                                                                                                                                                                            |
+| Lancement des scripts d'upgrade de l'application | `<process command="programs/post_migration @APPNAME@" />`                                                                                                                                                                                                                                                                   |
+| Regénération des catalogues de langues           | `<process command="programs/update_catalog" />`                                                                                                                                                                                                                                                                             |
+| Instructions diverses                            | Toutes les instructions spacifiques à votre projet                                                                                                                                                                                                                                                                          |
 
-Cela donne le XML suivant :
+Cela donne le XML suivant :
 
-    
     [xml]
     <?xml version="1.0"?>
     
     <!-- The @SOMETHING@ variables are completed by the autoconf mechanism -->
     <module name="@PACKAGE@" version="@VERSION@" release="@RELEASE@">
-    
-       <!-- Label of the application displayed in dynacase control only -->
-       <description>My application name</description>
-       
-       <!-- Module required with version for the installation/upgrade -->
-       <requires>
-           <module name="dynacase-platform" version="3.2.0" comp="ge"/>
-       </requires>
-    
-       <!-- Install instruction -->
-       <post-install>
-           <process command="programs/record_application @APPNAME@"/>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/GROUPS.ods">
-               <label lang="en">Importing GROUPS.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/RIGHT.ods">
-               <label lang="en">Importing RIGHT.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_famille_A.ods">
-               <label lang="en">Importing STRUCT_famille_A.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_famille_A.ods">
-               <label lang="en">Importing PARAM_famille_A.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PROPERTY_famille_A.ods">
-               <label lang="en">Importing PROPERTY_famille_A.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_famille_B.ods">
-               <label lang="en">Importing STRUCT_famille_B.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_famille_B.ods">
-               <label lang="en">Importing WFL_famille_B.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_WFL_famille_B.ods">
-               <label lang="en">Importing PARAM_WFL_famille_B.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_famille_B.ods">
-               <label lang="en">Importing PARAM_famille_B.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PROPERTY_famille_B.ods">
-               <label lang="en">Importing PROPERTY_famille_B.ods</label>
-           </process>
-           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/DOC_famille_B.ods">
-               <label lang="en">Importing DOC_famille_B.ods</label>
-           </process>
-           <process command="programs/post_migration @APPNAME@"/>
-           <process command="programs/update_catalog"/>
-       </post-install>
-    
-       <post-upgrade>
-           <process command="programs/pre_migration @APPNAME@"/>
-           <process command="programs/record_application @APPNAME@"/>
 
-           <!-- Same content as the content between record and post migration of the install part above -->
+       <!-- Label of the application displayed in dynacase control only -->
+       <description>My application name</description>
+       
+       <!-- Module required with version for the installation/upgrade -->
+       <requires>
+           <module name="dynacase-platform" version="3.2.0" comp="ge"/>
+       </requires>
+
+       <!-- Install instruction -->
+       <post-install>
+           <process command="programs/record_application @APPNAME@"/>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/GROUPS.ods">
+               <label lang="en">Importing GROUPS.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/RIGHT.ods">
+               <label lang="en">Importing RIGHT.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_famille_A.ods">
+               <label lang="en">Importing STRUCT_famille_A.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_famille_A.ods">
+               <label lang="en">Importing PARAM_famille_A.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PROPERTY_famille_A.ods">
+               <label lang="en">Importing PROPERTY_famille_A.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/STRUCT_famille_B.ods">
+               <label lang="en">Importing STRUCT_famille_B.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/WFL_famille_B.ods">
+               <label lang="en">Importing WFL_famille_B.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_WFL_famille_B.ods">
+               <label lang="en">Importing PARAM_WFL_famille_B.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PARAM_famille_B.ods">
+               <label lang="en">Importing PARAM_famille_B.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/PROPERTY_famille_B.ods">
+               <label lang="en">Importing PROPERTY_famille_B.ods</label>
+           </process>
+           <process command="./wsh.php --api=importDocuments --file=./@APPNAME@/DOC_famille_B.ods">
+               <label lang="en">Importing DOC_famille_B.ods</label>
+           </process>
+           <process command="programs/post_migration @APPNAME@"/>
+           <process command="programs/update_catalog"/>
+       </post-install>
+    
+       <post-upgrade>
+           <process command="programs/pre_migration @APPNAME@"/>
+           <process command="programs/record_application @APPNAME@"/>
+
+           <!-- Same content as the content between record and post migration of the install part above -->
 
            [...]
-    
-           <process command="programs/post_migration @APPNAME@"/>
-           <process command="programs/update_catalog"/>
-       </post-upgrade>
+
+           <process command="programs/post_migration @APPNAME@"/>
+           <process command="programs/update_catalog"/>
+       </post-upgrade>
     
     </module>
 
@@ -305,34 +276,37 @@ Le changelog permet d'indiquer les évolutions produites en rapport avec les
 versions du module. Ces informations sont contenues dans une balise
 `<changelog>` contenant des `<version>`.
 
-Les éléments `<version>` ont les attributs suivants :
+Les éléments `<version>` ont les attributs suivants :
 
-* **number** : le numéro de version
-* **date** : la date de publication de la version
+number
+:   le numéro de version
+
+date
+:   la date de publication de la version
 
 Les éléments `<version>` contiennent des éléments `<change>` qui décrivent
-chaque changement effectué. Les éléments `<change>` ont les attributs suivants
-:
+chaque changement effectué. Les éléments `<change>` ont les attributs suivants :
 
-* **title** : l'intitulé du changement
-* **url** : une url en rapport avec le changement (dans l'interface
-  dynacase-control, les chaînes de forme issues/111/ sont reconnues et donnent
-  comme texte du lien affiché 'issues 111' ; sinon un texte par défaut est
-  utilisé)
+title
+:   l'intitulé du changement
+
+url
+:   une url en rapport avec le changement (dans l'interface dynacase-control, les chaînes de forme issues/111/
+    sont reconnues et donnent comme texte du lien affiché 'issues 111' ; sinon un texte par défaut est utilisé)
 
 La valeur de l'élément `<change>` constitue une description.
 
-Exemple :
+Exemple :
 
-      [xml]
-      <changelog>
-        <version number="1.1.1" date="2009-01-01">
-          <change title="First change" url="http://dev.dynacase.org/issues/111">Comment for first change.</change>
-          <change title="Second change">Comment for second change.</change>
-          <change title="Third change"></change>
-        </version>
-        <version number="1.1.0" date="2008-12-15"/>
-      </changelog>
+    [xml]
+    <changelog>
+    <version number="1.1.1" date="2009-01-01">
+      <change title="First change" url="http://dev.dynacase.org/issues/111">Comment for first change.</change>
+      <change title="Second change">Comment for second change.</change>
+      <change title="Third change"></change>
+    </version>
+    <version number="1.1.0" date="2008-12-15"/>
+    </changelog>
 
 ### Paramètres d'installation/upgrade
 
@@ -343,41 +317,56 @@ Les paramètres d'installation/upgrade nécessaires au module sont spécifiés a
 un élément `<parameters>` contenant des éléments `<param>`.
 
 La valeur du paramètre peut ensuite être lue par un programme lancé lors de
-l'install/upgrade via le mécanisme de `<process />` décrit dans le chapitre
-`Workflow d'install/upgrade (Pre/post install/upgrade/etc.)` ci-dessous.
+l'install/upgrade via le mécanisme de `<process />` décrit [ci-dessous](#module-wf-install-upgrade).
 
-Note : ces paramètres de module n'ont pas de liens avec les paramètres
-d'applications ou de familles de dynacase-platform. Par contre, un `<process
-/>` spécifique peut être déclaré et utilisé pour enregistrer un paramètre de
+Note : ces paramètres de module n'ont pas de lien avec les paramètres
+d'applications ou de familles de dynacase-platform. Par contre, un `<process/>`
+spécifique peut être déclaré et utilisé pour enregistrer un paramètre de
 module comme valeur d'un paramètre d'application et de famille en utilisant
 par exemple le programme `program/set_param` décrit ci-dessous.
 
-Les élements `<param>` ont les attributs suivants :
+Les élements `<param>` ont les attributs suivants :
 
-* **name** : le nom du paramètre
-* **label** : le label textuel pour présenter le paramètre
-* **type** : `text` ou `enum`, permet
-  de spécifier le type de donnée attendu
-* **default** : la valeur par défaut présenté à l'utilisateur
-  lors de la saisie des paramètres.
-* **needed** : `yes` ou `no`, permet de spécifier si la saisie
-  du paramètre est obligatoire ou optionnelle.
-* **values** : lorsque `type=“enum”`, l'attribut `values`
-  permet de spécifier une list de choix finis à partir de laquelle
-  l'utilisateur selectionnera une valeur
-* **volatile** : permet de spécifier si la valeur entrée doit être supprimée
-  après l'installation ou upgrade. Cela permet d'indiquer que la valeur n'est
-  pas mémorisée, et donc qu'elle sera demandé avec sa valeur par défaut à
-  chaque upgrade du module par exemple (defaut `no`).
-* **oninstall** : permet de spécifier la visibilité (`R` pour lecture seule,
-  `W` pour lecture/écriture, `H` pour caché) du paramètre lors d'une
-  installation du module (defaut `W`).
-* **onedit** : permet de spécifier la visibilité du paramètre lors de l'édition
-  des paramètres depuis la liste des modules installés (defaut `R`).
-* **onupgrade** : permet de spécifier si le paramètre est re-demandé lors
-  des upgrade du module (default `H`).
+name
+:   le nom du paramètre
 
-Exemple :
+label
+:   le label textuel pour présenter le paramètre
+
+type
+:   `text` ou `enum`, permet de spécifier le type de donnée attendu
+
+default
+:   la valeur par défaut présenté à l'utilisateur lors de la saisie des paramètres.
+
+needed
+:   `yes` ou `no`, permet de spécifier si la saisie du paramètre est obligatoire ou optionnelle.
+
+values
+:   lorsque `type=“enum”`, l'attribut `values` permet de spécifier une list de choix finis à partir de laquelle l'utilisateur selectionnera une valeur
+
+volatile
+:   permet de spécifier si la valeur entrée doit être supprimée après l'installation ou upgrade.
+    Cela permet d'indiquer que la valeur n'est pas mémorisée, et donc qu'elle sera demandé avec sa valeur par défaut à chaque upgrade du module par exemple  
+    defaut `no`
+
+oninstall
+:   permet de spécifier la visibilité du paramètre lors d'une installation du module
+    (`R` pour lecture seule,
+    `W` pour lecture/écriture,
+    `H` pour caché)  
+    defaut `W`
+
+onedit
+:   permet de spécifier la visibilité du paramètre lors de l'édition
+    des paramètres depuis la liste des modules installés  
+    defaut `R`
+
+onupgrade
+:   permet de spécifier si le paramètre est re-demandé lors des upgrade du module  
+    default `H`
+
+Exemple :
 
       [xml]
       <parameters>
@@ -385,10 +374,10 @@ Exemple :
         <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="no" />
       </parameters>
 
-## Workflow d'install/upgrade (Pre/post install/upgrade/etc.)
+## Workflow d'install/upgrade (Pre/post install/upgrade, etc.) {#module-wf-install-upgrade}
 
-Lors de l'installation, upgrade, un ensemble d'actions peuvent être effectués
-avant (pre) et après (post) l'opération suivant l'ordre suivant :
+Lors de l'installation, ou de l'upgrade, un ensemble d'actions peuvent être effectués
+avant (pre) et après (post) l'opération suivant l'ordre suivant :
 
 ![Workflow install/upgrade d'un module](module-install-upgrade-workflow.png)
 
@@ -397,10 +386,10 @@ ou `process` qui sont exécutés et qui retournent un status d'échec ou de
 réussite.
 
 Une phase est validée lorsque tous ses sous-éléments `check` ou `process` ont
-retournés un statut de réussite.
+retourné un statut de réussite.
 
-Si une phase n'est pas validée, alors il est présenté à l'utilisateur les
-messages d'erreurs  rencontrés, et celui-ci peut rejouer le check (ou le
+Si une phase n'est pas validée, alors les messages d'erreurs rencontrés
+sont présenté à l'utilisateur , et celui-ci peut rejouer le check (ou le
 process) après avoir eventuellement corrigé le problème, ou bien il peut
 choisir d'ignorer les messages d'erreurs et poursuivre l'install/ugprade.
 
@@ -414,18 +403,18 @@ Les actions possibles peuvent être des éléments `<check>`.
 Chaque élément `<check>` peut fournir un élément `<help>` qui sera présenté à
 l'utilisateur lorsque l'action échoue.
 
-Exemple :
+Exemple :
 
-      [xml]
-      <pre-install>
-        <check type="phpfunction" function="pspell_new">
-          <help>Il faut peut-être installer php5-pspell avec aspell et aspell-fr</help>
-        </check>
-        <check type="syscommand" command="convert" />
-      </pre-install>
+    [xml]
+    <pre-install>
+    <check type="phpfunction" function="pspell_new">
+      <help>Il faut peut-être installer php5-pspell avec aspell et aspell-fr</help>
+    </check>
+    <check type="syscommand" command="convert" />
+    </pre-install>
 
 Les actions de pre-install serviront généralement à vérifier la présence de
-certains éléments et bloquer l'installation si ces éléments ne sont pas
+certains éléments et à bloquer l'installation si ces éléments ne sont pas
 présents/corrects.
 
 ### Phase post-install
@@ -438,20 +427,20 @@ Les actions possibles peuvent être des éléments `<process>`.
 Chaque élément `<process>` peut fournir un élément `<label>` qui sera présenté
 à l'utilisateur lorsque l'action sera exécutée.
 
-Exemple :
+Exemple :
 
-      [xml]
-      <post-install>
-        <process command="programs/record_application FOO">
-          <label lang="en">Record FOO application in database</label>
-        </process>
-        <process command="programs/update_catalog">
-          <label lang="en">Generate localization catalog</label>
-        </process>
-      </post-install>
+    [xml]
+    <post-install>
+    <process command="programs/record_application FOO">
+      <label lang="en">Record FOO application in database</label>
+    </process>
+    <process command="programs/update_catalog">
+      <label lang="en">Generate localization catalog</label>
+    </process>
+    </post-install>
 
 Les actions de post-install serviront généralement à configurer le module qui
-viens d'être installé. Une erreur dans la phase de post-install laissera les
+vient d'être installé. Une erreur dans la phase de post-install laissera les
 fichiers installés en place, mais le paquet sera marqué en erreur de
 post-install dans l'interface.
 
@@ -465,15 +454,15 @@ Les actions possibles peuvent être des éléments `<check>`.
 Chaque élément `<check>` peut fournir un élément `<help>` qui sera présenté à
 l'utilisateur lorsque l'action échoue.
 
-Exemple :
+Exemple :
 
-      [xml]
-      <pre-upgrade>
-        <check type="phpfunction" function="pspell_new">
-          <help>Il faut peut-être installer php5-pspell avec apspell et aspell-fr</help>
-        </check>
-        <check type="syscommand" command="convert" />
-      </pre-upgrade>
+    [xml]
+    <pre-upgrade>
+    <check type="phpfunction" function="pspell_new">
+      <help>Il faut peut-être installer php5-pspell avec apspell et aspell-fr</help>
+    </check>
+    <check type="syscommand" command="convert" />
+    </pre-upgrade>
 
 Les actions de pre-upgrade serviront généralement à vérifier la présence de
 certains éléments et bloquer l'upgrade si ces éléments ne sont pas
@@ -489,26 +478,26 @@ Les actions possible peuvent être des éléments `<process>`.
 Chaque élément `<process>` peut fournir un élément `<label>` qui sera présenté
 à l'utilisateur lorsque l'action sera exécuté.
 
-Exemple :
+Exemple :
 
-      [xml]
-      <post-upgrade>
-        <process command="programs/pre_migration FOO">
-          <label lang="en">Pre-migration scripts</label>
-        </process>
-        <process command="programs/record_application FOO">
-          <label lang="en">Update application record in database</label>
-        </process>
-        <process command="programs/post_migration FOO">
-          <label lang="en">Post-migration scripts</label>
-        </process>
-        <process command="programs/update_catalog">
-          <label lang="en">Re-generate localization catalog</label>
-        </process>
-      </post-install>
+    [xml]
+    <post-upgrade>
+    <process command="programs/pre_migration FOO">
+      <label lang="en">Pre-migration scripts</label>
+    </process>
+    <process command="programs/record_application FOO">
+      <label lang="en">Update application record in database</label>
+    </process>
+    <process command="programs/post_migration FOO">
+      <label lang="en">Post-migration scripts</label>
+    </process>
+    <process command="programs/update_catalog">
+      <label lang="en">Re-generate localization catalog</label>
+    </process>
+    </post-install>
 
 Les actions de post-upgrade serviront généralement à configurer le module qui
-viens d'être isntallé, lancer les scripts de migration, etc. Une erreur dans la
+vient d'être installé, lancer les scripts de migration, etc. Une erreur dans la
 phase de post-upgrade laissera les fichiers installés en place, mais le paquet
 sera marqué en erreur de post-upgrade dans l'interface.
 
@@ -517,8 +506,7 @@ sera marqué en erreur de post-upgrade dans l'interface.
 Les éléments de reconfigure s'exécutent après la restauration d'un contexte
 depuis une archive.
 
-Les actions possible sont les mêmes que pour les phases de `post-install` ou
-`post-upgrade`.
+Les actions possible sont les mêmes que pour les phases de `post-install` ou `post-upgrade`.
 
 ## Les actions de phase
 
@@ -527,50 +515,36 @@ Les actions possible sont les mêmes que pour les phases de `post-install` ou
 Les éléments `check` permettent d'executer des actions pour vérifier la
 présence de certains éléments.
 
-#### phpfunction
-
-Le check de type `phpfunction` permet de vérifier la présence d'une fonction
-PHP.
-
-Le nom de la fonction testé est spécifié avec l'attribut `function`.
-
-Exemple :
+phpfunction
+:   Le check de type `phpfunction` permet de vérifier la présence d'une fonction PHP.  
+    Le nom de la fonction testé est spécifié avec l'attribut `function`.
+Exemple :
 
     <check type="phpfunction" function="pg_connect" />
 
-#### syscommand
+syscommand
+:   Le check de type `syscommand` permet de vérifier la présence d'une commande disponible sur le système.  
+    Le nom de la command testé est spécifié avec l'attribut `command`
 
-Le check de type `syscommand` permet de vérifier la présence d'une commande
-disponible sur le système.
-
-Le nom de la command testé est spécifié avec l'attribut `command`
-
-Exemple :
+Exemple :
 
       <check type="syscommand" command="convert" />
 
-#### phpclass
+phpclass
+:   Le check de type `phpclass` permet de vérifier la présence d'une classe objet PHP.  
+    Le nom de la classe PHP est fournis avec les attributs suivants :  
+    *include* : le nom du fichier pour inclure la définition de la classe  
+    *class* : le nom de la classe
 
-Le check de type `phpclass` permet de vérifier la présence d'une classe objet
-PHP.
-
-Le nom de la classe PHP est fournis avec les attributs suivants :
-
-* **include** : le nom du fichier pour inclure la définition de la classe
-* **class** : le nom de la classe
-
-Exemple :
+Exemple :
 
       <check type="phpclass" include="Net/SMTP.php" class="Net_SMTP" />
 
-#### apachemodule
+apachemodule
+:   Le check de type `apachemodule` permet de vérifier qu'un module Apache particulier est activé et chargé par celui-ci.  
+    Le nom du module est spécifié par l'attribut `module`.
 
-Le check de type `apachemodule` permet de vérifier qu'un module Apache
-particulier est activé et chargé par celui-ci.
-
-Le nom du module est spécifié par l'attribut `module`.
-
-Exemple :
+Exemple :
 
       <check type="apachemodule" module="mod_expires" />
 
@@ -582,16 +556,16 @@ installation.
 
 #### Commande *programs/app_post*
 
-Prototype :
+Prototype :
 
 * `programs/app_post <APPNAME> I|U`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-install`
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Dans la phase `post-install`, le programme doit être exécuté
   avec le programme `record_application`
@@ -606,13 +580,12 @@ Le module peut donc fournir son propre script nommé
 `./<APPNAME>/<APPNAME>_post` qui sera exécuté par l'appel à
 `programs/app_post`.
 
-Les arguments sont :
+Les arguments sont :
 
 * Le nom de l'application (le script exécuté sera alors &lt;APPNAME&gt;_post)
-* `I` | `U` : Le nom de la phase d'initialisation a exécuter (`I`
-  pour install, `U` pour upgrade)
+* `I` | `U` : Le nom de la phase d'initialisation a exécuter (`I` pour install, `U` pour upgrade)
 
-Exemple :
+Exemple :
 
       [xml]
       <post-install>
@@ -634,16 +607,16 @@ ou un upgrade.
 
 #### Commande *programs/record_application*
 
-Prototype :
+Prototype :
 
 * `programs/record_application <APPNAME>`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-install`
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Le programme doit être exécuté après le programme `app_post`
 
@@ -654,44 +627,44 @@ La ligne de commande est spécifié par l'attribut `command`.
 
 `record_application` prend en argument le nom de l'application à enregistrer.
 
-Exemple :
+Exemple :
 
       <process command="programs/record_application FOO" />
 
 #### Commande *programs/update_catalog*
 
-Prototype :
+Prototype :
 
 * `programs/update_catalog`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-install`
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Le programme doit être exécuté à la fin de la phase
 
 Le programme `update_catalog` est utilisé pour ré-générer le catalogue des
 messages de localisation.
 
-Exemple :
+Exemple :
 
       [xml]
       <process command="programs/update_catalog" />
 
 #### Commande *programs/pre_migration*
 
-Prototype :
+Prototype :
 
 * `programs/pre_migration`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Le programme doit être exécuté au début de la phase, avant le programme
   `app_post`
@@ -699,21 +672,21 @@ Conditions d'utilisation :
 Le programme `pre_migration` est utilisé pour exécuter les scripts de
 pre-migration d'un module lors de sa mise-à-jour.
 
-Exemple :
+Exemple :
 
       <process command="programs/pre_migration" />
 
 #### Commande *programs/post_migration*
 
-Prototype :
+Prototype :
 
 * `programs/post_migration`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Le programme doit être exécuté après le programme `record_application`, et
   avant le `update_catalog`
@@ -721,18 +694,18 @@ Conditions d'utilisation :
 Le programme `post_migration` est utilisé pour exécuter les scripts de
 post-migration d'un module lors de sa mise-à-jour.
 
-Exemple :
+Exemple :
 
       [xml]
       <process command="programs/post_migration" />
 
 #### Commande *programs/set_param*
 
-Prototype :
+Prototype :
 
 * `programs/set_param <DYNACASE_PLATFORM_PARAM_NAME> <DYNACASE_CONTROL_MODULE_PARAM_NAME>`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-install`
 * `post-upgrade`
@@ -741,7 +714,7 @@ Le programme `programs/set_param` permet de positionner la valeur d'un
 paramètre applicatif de dynacase-platform avec la valeur d'un paramètre de
 module.
 
-Exemple :
+Exemple :
 
     [xml]
     <parameters>
@@ -756,16 +729,16 @@ Exemple :
 
 #### Commande *./wsh.php*
 
-Prototype :
+Prototype :
 
 * `./wsh.php`
 
-Utilisable dans les phases :
+Utilisable dans les phases :
 
 * `post-install`
 * `post-upgrade`
 
-Conditions d'utilisation :
+Conditions d'utilisation :
 
 * Le programme peut être utilisé à n'importe quel moment en fonction des
   besoins
@@ -773,7 +746,7 @@ Conditions d'utilisation :
 Le programme `./wsh.php` est utilisé pour exécuter des méthodes sur des classes
 documentaires et exécuter des API Dynacase.
 
-Exemple :
+Exemple :
 
       <process command="./wsh.php --api=refreshDocuments --method=postModify --famid=FOO" />
 
@@ -788,19 +761,19 @@ répertoire que vous aurez spécifié à l'empaquetage.
 
 Le programme est exécuté dans le répertoire racine de l'installeur
 DYNACASE-CONTROL, et les variables d'environnement suivantes sont accessible
-depuis le script :
+depuis le script :
 
-* **WIFF_ROOT** : Le chemin du répertoire ou est installé DYNACASE-CONTROL
+* `$WIFF_ROOT` : Le chemin du répertoire ou est installé DYNACASE-CONTROL
   (c'est donc aussi le répertoire courant (`$CWD`) dans lequel sera exécuté
   votre programmes)
-* **WIFF_CONTEXT_ROOT** : Le chemin du répertoire du contexte sur lequel est
+* `$WIFF_CONTEXT_ROOT` : Le chemin du répertoire du contexte sur lequel est
   effectué l'opération.
-* **WIFF_CONTEXT_NAME** : Le nom du contexte sur lequel est effectué
+* `$WIFF_CONTEXT_NAME` : Le nom du contexte sur lequel est effectué
   l'opération.
 
 ##### Ecrire un programme personnalisé en shell Bash
 
-Exemple :
+Exemple :
 
     [bash]
     #!/bin/bash
@@ -819,13 +792,13 @@ Exemple :
     # -- `foo_dir.list' dans le sous-répertoire de mon module `FOO'
     echo "$PARAM_FOO_DIR" >> "$WIFF_CONTEXT_ROOT"/FOO/foo_dir.list
 
-##### Ecrire un programme personnalisé en PHP
+##### Ecrire un programme personnalisé en PHP {#module-programme-perso}
 
-Note : Le programme PHP a aussi accès aux variables d'environnement,
+Note : Le programme PHP a aussi accès aux variables d'environnement,
 comme le script Bash, mais le chemin d'include doit être construit
 en fonction de vos besoins.
 
-Exemple :
+Exemple :
 
     [php]
     #!/usr/bin/env php
@@ -873,7 +846,7 @@ traitement sur le fichier téléchargé. Il est utilisé par exemple pour
 télécharger du code tier livré sous forme d'archive Zip ou Tar.gz, et de
 l'installer dans le contexte.
 
-Exemple :
+Exemple :
 
     [xml]
     <parameters>
@@ -887,29 +860,33 @@ Exemple :
 L'élément download est généralement couplé à un paramètre qui permet de
 demander et modifier l'URL de la ressource à télécharger.
 
-Les propriétés suivantes sont utilisables sur l'élément download :
+Les propriétés suivantes sont utilisables sur l'élément download :
 
-* **href** : contient l'URL de la ressource à télécharger, ou bien la valeur
-  d'un paramètre demandé précédemment avec la notation `@nom_du_parametre`.
-* **action** : contient le chemin d'un script qui sera exécuté avec le fichier
-  téléchargé comme argument : `programs/foo_install /tmp/foo_url_xxx`.
-  L'environnement d'exécution est identique à celui décrit dans la section
-  "Programmes personnalisé" ci-dessus.
+href
+:   contient l'URL de la ressource à télécharger, ou bien la valeur
+    d'un paramètre demandé précédemment avec la notation `@nom_du_parametre`.
+
+action
+:   contient le chemin d'un script qui sera exécuté avec le fichier
+    téléchargé comme argument : `programs/foo_install /tmp/foo_url_xxx`.
+    L'environnement d'exécution est identique à celui décrit dans la section
+    [Programmes personnalisé](#module-programme-perso) ci-dessus.
 
 ## Variables dans les actions de phase
 
-Certaines propriétés d'actions peuvent contenir des variables. Ces variables permettent alors de référencer et d'utiliser la valeur d'un paramètre de module.
+Certaines propriétés d'actions peuvent contenir des variables.
+Ces variables permettent alors de référencer et d'utiliser la valeur d'un paramètre de module.
 
 La liste des actions et des propriétés supportant l'évaluation de variables est décrite ci-dessous.
 
 ### Notation
 
-Les variables peuvent être exprimées avec les notations suivantes :
+Les variables peuvent être exprimées avec les notations suivantes :
 
 * `@PARAM_NAME`
 * `@{PARAM_NAME}`
 
-Pour entrer un caractère `@` literal il faut doubler le caractère :
+Pour entrer un caractère `@` literal il faut doubler le caractère :
 
 * `@@` → `@`
 
@@ -919,31 +896,31 @@ Les noms des variables doivent être de la forme `[a-zA-Z_][a-zA-Z0-9_]*`.
 
 #### Action *download*
 
-Dans une action `download`, les propriétés suivantes supportent l'évaluation des variables :
+Dans une action `download`, les propriétés suivantes supportent l'évaluation des variables :
 
 * `href`
 
-Exemple :
+Exemple :
 
     <download href="... @PARAM_NAME ..." />
 
 #### Action *process*
 
-Dans une action `process`, les propriétés suivantes supportent l'évaluation des variables :
+Dans une action `process`, les propriétés suivantes supportent l'évaluation des variables :
 
 * `command`
 
-Exemple :
+Exemple :
 
     <process command="... @PARAM_NAME ..." />
 
 #### Action *check* de type *exec*
 
-Dans une action `check` de type `exec`, les propriétés suivantes supportent l'évaluation des variables :
+Dans une action `check` de type `exec`, les propriétés suivantes supportent l'évaluation des variables :
 
 * `cmd`
 
-Exemple :
+Exemple :
 
     <check type="exec" cmd="... @PARAM_NAME ..." />
 
