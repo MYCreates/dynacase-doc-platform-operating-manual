@@ -108,6 +108,7 @@ Pour voir les requêtes en cours d'exécution, Postgresql dispose de la table
     (2 rows)
 
 Cette table présente le détail des requêtes en cours d'exécution :
+
 current_query
 :   La requête en cours d'exécution
 

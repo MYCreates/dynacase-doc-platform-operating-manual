@@ -1,4 +1,4 @@
-# Format des modules webinst
+# Format des modules webinst {#module}
 
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
 webinst et mettre en œuvre ces éléments pour construire un module d'exemple
@@ -105,7 +105,7 @@ author
 licence
 :   licence du module  
     *optionnel*
-    FIXME: préciser le fonctionnement (fichier , etc.)
+    <span class="fixme">préciser le fonctionnement (fichier , etc.)</span>
 
 vendor
 :   fournisseur du module (ex. `ACME Corp.`)  
