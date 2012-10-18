@@ -18,9 +18,9 @@ book:
         - number:   "6"
           content:  "exploitation.md"
         - number:   "7"
-          content:  "postgresql-tuning.md"
+          content:  "tuning-postgresql.md"
         - number:   "8"
-          content:  "apache2-tuning.md"
+          content:  "tuning-apache2.md"
         - number:   "9"
           content:  "control-cli.md"
     appendixes:
