@@ -83,6 +83,56 @@ Le paramètre [maintenance_work_mem](http://www.postgresql.org/docs/9.1/static/r
     maintenance_work_mem = 128Mb
     […]
 
+### WAL : Write Ahead Log
+
+Le mécanisme de WAL (Write Ahead Log) est le mécanisme utilisé par Postgresql pour gérer les modifications des données de la base et assurer l'intégrité de la base de données en cas de crash du serveur.
+
+Lorsqu'une donnée est modifiée, l'opération est d'abord enregistrée dans un fichier WAL sur le disque. Ensuite, de manière asynchrone, les opérations contenues dans les fichiers WAL sont écrites de manière définitive sur la base de données.
+
+Suite à un crash, au redémarrage, le serveur Postgresql rejouera alors les opérations des fichiers WAL qui ne sont pas encore inscrites en base pour mettre à niveau la base de données.
+
+#### wal_buffers
+
+Le paramètre [wal_buffers](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-WAL-BUFFERS) spécifie la taille d'un fichier de journal d'écriture "WAL" (Write-Ahead-Log).
+
+Par défaut, la taille d'un WAL est de `64KB`. Une petite valeur entrainera des écritures de petits fichiers WAL plus fréquentes, et une grande valeur entrainera des écritures de fichiers WAL de plus gros volume mais avec une fréquence moindre.
+
+Il est admis qu'une valeur de `16MB` est une bonne valeur pour un serveur de production :
+
+	wal_buffers = 16MB
+
+### checkpoint_segments, checkpoint_timeout et checkpoint_completion_target
+
+Le paramètre [checkpoint_segments](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-CHECKPOINT-SEGMENTS) spécifie le nombre de fichiers WAL qui sont conservés, en rotation, sur le disque.
+
+Une grand nombre de `checkpoint_segments` réduit le nombre d'écritures sur la base de données, mais en cas de crash du serveur, cela fera un plus gros volume de données à rejouer lors du redémarrage du serveur pour qu'il remette sa base à niveau avec les derniers fichiers checkpoints.
+
+Le paramètre [checkpoint_timeout](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-CHECKPOINT-TIMEOUT) spécifie le temps maximal qu'un fichier WAL peut rester sur le disque avant d'être inscrit de manière définitive dans la base de données.
+
+Le paramètre [checkpoint_completion_target](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-CHECKPOINT-COMPLETION-TARGET) permet quand à lui de spécifier la périodicité d'écriture des fichiers WAL sur la base de données. Il permet de répartir les écritures des fichiers WAL au cours du temps et d'éviter d'avoir des pics d'écritures lorsque les fichiers WAL atteignent leur limite de temps au même moment.
+
+Une estimation du nombre de fichiers WAL stockés sur le disque est donné par la formule suivante :
+
+	number of WAL files = ( 2 + checkpoint_completion_target ) * checkpoint_segments + 1
+
+Les valeurs suivantes sont admises comme étant un bon compromis entre la réduction du nombre d'écritures sur la base et le temps de reprise en cas de crash.
+
+	checkpoint_segments = 32
+	checkpoint_timeout = 5min
+	checkpoint_completion_target = 0.9
+
+Le volume occupé par les fichiers WAL sera alors approximativement de 1.5GB.
+
+### Bulk data loading {#752E8DED-D951-42E9-BF23-73AD28622D03}
+
+Dans le cas de la restauration d'une base de donnée, ou du chargement massif de données, ces paramètres de WAL peuvent être augmentés afin de réduire le nombre d'opérations d'écritures sur la base de donnée, moyennant une utilisation d'un plus grand volume par les fichiers WAL.
+
+	checkpoint_segments = 300
+	checkpoint_timeout = 3000
+	autovacuum = off
+
+Attention : Ces paramètres ne doivent pas être utilisés en production, mais seulement temporairement pour la durée de l'opération de chargement/restauration des données.
+
 ### Conclusion
 
 Ces paramètres permettent donc de donner une plus grande liberté de mouvement à PostgreSQL comparés à ceux livrés par défaut.
