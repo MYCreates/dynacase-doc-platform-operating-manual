@@ -161,8 +161,17 @@ Par défaut ce paramètre est à “On”.
 
 ## PostgreSQL {#pre-req-postgresql}
 
-Dynacase Platform nécessite PostgreSQL version **9.1.**
-La version 8.4 est aussi supportée mais pour des raisons de performances, la version 9.1 est fortement recommandée.
+Dynacase nécessite PostgreSQL version 9.1.
+
+La version 8.4 est aussi supportée mais pour des raisons de performances il est recommandé d'installer la version 9.1.
+
+Dynacase utilise le fichier de service Postgresql (`pg_service.conf`) pour la définition des paramètres de connexion à la base de données :
+
+* [http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html](http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html)
+
+Pour identifier l'emplacement du fichier `pg_service.conf` sur votre distribution Linux, vous pouvez utiliser la commande suivante :
+
+    # pg_config --sysconfdir
 
 ## HTTPD Apache
 
