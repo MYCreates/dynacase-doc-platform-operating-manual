@@ -8,13 +8,13 @@ La commande `wiff` permet de manipuler et administrer les contextes Dynacase. Le
 
 Si vous n'êtes pas 'root' sur le serveur, et que les opérations d'administrations s'effectuent avec 'sudo' :
 
-    sudo /var/www/dynacase-control/wiff help
+    $ sudo /var/www/dynacase-control/wiff help
     Password: ******
     [message d'aide]
 
 Si vous avez accès au compte 'root' sur le serveur :
 
-    /var/www/dynacase-control/wiff help
+    # /var/www/dynacase-control/wiff help
     [message d'aide]
 
 ### Commandes
@@ -29,12 +29,12 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff list context
+    # /var/www/dynacase-control/wiff list context
     developpement
     test
     production
 
-    /var/www/dynacase-control/wiff list context --pretty
+    # /var/www/dynacase-control/wiff list context --pretty
     Name               Description                                                     
     -----------------------------------------------------------------------------------
     developpement      Développement
@@ -53,11 +53,11 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test module list installed
+    # var/www/dynacase-control/wiff context test module list installed
     dynacase-fckeditor (2.6.3-7)
     dynacase-webdesk (1.2.2-1)
     dynacase-extjs (3.1.1-8)
-    dynacase-toolbox (3.0.11-1)
+    dynacase-core (3.2.5-1)
     dynacase-extui (0.6.4-1)
     dynacase-workspace (0.6.1-1)
     dynacase-ecm (0.3.0-1)
@@ -72,9 +72,9 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test module list available
+    # /var/www/dynacase-control/wiff context test module list available
     dynacase-extjs (3.1.1-8)
-    dynacase-toolbox (3.0.11-1)
+    dynacase-core (3.2.5-1)
     dynacase-fckeditor (2.6.3-7)
     dynacase-freeevent (2.6.0-0)
     dynacase-webdesk (1.2.2-1)
@@ -95,8 +95,8 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test module list upgrade
-    dynacase-platform (2.14.1-12)
+    # /var/www/dynacase-control/wiff context test module list upgrade
+    dynacase-core (3.2.6-1)
 
 ##### Installer un module
 
@@ -118,111 +118,29 @@ Exemple :
 
 Installation d'un paquet distant :
 
-    /var/www/dynacase-control/wiff context test module install dynacase-platform
-    Will install (or upgrade) the following packages:
-    - dynacase-vault-3.10.0-0 
-    - dynacase-fckeditor-2.6.3-5 
-    - dynacase-common-0.6.0-0 
-    - dynacase-platform-2.14.3-18 
-    Proceed to installation ? [Y/n] Y
-
-    Processing required module 'dynacase-platform' (2.14.1-12) for install.
-    Downloading module 'dynacase-platform-2.14.1-12'... [OK]
-
-    Parameters for module 'dynacase-platform'
-    ------------------------------------
-
-    client_name ? [] Test
-
-    core_db ? [test] 
-
-    authtype ? [html] 
-
-    apacheuser ? [www-data] _www
-
-    Doing 'pre-install' of module 'dynacase-platform'.
+    # /var/www/dynacase-control/wiff context test module install dynacase-core
+    Will (i)nstall, (u)pgrade, or (r)eplace the following modules:
+    - dynacase-core-3.2.5-1.20130221.090413 (i)
+    - dynacase-jquery-installer-1.7.2-1.20120730.134605 (i)
+    - dynacase-jquery-ui-installer-1.8.21-2.20120817.154930 (i)
+    - dynacase-json2-1.0.0-0.20130214.114647 (i)
+    - dynacase-datajs-3.2.5-0.20130220.144720 (i)
+    - dynacase-jquery-dataTables-installer-1.9.1-0.20120622.121419 (i)
+    - dynacase-ckeditor-installer-4.0.1-0.20130213.174659 (i)
+    Proceed with installation ? [Y/n]
+    
+    Processing module 'dynacase-core' (3.2.5-1.20130221.090413) for install.
+    Downloading module 'dynacase-core-3.2.5-1.20130221.090413'... [OK]
     [...]
-    Doing 'unpack' of module 'dynacase-platform'.
-    Unpacking module 'dynacase-platform'... [OK]
-    Doing 'post-install' of module 'dynacase-platform'.
-    Running 'Initialize system database'... [OK]
-    Running 'Record core application in database'... [OK]
-    Running 'Record users application in database'... [OK]
-    Running 'Record access application in database'... [OK]
-    Running 'Record authent application in database'... [OK]
-    Running 'Record appmng application in database'... [OK]
-    Running 'Generate traduction catalog'... [OK]
-    Running 'Register client name'... [OK]
-
-    Processing required module 'dynacase-vault' (3.10.0-0) for install.
-    Downloading module 'dynacase-vault-3.10.0-0'... [OK]
-    Doing 'pre-install' of module 'dynacase-vault'.
-    Doing 'unpack' of module 'dynacase-vault'.
-    Unpacking module 'dynacase-vault'... [OK]
-    Doing 'post-install' of module 'dynacase-vault'.
-    Running 'Process programs/record_application VAULT'... [OK]
-    Running 'Process wsh.php --api=vault_init'... [OK]
-    Running 'Process programs/update_catalog'... [OK]
-
-    Processing required module 'dynacase-fckeditor' (2.6.3-5) for install.
-    Downloading module 'dynacase-fckeditor-2.6.3-5'... [OK]
-    Doing 'pre-install' of module 'dynacase-fckeditor'.
-    Doing 'unpack' of module 'dynacase-fckeditor'.
-    Unpacking module 'dynacase-fckeditor'... [OK]
-    Doing 'post-install' of module 'dynacase-fckeditor'.
-
-    Processing required module 'dynacase-common' (0.6.0-0) for install.
-    Downloading module 'dynacase-common-0.6.0-0'... [OK]
-    Doing 'pre-install' of module 'dynacase-common'.
-    Doing 'unpack' of module 'dynacase-common'.
-    Unpacking module 'dynacase-common'... [OK]
-    Doing 'post-install' of module 'dynacase-common'.
-    Running 'Process programs/record_application FDC'... [OK]
-    Running 'Process programs/update_catalog'... [OK]
-
-    Processing required module 'freedom' (2.14.3-18) for install.
-    Downloading module 'dynacase-2.14.3-18'... [OK]
-    Doing 'pre-install' of module 'freedom'.
-    Running 'Check php function gd_info'... [OK]
-    Running 'Check php function cal_info'... [OK]
-    Running 'Check php class XSLTProcessor'... [OK]
-    Doing 'unpack' of module 'freedom'.
-    Unpacking module 'freedom'... [OK]
-    Doing 'post-install' of module 'freedom'.
-    Running 'Process programs/app_post FDL I'... [OK]
-    Running 'Process programs/record_application FDL I'... [OK]
-    Running 'Process programs/app_post FDL U'... [OK]
-    Running 'Process programs/app_post USERCARD I'... [OK]
-    Running 'Process programs/record_application USERCARD I'... [OK]
-    Running 'Process programs/app_post USERCARD U'... [OK]
-    Running 'Process programs/record_application GENERIC I'... [OK]
-    Running 'Process programs/record_application ONEFAM I'... [OK]
-    Running 'Process programs/record_application FUSERS I'... [OK]
-    Running 'Process programs/app_post FREEDOM I'... [OK]
-    Running 'Process programs/record_application FREEDOM I'... [OK]
-    Running 'Process programs/app_post FREEDOM U'... [OK]
-    Running 'Process programs/record_application FGSEARCH I'... [OK]
-    Running 'Process wsh.php --api=crontab --cmd=register --file=FREEDOM/freedom.cron'... [OK]
-    Running 'Process programs/update_catalog'... [OK]
-
     Done.
+
+
 
 Installation d'un paquet local :
 
-    /var/www/dynacase-control/wiff context test module install /tmp/foo-1.2.3-4.webinst
+    # /var/www/dynacase-control/wiff context test module install /tmp/foo-1.2.3-4.webinst
     Processing required module 'foo' (1.2.3-4) for install.
-    Module 'foo-1.2.3-4' is already downloaded in '/private/tmp/foo-1.2.3-4.webinstkeZbf9'.
-    Doing 'pre-install' of module 'foo'.
-    Running 'Check php class XML_Parser'... [OK]
-    Running 'Check php function imap_open'... [OK]
-    Doing 'unpack' of module 'foo'.
-    Unpacking module 'foo'... [OK]
-    Doing 'post-install' of module 'foo'.
-    Running 'Process programs/app_post FOO I'... [OK]
-    Running 'Process programs/record_application FOO'... [OK]
-    Running 'Process programs/app_post FOO U'... [OK]
-    Running 'Process programs/update_catalog'... [OK]
-
+    [...]
     Done.
 
 ##### Upgrader un module
@@ -243,22 +161,9 @@ Les options disponibles sont :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test module upgrade /tmp/foo-2.0.0-1.webinst
+    # /var/www/dynacase-control/wiff context test module upgrade /tmp/foo-2.0.0-1.webinst
     Processing required module 'foo' (2.0.0-1) for upgrade.
-    Module 'foo-2.0.0-1' is already downloaded in '/private/tmp/foo-2.0.0-1.webinstwEvSU3'.
-    Doing 'pre-upgrade' of module 'foo'.
-    Running 'Check php class XML_Parser'... [OK]
-    Running 'Check php class XML_RSS'... [OK]
-    Running 'Check php function imap_open'... [OK]
-    Doing 'unpack' of module 'foo'.
-    Unpacking module 'foo'... [OK]
-    Doing 'post-upgrade' of module 'foo'.
-    Running 'Process programs/pre_migration FOO'... [OK]
-    Running 'Process programs/app_post FOO U'... [OK]
-    Running 'Process programs/record_application FOO'... [OK]
-    Running 'Process programs/post_migration FOO'... [OK]
-    Running 'Process programs/update_catalog'... [OK]
-    
+    [...]
     Done.
 
 #### Manipuler les paramètres
@@ -273,15 +178,18 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test param show 
-    dynacase-platform:client_name = Test
-    dynacase-platform:core_db = test
-    dynacase-platform:authtype = html
-    dynacase-platform:apacheuser = _www
+    # /var/www/dynacase-control/wiff context test param show 
+    dynacase-core:client_name = Test
+    dynacase-core:core_db = test
+    dynacase-core:authtype = html
+    dynacase-core:lcdate = iso : standard format 8601
+    dynacase-core:core_tmpdir = ./var/tmp
+    dynacase-core:core_admin_passwd =
+    dynacase-core:mod_deflate = yes
     foo:bar = baz
     foo:bir = biz
     
-    /var/www/dynacase-control/wiff context test param show foo
+    # /var/www/dynacase-control/wiff context test param show foo
     foo:bar = baz
     foo:bir = biz
 
@@ -295,7 +203,7 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test param get foo:bar
+    # /var/www/dynacase-control/wiff context test param get foo:bar
     foo:bar = baz
 
 ##### Positionner la valeur d'un paramètre d'un module
@@ -308,7 +216,7 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context <context-name> param set foo:bar buzz
+    # /var/www/dynacase-control/wiff context <context-name> param set foo:bar buzz
     foo:bar = buzz
 
 #### Passer un contexte en maintenance
@@ -322,7 +230,7 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff wstop test
+    # /var/www/dynacase-control/wiff wstop test
     check update needed (/var/www/test/wcheck)
 
 #### Mettre en service un contexte
@@ -335,7 +243,7 @@ Syntaxe :
 
 Exemple :
     
-    /var/www/dynacase-control/wiff wstart test
+    # /var/www/dynacase-control/wiff wstart test
 
 #### Réinitialiser les catalogues de langue
 
@@ -347,7 +255,7 @@ Syntaxe :
 
 Exemple :
 
-    /var/www/dynacase-control/wiff whattext test
+    # /var/www/dynacase-control/wiff whattext test
     Administration système
 
 #### Ouvrir un shell sous l'uid Apache
@@ -371,11 +279,11 @@ Lors de l'ouverture du shell, ou de l'exécution de la commande, les variables d
 
 Exemple :
 
-    /var/www/dynacase-control/wiff context test shell /bin/bash
-    wiff(test)~$ id
+    # /var/www/dynacase-control/wiff context test shell /bin/bash
+    $ id
     uid=70(_www) gid=70(_www) egid=20(staff) groups=70(_www)
-    wiff(test)~$ pwd
+    $ pwd
     /var/www/test
-    wiff(test)~$ ./FOO/FOO_post U
+    $ ./FOO/FOO_post U
     [...]
-    /var/www/dynacase-control/wiff context test exec /usr/bin/tar -zcf /tmp/archive.tar.gz .
+    # /var/www/dynacase-control/wiff context test exec /usr/bin/tar -zcf /tmp/archive.tar.gz .

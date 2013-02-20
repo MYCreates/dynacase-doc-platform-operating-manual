@@ -1,4 +1,4 @@
-﻿# Installation d'un contexte
+# Installation d'un contexte
 
 L'installation de Dynacase Platform et de ses modules est réalisée en créant un *contexte* Dynacase Control.
 
@@ -71,20 +71,19 @@ Les modules peuvent nécessiter des paramêtres pour leur installation ou leur f
 
 ![paramètres du module](i11.png "paramètres du module")
 
-L'installation de Dynacase Platform (exemple ci-dessus) requiert les paramêtres suivants :
+L'installation de Dynacase Platform (exemple ci-dessus) requiert les paramêtres suivants : 
 
 | Nom du paramètre                 | Description                                                                                                                                            |
 | -                                | -                                                                                                                                                      |
 | client name                      | information affichée sur la page d'authentification Dynacase                                                                                           |
 | database postgresql service name | le nom du service postgresql pour accéder à la base dédiée pour ce contexte                                                                            |
 | authenticate default mode        | mode d'authentification par défaut : “html” pour l'authentification par une page HTML et “basic” pour une authentification par le mécanisme HTTP Basic |
-| apache system user               | utilisateur sous lequel est exécuté Apache (“www-data” pour Debian/Ubuntu, “apache” pour RedHat/CentOS)                                                |
 | temporary folder                 | chemin du répertoire où seront stockés les fichiers temporaires                                                                                        |
 | admin password                   | mot de passe du compte super administrateur `admin`                                                                                                    |
 | enable compression               | compression des données avec le module Apache mod_deflate                                                                                              |
 
 ### Fin de l'installation
-
+ 
 À la fin de l'installation, les modules installés sont présentés dans la section “Installed”.
 
 ![fin de l'installation](i13.png "fin de l'installation")
