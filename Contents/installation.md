@@ -31,7 +31,7 @@ En sélectionnant le contexte créé, son détail et la liste des modules dispon
 
 Vous pouvez maintenant sélectionner les modules que vous souhaitez installer parmi ceux proposés à la rubrique `Available`.
 
-Les modules pré-sélectionnés (comme Dynacase Platform) sont obligatoires.
+Les modules pré-sélectionnés (comme Dynacase Core) sont obligatoires.
 
 En cliquant sur le bouton *[Install Selection]* , le processus d'installation commence.
 Dynacase Control vérifie les dépendances des paquets sélectionnés, et propose la liste des paquets qui seront installés.
@@ -52,7 +52,7 @@ Chacun des modules sélectionnés pour l'installation va suivre ce même process
 
 ![process d'installation](i12.png "process d'installation")
 
-Le panneau principal détaille l'exécution des processus de pre-installation, installation et post-installation.
+Le panneau principal détaille l'exécution des processus de pré-installation, installation et post-installation.
 
 La liste des modules à installer est présentée dans la liste “Module List”.
 Les modules installés avec succès sont marqués par une pastille verte.
@@ -67,20 +67,21 @@ Si nécessaire, il vous est demandé d'accepter les contrats de licence affiché
 
 ### Paramètres
 
-Les modules peuvent nécessiter des paramêtres pour leur installation ou leur fonctionnement.
+Les modules peuvent nécessiter des paramètres pour leur installation ou leur fonctionnement.
 
 ![paramètres du module](i11.png "paramètres du module")
 
-L'installation de Dynacase Platform (exemple ci-dessus) requiert les paramêtres suivants : 
+L'installation de Dynacase Core (exemple ci-dessus) requiert les paramètres suivants : 
 
-| Nom du paramètre                 | Description                                                                                                                                            |
-| -                                | -                                                                                                                                                      |
-| client name                      | information affichée sur la page d'authentification Dynacase                                                                                           |
-| database postgresql service name | le nom du service postgresql pour accéder à la base dédiée pour ce contexte                                                                            |
-| authenticate default mode        | mode d'authentification par défaut : “html” pour l'authentification par une page HTML et “basic” pour une authentification par le mécanisme HTTP Basic |
-| temporary folder                 | chemin du répertoire où seront stockés les fichiers temporaires                                                                                        |
-| admin password                   | mot de passe du compte super administrateur `admin`                                                                                                    |
-| enable compression               | compression des données avec le module Apache mod_deflate                                                                                              |
+| Nom du paramètre | Description |
+| - | - |
+| client name | information affichée sur la page d'authentification Dynacase |
+| database postgresql service name | le nom du service postgresql pour accéder à la base dédiée pour ce contexte |
+| authenticate default mode | mode d'authentification par défaut : “html” pour l'authentification par une page HTML et “basic” pour une authentification par le mécanisme HTTP Basic |
+| output representation of date in database | le format de représentation des dates en base de données |
+| temporary folder | chemin du répertoire où seront stockés les fichiers temporaires |
+| admin password | mot de passe du compte super administrateur `admin` |
+| enable compression | compression des données avec le module Apache `mod_deflate` |
 
 ### Fin de l'installation
  
