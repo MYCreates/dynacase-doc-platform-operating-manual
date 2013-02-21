@@ -177,6 +177,10 @@ Pour identifier l'emplacement du fichier `pg_service.conf` sur votre distributio
 
 Dynacase Platform nécessite le serveur HTTPD Apache en version **2.2**
 
+Le répertoire dans lequel sera installé Dynacase doit avoir un `AllowOverride All` afin que les `.htaccess` livrée par Dynacase soient bien pris en compte par Apache :
+
+* [http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride](http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride)
+
 ### Modules Apache
 
 Les modules Apache suivants sont requis :
