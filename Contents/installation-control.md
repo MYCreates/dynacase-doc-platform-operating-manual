@@ -4,7 +4,7 @@ Dynacase Control est l'outil qui permet d'installer et de gérer des contextes D
 
 ## Téléchargement
 
-Dynacase Control est téléchargeable ici : [http://eec.anakeen.com/public/control/dynacase-control-current.tar.gz](http://eec.anakeen.com/public/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control").
+Dynacase Control est téléchargeable ici : [http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control").
 
 ## Installation
 
@@ -15,10 +15,10 @@ L'archive "tar.gz" récupérée doit être décompressée dans un répertoire se
     root@server: cd /var/www      # Debian/Ubuntu  
     root@server: cd /var/www/html # RedHat/CentOS     
 
-Télécharger [l'archive de Dynacase Control](http://eec.anakeen.com/public/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control"):
+Télécharger [l'archive de Dynacase Control](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control"):
 
     [bash]
-    wget http://eec.anakeen.com/public/control/dynacase-control-current.tar.gz
+    wget http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz
 
 Extraire l'archive et renommer le répertoire :
 
@@ -80,12 +80,12 @@ Si vous refusez la mise à jour, il est alors possible d'appliquer ultérieureme
 ##### Configuration des mises-à-jour de Dynacase Control {#installation-control-update}
 
 Vous pouvez configurer l'hôte sur lequel Dynacase Control effectuera les recherches et téléchargements de mises-à-jour (c'est particulièrement utile lors de l'installation sur une machine n'ayant pas accès à internet).
-Par défaut, la configuration pointe sur [le dépôt officiel Anakeen de Dynacase Control](http://eec.anakeen.com/public/control).
+Par défaut, la configuration pointe sur [le dépôt officiel Anakeen de Dynacase Control](http://dynacase.anakeen.com/control/).
 
 | nom du paramètre     | valeur par défaut      | description                                                                                       |
 | -                    | -                      | -                                                                                                 |
-| wiff-update-host     | http://eec.anakeen.com | Le nom de l'hôte hébergeant les mises-à-jour avec le protocole à utiliser (“http://” ou “ftp://”) |
-| wiff-update-path     | public/control         | Le chemin d'accès au répertoire des mises-à-jour                                                  |
+| wiff-update-host     | http://dynacase.anakeen.com | Le nom de l'hôte hébergeant les mises-à-jour avec le protocole à utiliser (“http://” ou “ftp://”) |
+| wiff-update-path     | /control/         | Le chemin d'accès au répertoire des mises-à-jour                                                  |
 | wiff-update-login    |                        | Login de connexion au serveur de mise à jour                                                      |
 | wiff-update-password |                        | Mot de passe de connexion au serveur de mise à jour                                               |
 
@@ -119,12 +119,12 @@ Lors de l'édition d'un dépôt, vous avez à renseigner les champs suivants:
 | Confirm password | Confirmation du mot de passe                                                                               |
 
 ##### Dépôts pré-configurées
-Par défaut, les [dépôts de la version communautaire de Dynacase Platform](https://eec.anakeen.com/public/platform/) sont pré-configurées :
+Par défaut, le [dépôt de la version communautaire de Dynacase Platform](https://dynacase.anakeen.com/stable/) est pré-configuré :
  
 * Repository : Dynacase
 * Protocol : https
-* Host : eec.anakeen.com
-* Path : public/platform/
+* Host : dynacase.anakeen.com
+* Path : stable/
 
 ## Utilisation d'un proxy
 
