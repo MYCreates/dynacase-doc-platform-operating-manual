@@ -25,6 +25,8 @@ book:
           content:  "control-cli.md"
     appendixes:
         - number:   "A1"
-          content:  "module.md"
+          content:  "check-crc.md"
         - number:   "A2"
+          content:  "module.md"
+        - number:   "A3"
           content:  "migration.md"
