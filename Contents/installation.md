@@ -23,6 +23,8 @@ Vous êtes invité à saisir les paramètres du contexte :
  
 Lorsque le contexte est créé, celui-ci apparaît dans la rubrique *Context* de l'interface de Dynacase Control.
 
+_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
+
 ## Sélection des modules
 
 En sélectionnant le contexte créé, son détail et la liste des modules disponibles sont affichés.

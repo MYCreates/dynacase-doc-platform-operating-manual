@@ -6,6 +6,8 @@ Dynacase Control est l'outil qui permet d'installer et de gérer des contextes D
 
 Dynacase Control est téléchargeable ici : [http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control").
 
+_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
+
 ## Installation
 
 L'installation s'effectue sous le compte root.  
