@@ -71,7 +71,7 @@ Dynacase requiert les commandes système suivantes :
 #### Locales
 
 Dynacase requiert que les locales systèmes `fr_FR.UTF-8` et `en_US.UTF-8` soient
-actives et correctement configurés sur le système.
+actives et correctement configurées sur le système.
 
 Dynacase requiert aussi que les dictionnaires de langue `fr` et `en` de la
 librairie `aspell` soient installés et accessibles pour l'extension pspell de
