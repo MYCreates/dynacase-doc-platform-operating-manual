@@ -24,6 +24,15 @@ Pour vérifier cela :
     string(5) "glibc"
     string(3) "ete"   
 
+### Locales `fr_FR` et `en_US`
+
+Les locales `fr_FR.UTF-8` et `en_US.UTF-8` (ainsi que les dictionnaires aspell
+de langue `fr` et `en`) doivent être installés et disponibles sur le serveur.
+
+### Apache mod_headers
+
+Installer et activer le module Apache `mod_headers`.
+
 ## Poste client
 
 Les navigateurs supportés sont :
@@ -46,8 +55,8 @@ Dynacase requiert les commandes système suivantes :
 * `mkdir`
 * `tar`
 * `gzip`
-* `zip` (En cas de problème avec la commande zip, utiliser la version fournie par [Info-ZIP](http://www.info-zip.org/))
-* `unzip` (En cas de problème avec la commande zip, utiliser la version fournie par [Info-ZIP](http://www.info-zip.org/))
+* `zip` (commande `zip` avec support de l'option `-Z store` de info-zip >= 3.0. En cas de problème avec la commande `zip`, utiliser la version fournie par [Info-ZIP](http://www.info-zip.org/))
+* `unzip` (En cas de problème avec la commande `unzip`, utiliser la version fournie par [Info-ZIP](http://www.info-zip.org/))
 * `dot` (fourni par [Graphviz](http://graphviz.org/))
 * `convert` (fourni par [ImageMagick](http://www.imagemagick.org/))
 * `recode`
@@ -59,12 +68,27 @@ Dynacase requiert les commandes système suivantes :
 * `msgcat` (fourni par [gettext](http://www.gnu.org/software/gettext/gettext.html))
 * `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
 
+#### Locales
+
+Dynacase requiert que les locales systèmes `fr_FR.UTF-8` et `en_US.UTF-8` soient
+actives et correctement configurés sur le système.
+
+Dynacase requiert aussi que les dictionnaires de langue `fr` et `en` de la
+librairie `aspell` soient installés et accessibles pour l'extension pspell de
+PHP.
+
 ### PHP {#pre-req-php}
 
-Dynacase Platform nécessite PHP en version **5.3**.
+Dynacase Platform nécessite PHP en version **5.4** (ou 5.3) :
+
+* La version 5.4 est supportée officiellement.
+* La version 5.3 est supportée pour compatibilité. Anakeen se réserve le droit de corriger d'éventuelles anomalies induites par cette version.
 
 #### Zend Server
-Pour les distributions qui ne fournissent pas PHP 5.3 vous pouvez télécharger et installer Zend Server avec PHP 5.3.
+
+Pour les distributions Linux qui ne fournissent pas la version PHP nécessaire,
+[Zend Server](http://www.zend.com/en/products/server/) fournit différentes
+versions de PHP pour les distributions Linux.
 
 #### Extensions PHP
 Les extensions notées (core) sont normalement incluses de manière statique dans PHP. 
@@ -161,9 +185,14 @@ Par défaut ce paramètre est à “On”.
 
 ## PostgreSQL {#pre-req-postgresql}
 
-Dynacase nécessite PostgreSQL version 9.1.
+Dynacase nécessite PostgreSQL version **9.1** (ou 8.4) :
 
-La version 8.4 est aussi supportée mais pour des raisons de performances il est recommandé d'installer la version 9.1.
+* La version 9.1 est supportée officiellement.
+* La version 8.4 est supportée pour compatibilité. Anakeen se réserve le droit
+de corriger d'éventuelles anomalies induites par cette version.
+
+**Les différentes optimisation, en particulier sur le calcul des droits ne sont
+effectives qu'avec la version 9.1 de PostgreSQL.**
 
 Dynacase utilise le fichier de service Postgresql (`pg_service.conf`) pour la définition des paramètres de connexion à la base de données :
 
@@ -186,11 +215,12 @@ Le répertoire dans lequel sera installé Dynacase doit avoir un `AllowOverride 
 Les modules Apache suivants sont requis :
 
 * php5_module (Voir [les pré-requis php](#pre-req-php))
-* env_module
-* expires_module
-* dir_module
-* auth_basic_module
-* authn_file_module
-* authz_host_module
-* setenvif_module
-* rewrite_module
+* [env_module](http://httpd.apache.org/docs/2.2/en/mod/mod_env.html)
+* [expires_module](http://httpd.apache.org/docs/2.2/en/mod/mod_expires.html)
+* [dir_module](http://httpd.apache.org/docs/2.2/en/mod/mod_dir.html)
+* [auth_basic_module](http://httpd.apache.org/docs/2.2/en/mod/mod_auth_basic.html)
+* [authn_file_module](http://httpd.apache.org/docs/2.2/en/mod/mod_authn_file.html)
+* [authz_host_module](http://httpd.apache.org/docs/2.2/en/mod/mod_authz_host.html)
+* [setenvif_module](http://httpd.apache.org/docs/2.2/en/mod/mod_setenvif.html)
+* [rewrite_module](http://httpd.apache.org/docs/2.2/en/mod/mod_rewrite.html)
+* [headers_module](http://httpd.apache.org/docs/2.2/en/mod/mod_headers.html)
