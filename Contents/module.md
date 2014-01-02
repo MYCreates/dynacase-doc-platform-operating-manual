@@ -19,36 +19,26 @@ particulier :
 * une liste de dépendances avec d'autres modules Dynacase,
 * un ensemble d'action de pre-install, post-install,
 * un ensemble de paramètres,
-* un descriptif des évolutions (changelog)
 
 ### Exemple de fichier de info.xml
 
     [xml]
     <?xml version="1.0"?>
-    <module name="dynacase-foo" version="1.2.3" release="1" [basecomponent="no"]>
+    <module name="dynacase-foo" version="1.2.3" release="1" basecomponent="no" changelog="https://modules.example.net/changelog/dynacase-foo/1.2.3">
       <description lang="en">dynacase foo</description>
       <description lang="fr">dynacase toto</description>
-
+    
       <requires>
         <installer version="1.0.0" comp="ge" />
         <module name="dynacase-bar" />
         <module name="dynacase-baz" version="1.0.0" comp="ge" />
       </requires>
-
+    
       <parameters>
         <param name="foo_dir" label="Directory of FOO" type="text" default="/var/foo" needed="yes" />
         <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="no" />
       </parameters>
-
-      <changelog>
-        <version number="1.1.1" date="2009-01-01">
-          <change title="First change" url="http://dev.dynacase.org/issues/111">Comment for first change.</change>
-          <change title="Second change">Comment for second change.</change>
-          <change title="Third change"></change>
-        </version>
-        <version number="1.1.0" date="2008-12-15"/>
-      </changelog>
-
+    
       <pre-install>
         <check type="syscommand" command="zip" />
         <check type="phpfunction" function="pg_connect">
@@ -56,14 +46,14 @@ particulier :
         </check>
         <check type="file" file="/var/foo" predicate="is_dir" />
       </pre-install>
-
+    
       <post-install>
         <process command="programs/app_post FOO I" />
         <process command="programs/record_application FOO" />
         <process command="programs/app_post FOO U" />
         <process command="programs/update_catalog" />
       </post-install>
-
+    
       <post-upgrade>
         <process command="programs/pre_migration FOO" />
         <process command="programs/app_post FOO U" />
@@ -71,11 +61,11 @@ particulier :
         <process command="programs/post_migration FOO" />
         <process command="programs/update_catalog" />
       </post-upgrade>
-
+    
       <reconfigure>
         <process command="FOO/reconfigure_foo" />
       </reconfigure>
-
+    
     </module>
 
 ## Description d'un module
@@ -111,6 +101,10 @@ vendor
 :   fournisseur du module (ex. `ACME Corp.`)  
     *optionnel*
 
+changelog
+:   URL d'une page contenant le changelog du module.
+    *optionnel*
+
 Exemple :
 
     [xml]
@@ -122,10 +116,11 @@ Exemple :
         author="John Doe &lt;john.doe@example.net&gt;"
         licence="GPLV2"
         vendor="ACME Corp."
+        changelog="https://modules.example.net/changelog/dynacase-foo/1.2.3"
     >
-
+    
     […]
-
+    
     </module>
 
 ### Description
@@ -142,7 +137,7 @@ Exemple :
 ### Dépendances entre modules
 
 Les dépendances permettent d'exprimer qu'un module requiert d'autres modules
-Dynacase avec eventuellement une contrainte sur la version de ceux-ci.
+Dynacase avec éventuellement une contrainte sur la version de ceux-ci.
 
 Le tag `<requires>` est composés d'éléments `<module>` qui ont les attributs suivants :
 
@@ -207,7 +202,7 @@ Cela donne le XML suivant :
     
     <!-- The @SOMETHING@ variables are completed by the autoconf mechanism -->
     <module name="@PACKAGE@" version="@VERSION@" release="@RELEASE@">
-
+    
        <!-- Label of the application displayed in dynacase control only -->
        <description>My application name</description>
        
@@ -215,7 +210,7 @@ Cela donne le XML suivant :
        <requires>
            <module name="dynacase-platform" version="3.2.0" comp="ge"/>
        </requires>
-
+    
        <!-- Install instruction -->
        <post-install>
            <process command="programs/record_application @APPNAME@"/>
@@ -259,54 +254,16 @@ Cela donne le XML suivant :
        <post-upgrade>
            <process command="programs/pre_migration @APPNAME@"/>
            <process command="programs/record_application @APPNAME@"/>
-
+    
            <!-- Same content as the content between record and post migration of the install part above -->
-
+    
            [...]
-
+    
            <process command="programs/post_migration @APPNAME@"/>
            <process command="programs/update_catalog"/>
        </post-upgrade>
     
     </module>
-
-### Changelog
-
-Le changelog permet d'indiquer les évolutions produites en rapport avec les
-versions du module. Ces informations sont contenues dans une balise
-`<changelog>` contenant des `<version>`.
-
-Les éléments `<version>` ont les attributs suivants :
-
-number
-:   le numéro de version
-
-date
-:   la date de publication de la version
-
-Les éléments `<version>` contiennent des éléments `<change>` qui décrivent
-chaque changement effectué. Les éléments `<change>` ont les attributs suivants :
-
-title
-:   l'intitulé du changement
-
-url
-:   une url en rapport avec le changement (dans l'interface dynacase-control, les chaînes de forme issues/111/
-    sont reconnues et donnent comme texte du lien affiché 'issues 111' ; sinon un texte par défaut est utilisé)
-
-La valeur de l'élément `<change>` constitue une description.
-
-Exemple :
-
-    [xml]
-    <changelog>
-    <version number="1.1.1" date="2009-01-01">
-      <change title="First change" url="http://dev.dynacase.org/issues/111">Comment for first change.</change>
-      <change title="Second change">Comment for second change.</change>
-      <change title="Third change"></change>
-    </version>
-    <version number="1.1.0" date="2008-12-15"/>
-    </changelog>
 
 ### Paramètres d'installation/upgrade
 
@@ -518,35 +475,36 @@ présence de certains éléments.
 phpfunction
 :   Le check de type `phpfunction` permet de vérifier la présence d'une fonction PHP.  
     Le nom de la fonction testé est spécifié avec l'attribut `function`.
-Exemple :
+    
+    Exemple :
 
-    <check type="phpfunction" function="pg_connect" />
+        <check type="phpfunction" function="pg_connect" />
 
 syscommand
 :   Le check de type `syscommand` permet de vérifier la présence d'une commande disponible sur le système.  
     Le nom de la command testé est spécifié avec l'attribut `command`
-
-Exemple :
-
-      <check type="syscommand" command="convert" />
+    
+    Exemple :
+    
+        <check type="syscommand" command="convert" />
 
 phpclass
 :   Le check de type `phpclass` permet de vérifier la présence d'une classe objet PHP.  
     Le nom de la classe PHP est fournis avec les attributs suivants :  
     *include* : le nom du fichier pour inclure la définition de la classe  
     *class* : le nom de la classe
-
-Exemple :
-
-      <check type="phpclass" include="Net/SMTP.php" class="Net_SMTP" />
+    
+    Exemple :
+    
+        <check type="phpclass" include="Net/SMTP.php" class="Net_SMTP" />
 
 apachemodule
 :   Le check de type `apachemodule` permet de vérifier qu'un module Apache particulier est activé et chargé par celui-ci.  
     Le nom du module est spécifié par l'attribut `module`.
-
-Exemple :
-
-      <check type="apachemodule" module="mod_expires" />
+    
+    Exemple :
+    
+        <check type="apachemodule" module="mod_expires" />
 
 ### Process
 
@@ -592,7 +550,7 @@ Exemple :
         <process command="programs/app_post WEBDESK I" />
         [...]
       </post-install>
-
+    
       <post-upgrade>
         [...]
         <process command="programs/app_post WEBDESK U" />
@@ -720,7 +678,7 @@ Exemple :
     <parameters>
       <param name="foo_client_name" label="Client name" type="text" default="ACME" onupgrade="W"/>
     </parameters>
-
+    
     <post-install>
       [...]
       <process command="programs/set_param CORE_CLIENT foo_client_name" />
@@ -777,17 +735,17 @@ Exemple :
 
     [bash]
     #!/bin/bash
-
+    
     set -e
-
+    
     # -- Récupérer la valeur du paramètre `foo_dir' spécifié par l'utilisateur
     PARAM_FOO_DIR=`"$WIFF_ROOT"/wiff --getValue=foo_dir`
-
+    
     # -- Créer le répertoire s'il n'existe pas
     if [ ! -d "$PARAM_FOO_DIR" ];
       mkdir "$PARAM_FOO_DIR"
     fi
-
+    
     # -- Ajouter le nom de ce répertoire dans le fichier
     # -- `foo_dir.list' dans le sous-répertoire de mon module `FOO'
     echo "$PARAM_FOO_DIR" >> "$WIFF_CONTEXT_ROOT"/FOO/foo_dir.list
@@ -803,19 +761,19 @@ Exemple :
     [php]
     #!/usr/bin/env php
     <?php
-
+    
     $WIFF_ROOT=getenv('WIFF_ROOT');
     if( $WIFF_ROOT === false ) {
       print "WIFF_ROOT environment variable is not set!";
       exit( 1 );
     }
-
+    
     $WIFF_CONTEXT_ROOT=getenv('WIFF_CONTEXT_ROOT');
     if( $WIFF_CONTEXT_ROOT === false ) {
       print "WIFF_CONTEXT_ROOT environment variable is not set!";
       exit( 1 );
     }
-
+    
     # -- Si je dois accéder aux fichier d'include de Dynacase
     # -- j'ajoute les répertoires d'include de Dynacase
     # -- dans mon include_path PHP
@@ -824,12 +782,12 @@ Exemple :
       "$WIFF_ROOT/include",
       "$WIFF_CONTEXT_ROOT"
     )));
-
+    
     # -- A présent, je peux inclure les librairies de l'installeur
     require("lib/Lib.Cli.php");
     # -- ... et les librairies Dynacase
     require("WHAT/Lib.Common.php");
-
+    
     $param_foo_dir = wiff_getParamValue('foo_dir');
     if( ! is_dir($param_foo_dir) ) {
       $ret = mkdir($param_foo_dir);
@@ -852,7 +810,7 @@ Exemple :
     <parameters>
       <param name="foo_url" label="Foo download URL" type="text" default="http://www.example.net/foo/foo-1.0.0.zip" volatile="yes" />
     </parameters>
-
+    
     <download href="@foo_url" action="programs/foo_install">
       <label lang="en">Downloading and installing Foo</label>
     </download
