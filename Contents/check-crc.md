@@ -4,7 +4,7 @@ L'intégrité des paquets Control (webinst), archives compressées ou descriptio
 
 Après avoir téléchargé le contenu du dépôt vous pouvez, avant de procéder à une installation, vérifier qu'il est intègre.
 
-## Téléchargement des sommes de contrôle
+## Téléchargement des sommes de contrôle {#manex-ref:b3e52cf9-ded7-4de1-99eb-1f41d65531eb}
 
 Le fichier `SHA256sum.asc`, téléchargé, contient les sommes de contrôles. Vous devez d'abord vous assurer de son origine (qui l'a produit) :
 
@@ -36,7 +36,7 @@ Le fichier `SHA256sum.asc`, téléchargé, contient les sommes de contrôles. Vo
 
 Vous êtes maintenant en possession d'un fichier contenant les sommes de contrôles des éléments téléchargés que vous pouvez considérer comme fiables.
 
-## Vérification des sommes de contrôles
+## Vérification des sommes de contrôles {#manex-ref:c8b9aecf-331c-4493-9d87-5157977f1567}
 
 Dans le répertoire de téléchargement des éléments (paquets, archives, etc.) et du fichier SHA256sum.asc, lancez la commande suivante :
 

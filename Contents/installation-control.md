@@ -1,14 +1,14 @@
-# Installation de Dynacase Control
+# Installation de Dynacase Control {#manex-ref:ab61ed63-269b-458a-98ea-0accf470a460}
 
 Dynacase Control est l'outil qui permet d'installer et de gérer des contextes Dynacase.
 
-## Téléchargement
+## Téléchargement {#manex-ref:f02a0bce-de60-4e0c-84a2-7ae2c3fcd52e}
 
 Dynacase Control est téléchargeable ici : [http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control").
 
 _Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
 
-## Installation
+## Installation {#manex-ref:a5697be7-1b68-4111-8673-4fa91e2687cf}
 
 L'installation s'effectue sous le compte root.  
 L'archive "tar.gz" récupérée doit être décompressée dans un répertoire servi par Apache, par exemple dans le DocumentRoot de la configuration Apache.
@@ -34,7 +34,7 @@ Modifier le propriétaire du répertoire de Dynacase Control pour être celui de
     chown -R www-data: dynacase-control # Debian/Ubuntu
     chown -R apache: dynacase-control   # RedHat/Centos
 
-## Première connexion
+## Première connexion {#manex-ref:555e344a-f5eb-49c0-8fb0-26262e5410a8}
 
 L'url de connexion dépend de votre configuration Apache. Si Dynacase Control a été installé dans votre Document Root, l'URL de connexion est : [http://localhost/dynacase-control/](http://localhost/dynacase-control/ "Connexion à Dynacase Control")
 
@@ -51,9 +51,9 @@ Si vous n'avez pas de compte EEC, cliquez sur le bouton '[Register later…]'
 
 Si vous n'enregistrez pas Dynacase Control lors de cette première connexion, vous aurez toujours la possibilité de le faire depuis l'interface Control.
 
-## Dynacase Control
+## Dynacase Control {#manex-ref:9e721922-a423-474a-8f69-79beec1d27d6}
 
-### Setup
+### Setup {#manex-ref:8f810563-02e8-4636-8dcf-d2b36ce50828}
 
 ![ interface Dynacase Control ](i3.png "interface Dynacase Control")
 
@@ -70,7 +70,7 @@ L'interface `Control > Setup` permet de configurer Dynacase Control. Vous pouvez
 
 ![ interface setup Dynacase Control ](i4.png "interface setup de Dynacase Control")
 
-#### Mise à jour de Dynacase Control
+#### Mise à jour de Dynacase Control {#manex-ref:4ac4d957-de1c-42ad-aa1a-9ada410308c5}
 
 Lors de la connexion à l'interface Dynacase Control, celui-ci vérifie si une nouvelle version est disponible.
 Si c'est le cas, alors une popup propose de télécharger et d'appliquer la mise à jour :
@@ -91,7 +91,7 @@ Par défaut, la configuration pointe sur [le dépôt officiel Anakeen de Dynacas
 | wiff-update-login    |                        | Login de connexion au serveur de mise à jour                                                      |
 | wiff-update-password |                        | Mot de passe de connexion au serveur de mise à jour                                               |
 
-#### Enregistrement de Dynacase Control
+#### Enregistrement de Dynacase Control {#manex-ref:9a7a2435-98a3-4e6c-b969-5c2cf61536fa}
 
 L'enregistrement permet d'associer une instance de Dynacase Control avec votre contrat EEC.
 Cet enregistrement va automatiquement envoyer sur les serveurs de Dynacase certaines informations de configuration de votre serveur, permettant de simplifier les éventuelles interventions ultérieures de support.
@@ -120,7 +120,7 @@ Lors de l'édition d'un dépôt, vous avez à renseigner les champs suivants:
 | Password         | Le mot de passe associé au login pour l'authentification du dépôt                                          |
 | Confirm password | Confirmation du mot de passe                                                                               |
 
-##### Dépôts pré-configurées
+##### Dépôts pré-configurées {#manex-ref:f2b331d4-7389-44de-8ef5-f7cb31686966}
 Par défaut, le [dépôt de la version communautaire de Dynacase Platform](https://dynacase.anakeen.com/stable/) est pré-configuré :
  
 * Repository : Dynacase
@@ -128,7 +128,7 @@ Par défaut, le [dépôt de la version communautaire de Dynacase Platform](https
 * Host : dynacase.anakeen.com
 * Path : stable/
 
-## Utilisation d'un proxy
+## Utilisation d'un proxy {#manex-ref:35ec69be-4888-43d5-b796-5e7f0345415d}
 
 Si vos accès aux dépôts Dynacase Platform nécessitent l'utilisation d'un proxy HTTP, vous pouvez définir celui-ci avec les paramètres suivants :
 

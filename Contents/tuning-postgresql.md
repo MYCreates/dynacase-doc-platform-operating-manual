@@ -1,13 +1,13 @@
-# Tuning PostgreSQL
+# Tuning PostgreSQL {#manex-ref:4de10551-45b5-4796-964a-55b3187b5942}
 
 Dans le cadre de son utilisation avec Dynacase, une couche d’abstraction logicielle Dynacase sur PostgreSQL permet d’optimiser son utilisation. Les éventuels tuning de la base PostgreSQL dépendent entièrement du modèle documentaire mis en œuvre par Dynacase. Ils sont réalisés ou préconisés si nécessaire lors de la mise en œuvre de la solution par un expert Anakeen.
 
-## Configuration de PostgreSQL
+## Configuration de PostgreSQL {#manex-ref:8e61f997-bf97-46e6-85b8-0fb78d067a42}
 
 La plupart des distributions livrent PostgreSQL avec une configuration basique, passe-partout, qui n'est pas forcement adaptée au volume et au nombre de transactions que peut générer Dynacase.
 Voici quelques éléments de configuration pour une machine type avec 2 Go à 3 Go de RAM.
 
-### shared_buffers
+### shared_buffers {#manex-ref:0359ad83-2de3-4486-b9e1-cc57fcc50370}
 
 Le paramètre [shared_buffers](www.postgresql.org/docs/9.1/static/runtime-config-resource.html#GUC-SHARED-BUFFERS) permet de spécifier la taille de la mémoire partagée allouée par Postgresql.
 Il est à noter que ce paramètre PostgreSQL dépend d'un paramètre du kernel qui indique la valeur maximale de mémoire partagée disponible pour les processus. Il faudra donc au préalable augmenter la valeur de ce paramètre au niveau du noyau, pour ensuite augmenter la valeur dans PostgreSQL.  
@@ -39,7 +39,7 @@ La prise en compte de ce paramètre est effective après re-démarrage de Postgr
 
 Si Postgresql ne redémarre pas, vérifier que la valeur de *shared_buffers* est bien inférieure à la valeur de *kernel.shmmax*.
 
-### effective_cache_size
+### effective_cache_size {#manex-ref:8ddc52ea-caae-417b-bb36-7a36ba8f6ff8}
 
 Le paramètre [effective_cache_size](http://www.postgresql.org/docs/9.1/static/runtime-config-query.html#GUC-EFFECTIVE-CACHE-SIZE) indique à PostgreSQL la mémoire restante une fois que PostgreSQL et tous les autres process du serveur tournent en fonctionnement normal. Cet espace "libre" est utilisé par le noyau pour gérer ses buffers et son cache. Cet espace est visualisable sous Linux avec la commande free sous la forme des valeurs de buffers et cached :
 
@@ -58,7 +58,7 @@ Dans le cas ci-dessus, on peut donc indiquer à PostgreSQL une valeur de *effect
     effective_cache_size = 1400MB
     […]
 
-### work_mem
+### work_mem {#manex-ref:cfed533d-ebf4-4c0f-b543-04236cad07bb}
 
 Le paramètre [work_mem](http://www.postgresql.org/docs/9.1/static/runtime-config-resource.html#GUC-WORK-MEM) spécifie la quantité de mémoire que peut utiliser un process PostgreSQL pour effectuer des tris. Une valeur plus grande lui permettra de pouvoir manipuler plus de données en mémoire vive (plutôt que d'avoir recours à des fichiers temporaires qui sont plus lents).  
 Ce paramètre doit être calibré en fonction du nombre maximum de connexions concurrentes déclaré par le paramètre *max_connections*. La mémoire allouée pour ces opérations étant alors égale à *max_connections* * *work_mem*.
@@ -73,7 +73,7 @@ Ce paramètre doit être calibré en fonction du nombre maximum de connexions co
 
 Dans l'exemple ci-dessus, l'utilisation mémoire pourra monter à 64 * 16 Mo = 1 Go.
 
-### maintenance_work_mem
+### maintenance_work_mem {#manex-ref:a2d8efda-00ff-4bd9-a1cb-864d98bb138a}
 
 Le paramètre [maintenance_work_mem](http://www.postgresql.org/docs/9.1/static/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM) spécifie la quantité de mémoire que peuvent utiliser les commandes/process PostgreSQL de VACUUM, création d'index et altération de table. Une valeur plus grande lui permettra de pouvoir manipuler plus de données en mémoire vive, et accélèrera le temps de traitement sur les VACUUM (freedom_clean) par exemple.
 
@@ -83,7 +83,7 @@ Le paramètre [maintenance_work_mem](http://www.postgresql.org/docs/9.1/static/r
     maintenance_work_mem = 128Mb
     […]
 
-### WAL : Write Ahead Log
+### WAL : Write Ahead Log {#manex-ref:627c1e75-d746-44b3-bfac-607adc70c66a}
 
 Le mécanisme de WAL (Write Ahead Log) est le mécanisme utilisé par Postgresql pour gérer les modifications des données de la base et assurer l'intégrité de la base de données en cas de crash du serveur.
 
@@ -91,17 +91,17 @@ Lorsqu'une donnée est modifiée, l'opération est d'abord enregistrée dans un 
 
 Suite à un crash, au redémarrage, le serveur Postgresql rejouera alors les opérations des fichiers WAL qui ne sont pas encore inscrites en base pour mettre à niveau la base de données.
 
-#### wal_buffers
+#### wal_buffers {#manex-ref:2d5949b7-5fe9-4f97-8aa7-48c64c340447}
 
 Le paramètre [wal_buffers](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-WAL-BUFFERS) spécifie la taille d'un fichier de journal d'écriture "WAL" (Write-Ahead-Log).
 
-Par défaut, la taille d'un WAL est de `64KB`. Une petite valeur entrainera des écritures de petits fichiers WAL plus fréquentes, et une grande valeur entrainera des écritures de fichiers WAL de plus gros volume mais avec une fréquence moindre.
+Par défaut, la taille d'un WAL est de `64KB`. Une petite valeur entraînera des écritures de petits fichiers WAL plus fréquentes, et une grande valeur entraînera des écritures de fichiers WAL de plus gros volume mais avec une fréquence moindre.
 
 Il est admis qu'une valeur de `16MB` est une bonne valeur pour un serveur de production :
 
 	wal_buffers = 16MB
 
-### checkpoint_segments, checkpoint_timeout et checkpoint_completion_target
+### checkpoint_segments, checkpoint_timeout et checkpoint_completion_target {#manex-ref:1ccab0b1-2e5e-4c73-8d68-0b8578893752}
 
 Le paramètre [checkpoint_segments](http://www.postgresql.org/docs/9.1/static/runtime-config-wal.html#GUC-CHECKPOINT-SEGMENTS) spécifie le nombre de fichiers WAL qui sont conservés, en rotation, sur le disque.
 
@@ -133,16 +133,16 @@ Dans le cas de la restauration d'une base de donnée, ou du chargement massif de
 
 Attention : Ces paramètres ne doivent pas être utilisés en production, mais seulement temporairement pour la durée de l'opération de chargement/restauration des données.
 
-### Conclusion
+### Conclusion {#manex-ref:40f882d6-2cb6-4664-9e8e-035978d200fc}
 
 Ces paramètres permettent donc de donner une plus grande liberté de mouvement à PostgreSQL comparés à ceux livrés par défaut.
 Les valeurs données ci-dessus sont des exemples qu'il faudra bien sûr adapter/moduler en fonction de la machine et de son utilisation dans le temps.
 
-### Liens utiles
+### Liens utiles {#manex-ref:0c7ec39e-7da7-48ed-bb2f-490d69aa4077}
 
 [Postgresql Tuning](http://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server)
 
-### Dépannage/troubleshoot
+### Dépannage/troubleshoot {#manex-ref:7b74a4e0-6dff-42c4-834e-4b07765d9aec}
 
 #### Voir les requêtes en cours d'exécution {#tuning-postgres-pg_stat_activity}
 
@@ -191,7 +191,7 @@ rechargement de la configuration :
     SELECT pg_reload_conf();
     SHOW track_activities;
 
-##### Journaliser les requêtes longues
+##### Journaliser les requêtes longues {#manex-ref:2b296094-4059-417f-8d7a-c6af72173a4e}
 
 Lorsque l'observation de longues requêtes par [pg_stat_activity](#tuning-postgres-pg_stat_activity) n'est pas possible
 (parce que le problème n'est pas reproductible ou observable à une heure précise de la journée par exemple),
@@ -223,7 +223,7 @@ Les logs apparaissent alors dans `postgresql.log` sous la forme :
 
     2011-01-11 17:15:01 CET LOG: duration: 2.291 ms statement: SELECT * from paramv where type='G' or (type='A' and appid=1);
 
-#### Connexion sécurisée (SSL)
+#### Connexion sécurisée (SSL) {#manex-ref:e1753887-1dbf-4d1c-a534-d37f333cc39b}
 
 * Configuration client : SSL Support (http://www.postgresql.org/docs/8.4/interactive/libpq-ssl.html)
 * Configuration serveur : Secure TCP/IP Connections with SSL (http://www.postgresql.org/docs/8.4/interactive/ssl-tcp.html)
@@ -240,11 +240,11 @@ Utilisation de la directive 'sslmode=require' dans `pg_service.conf` pour forcer
     sslmode=require
 
 
-## Performances avec PHP
+## Performances avec PHP {#manex-ref:fb8bcc29-58b7-403a-bd88-7a4e1ff58e20}
 
-### Impact du mode SSL
+### Impact du mode SSL {#manex-ref:18ed0b78-f22a-4854-accd-c1ec5c7b650d}
 
-L'utilisation du SSL entraine une surcharge lors de l'établissement d'une connection TCP sur PostgreSQL.
+L'utilisation du SSL entraîne une surcharge lors de l'établissement d'une connection TCP sur PostgreSQL.
 
 Exemple de surcharge pour l'initiation d'une connexion par TCP sur un serveur PostgreSQL en écoute sur l'interface locale de la machine (127.0.0.1) :
 
@@ -274,36 +274,10 @@ Exemple de surcharge pour le transfert des N premiers éléments d'une table con
 Conclusion :
 
 Si le réseau entre le serveur Dynacase et la base de données est « sûr », et si le niveau de sécurité souhaité le permet,
-il peut être pertinent de désactiver le support SSL pour les connexions PostgreSQL.
+il peut être avantageux en terme de performance de désactiver le support SSL.
 
-### Connexions persistentes
+### Connexions persistentes {#manex-ref:3d0d954f-dafe-4dfd-b270-107a05148949}
 
-Par défaut, Dynacase effectue une nouvelle connexion à la base de données pour chaque requête.
+Par défaut, Dynacase effectue une nouvelle connexion à la base de données pour chaque traitement de requête HTTP.
 
-Le nombre de connexions initiés sur la base de données peut-être réduit via l'utilisation de connexions persistentes.
-
-Le support du mode persistent, par l'extension PHP *pgsql*, est généralement actif par défaut et peut être modifié par le paramètre INI
-[pgsql.allow_persistent](http://www.php.net/manual/en/pgsql.configuration.php) :
-
-    [ini]
-    pgsql.allow_persistent = 1
-
-Une fois le support actif au niveau de PHP, il faut « re-configurer » Dynacase pour utiliser les connexions persistentes.
-
-Pour activer les connexions persistentes sur Dynacase :
-
-- Aller dans l'application "Administration" de Dynacase
-- Onglet "paramètres applicatif" > "Platform Core"
-- Positionner le paramètre "type de connexion" = "persistent"
-- Exécuter `./wstart` dans le contexte Dynacase :
-
-    [bash]
-    ${WIFF_ROOT}/wiff context ${CONTEXT_NAME} exec ./wstart
-
-Pour désactiver les connexions persistentes sur Dynacase :
-
-- Positionner le paramètre "type de connexion" = "unpersistent"
-- Exécuter `./wstart` dans le contexte Dynacase :
-
-    [bash]
-    ${WIFF_ROOT}/wiff context ${CONTEXT_NAME} exec ./wstart
+L'utilisation de connexions persistantes est déconseillée.

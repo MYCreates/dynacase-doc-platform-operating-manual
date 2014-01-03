@@ -1,6 +1,6 @@
-# Tuning Apache2
+# Tuning Apache2 {#manex-ref:4fa36dd9-10bd-4c00-a87f-1f055464391a}
 
-## MaxClients (et max_connections PostgreSQL)
+## MaxClients (et max_connections PostgreSQL) {#manex-ref:41260b24-af5f-4dd1-b8ca-cf419d907ddc}
 
 La principale directive du mode MPM-Prefork de Apache est la directive [MaxClients](http://httpd.apache.org/docs/2.2/mod/mpm_common.html#maxclients) qui permet de configurer le nombre maximum de clients connectés et servis simultanément.
 
@@ -23,7 +23,7 @@ Référence :
 
 * [apache prefork](http://httpd.apache.org/docs/2.2/mod/prefork.html)
 
-## KeepAlive
+## KeepAlive {#manex-ref:be9ef3da-9c3f-424a-a68a-1c7b54b88e03}
 
 La directive [keepAlive](http://httpd.apache.org/docs/2.2/mod/core.html#keepalive) permet de réduire le nombre de connexions TCP initiés par les clients HTTP, et donc de réduire l'utilisation CPU de l'OS et du serveur Apache.
 
@@ -38,7 +38,7 @@ Référence :
 
 * [apache keepalive](http://httpd.apache.org/docs/2.2/mod/core.html#keepalive)
 
-## HostnameLookups et Logs
+## HostnameLookups et Logs {#manex-ref:febf5b67-0515-4bd3-ac75-020fb469afa7}
 
 Outre le fait de servir des requêtes, le serveur Apache journalise des informations dans les fichiers `access.log` et `error.log`.
 

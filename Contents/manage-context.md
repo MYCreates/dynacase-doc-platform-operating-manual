@@ -1,8 +1,8 @@
 *[URL]: Uniform Resource Locator
 
-# Gestion des contextes
+# Gestion des contextes {#manex-ref:1ea676c8-8a00-4466-bd59-a86df03a32c4}
 
-## Description d'un contexte
+## Description d'un contexte {#manex-ref:5ce98410-a6c0-4b88-8884-a66deb1d3e0a}
 
 Lors de la sélection d'un contexte, les sections suivantes sont présentées :
 
@@ -15,17 +15,17 @@ Installed
 Available
 :   la liste des modules disponibles
 
-### Informations
+### Informations {#manex-ref:11bd31cd-3ded-4c3c-a393-caf9073ff980}
 
 La section “Informations” présente les informations et la configuration générale du contexte.
 
 | Champ        | Description                                                                                                                                                                                                              |
 | -            | -                                                                                                                                                                                                                        |
-| Root         | Le chemin d'accès au répertoire dans lequel sera installé le contexte. Le répertoire doit être accessible en lecture/écriture par Apache. Si le répertoire spécifié n'existe pas, dynacase-control essayera de le créer. |
-| Description  | Un champ permettant de décrire le contexte (optionnel).                                                                                                                                                                  |
-| Url          | Ce champ d'information permet de saisir l'URL par laquelle sera accessible le contexte (optionnel).                                                                                                                      |
-| Registration | Si dynacase-control est enregistré avec votre compte EEC, vous pouvez enregistrer ce contexte avec votre compte EEC en cochant cette case.                                                                               |
-| Repositories | Cocher la liste des dépôts de paquets que vous souhaitez utiliser pour installer ce contexte. Par défaut les dépôts de paquets configurés avec “Default” seront pré-sélectionnés.                                        |
+| Root         | le chemin d'accès au répertoire dans lequel est installé le contexte.         |
+| Description  | description du contexte.                                                      |
+| Url          | URL d'accès                                                                   |
+| Registration | vous pouvez consulter les informations enregistrées. Si Dynacase Control est déclaré avec votre compte EEC, vous pouvez demander l'enregistrement de ce contexte.                                                                                |
+| Repositories | liste les dépôts utilisée pour installer ou mettre à jour les modules                                        |
 
 de plus, les actions suivates sont disponibles au travers des boutons :
 
@@ -43,13 +43,13 @@ Create Archive
 Delete context
 :   Permet de supprimer le contexte et ses éléments associés (base de donnée, vault, etc.)
 
-### Installed
+### Installed {#manex-ref:86592afd-a15e-4b5f-b5ed-0ce7a02c0284}
 
 Cette section présente la liste des modules qui sont installés dans le contexte.
 Lorsqu'un module a une mise-à-jour de disponible sur les dépôts de paquets, une icone apparaît en début de ligne d'un module et la nouvelle version disponible est présentée dans la colonne *Available Version*.
 Pour mettre à jour le module, il faut alors cocher la ligne du module et cliquer sur le bouton *[Upgrade Selection]*.
 
-### Available
+### Available {#manex-ref:3af21351-6110-489d-be87-ba713ce506cd}
 La section “Available” présente la liste des modules disponibles sur les dépôts de paquets.
 Vous pouvez cocher les modules que vous souhaitez installer dans le contexte, et lancer l'installation en cliquant
 sur le bouton *[Install Selection]*.
@@ -81,7 +81,7 @@ Le fichier généré sera une archive avec l'extension `.fcz` et stocké dans le
 * Un dump de la base de données.
 * Les fichiers des vaults (si demandé).
 
-### Restauration
+### Restauration {#manex-ref:170bfc5e-ef81-4e75-9cb3-88836ec2d12f}
 
 Les archives `.fcz` présentes dans le sous-répertoire `archived-contexts` de dynacase-control sont présentés dans la section "Archives" de l'interface de dynacase-control, sous la liste "Context".
 

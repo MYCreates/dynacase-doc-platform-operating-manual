@@ -8,7 +8,7 @@ Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
 les notions d'Applications et d'Actions de Dynacase et le fonctionnement
 général de ceux-ci.
 
-## Fichier `info.xml`
+## Fichier `info.xml` {#manex-ref:22c8b9e1-1a44-42e9-bc6e-68f3373beac6}
 
 Le fichier `info.xml` permet de décrire le module Dynacase en fournissant en
 particulier :
@@ -20,7 +20,7 @@ particulier :
 * un ensemble d'action de pre-install, post-install,
 * un ensemble de paramètres,
 
-### Exemple de fichier de info.xml
+### Exemple de fichier de info.xml {#manex-ref:7ed1e3fa-7d6b-4563-b78c-1f7f34cc233b}
 
     [xml]
     <?xml version="1.0"?>
@@ -68,9 +68,9 @@ particulier :
     
     </module>
 
-## Description d'un module
+## Description d'un module {#manex-ref:da659161-6bf6-4dfa-80d5-be43ce65ab25}
 
-### Préambule Module
+### Préambule Module {#manex-ref:d168e9ea-78dc-4e23-b2a6-814bee0e4e2e}
 
 La racine du document `info.xml` est un tag `<module>` avec les attributs suivants :
 
@@ -123,7 +123,7 @@ Exemple :
     
     </module>
 
-### Description
+### Description {#manex-ref:aa5e19bc-1809-42d2-a165-98736747b1da}
 
 Le module peut fournir une description textuelle pour expliciter le rôle du module.
 On pourra fournir des descriptions localisées en utilisant l'attribut `lang`.
@@ -134,7 +134,7 @@ Exemple :
     <description lang="fr">Ce module permet à Dynacase de se connecter à FOO</description>
     <description lang="en">This module allows Dynacase to connect to FOO</description>
 
-### Dépendances entre modules
+### Dépendances entre modules {#manex-ref:bf541424-6320-4eb7-8e50-16ec590e251d}
 
 Les dépendances permettent d'exprimer qu'un module requiert d'autres modules
 Dynacase avec éventuellement une contrainte sur la version de ceux-ci.
@@ -150,7 +150,7 @@ version
 comp
 :   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
 
-Le module peut aussi exprimer une contrainte sur la version de l'installeur lui
+Le module peut aussi exprimer une contrainte sur la version de l'installeur, Dynacase Control, lui
 même à l'aide de l'élément `<installer>`.  Dans ce cas, les attributs sont :
 
 version
@@ -171,7 +171,7 @@ Exemple :
 Dans cet exemple, le module requiert un installeur avec une version >= 1.0, le
 module dynacase-bar en version >= 2.0 et le module dynacase-baz en version >1.9.
 
-### Organisation des instructions d'importation des familles/documents
+### Organisation des instructions d'importation des familles/documents {#manex-ref:15717d28-034c-466c-91be-0dee27b636d5}
 
 Les contrôles d’importation vérifient la validité des différentes structures et
 des relations entre les documents.
@@ -265,7 +265,7 @@ Cela donne le XML suivant :
     
     </module>
 
-### Paramètres d'installation/upgrade
+### Paramètres d'installation/upgrade {#manex-ref:3b643797-d2e5-4906-9c81-a6e59bd93bbd}
 
 Un module peut demander lors de son installation (ou upgrade) l'entrée de
 certains paramètres d'installation ou d'upgrade.
@@ -350,7 +350,7 @@ sont présenté à l'utilisateur , et celui-ci peut rejouer le check (ou le
 process) après avoir eventuellement corrigé le problème, ou bien il peut
 choisir d'ignorer les messages d'erreurs et poursuivre l'install/ugprade.
 
-### Phase pre-install
+### Phase pre-install {#manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856}
 
 Les éléments de pre-install s'exécutent avant l'installation des fichiers du
 module sur le système de fichier.
@@ -374,7 +374,7 @@ Les actions de pre-install serviront généralement à vérifier la présence de
 certains éléments et à bloquer l'installation si ces éléments ne sont pas
 présents/corrects.
 
-### Phase post-install
+### Phase post-install {#manex-ref:ced835d9-ce84-420d-850a-dc655cd203fa}
 
 Les éléments de post-install s'exécutent après l'installation des fichiers du
 module sur le système de fichier.
@@ -401,7 +401,7 @@ vient d'être installé. Une erreur dans la phase de post-install laissera les
 fichiers installés en place, mais le paquet sera marqué en erreur de
 post-install dans l'interface.
 
-### Phase pre-upgrade
+### Phase pre-upgrade {#manex-ref:894dd826-0669-4ce1-aef5-866b4f9b612f}
 
 Les éléments de pre-upgrade s'exécutent avant l'installation des nouveaux
 fichiers du module sur le système de fichiers.
@@ -425,7 +425,7 @@ Les actions de pre-upgrade serviront généralement à vérifier la présence de
 certains éléments et bloquer l'upgrade si ces éléments ne sont pas
 présents/corrects.
 
-### Phase post-upgrade
+### Phase post-upgrade {#manex-ref:ccd2c732-1932-4f8c-bf1c-7311dc48f1de}
 
 Les éléments de post-upgrade s'exécutent après l'installation des nouveaux
 fichiers du module sur le système de fichier.
@@ -458,16 +458,16 @@ vient d'être installé, lancer les scripts de migration, etc. Une erreur dans l
 phase de post-upgrade laissera les fichiers installés en place, mais le paquet
 sera marqué en erreur de post-upgrade dans l'interface.
 
-### Phase reconfigure
+### Phase reconfigure {#manex-ref:d3679ce1-5475-4de2-a816-b399d881e5c0}
 
 Les éléments de reconfigure s'exécutent après la restauration d'un contexte
 depuis une archive.
 
 Les actions possible sont les mêmes que pour les phases de `post-install` ou `post-upgrade`.
 
-## Les actions de phase
+## Les actions de phase {#manex-ref:66ae8fce-e24c-4e1c-b825-fe0de5d12aee}
 
-### Check
+### Check {#manex-ref:dd6c4985-b5eb-4a0e-a4fb-d3ec067cfa2d}
 
 Les éléments `check` permettent d'executer des actions pour vérifier la
 présence de certains éléments.
@@ -506,13 +506,13 @@ apachemodule
     
         <check type="apachemodule" module="mod_expires" />
 
-### Process
+### Process {#manex-ref:796c1c2a-95b8-4bd6-86dd-4ecada2ea22d}
 
 Les éléments process servent à exécuter des commandes/programmes permettant
 d'effectuer les opérations nécessaires au fonctionnement du module suite à son
 installation.
 
-#### Commande *programs/app_post*
+#### Commande *programs/app_post* {#manex-ref:cc8bc194-900b-427a-9f5c-f4b629e81daa}
 
 Prototype :
 
@@ -563,7 +563,7 @@ ou un upgrade.
 
     "programs/app_post FOO I" --(execute)--> "FOO/FOO_post I"
 
-#### Commande *programs/record_application*
+#### Commande *programs/record_application* {#manex-ref:c695dfd3-dcf6-4d52-a72e-ec95cb15450e}
 
 Prototype :
 
@@ -589,7 +589,7 @@ Exemple :
 
       <process command="programs/record_application FOO" />
 
-#### Commande *programs/update_catalog*
+#### Commande *programs/update_catalog* {#manex-ref:a3b5b826-2476-4602-8772-4c8e264de1ed}
 
 Prototype :
 
@@ -612,7 +612,7 @@ Exemple :
       [xml]
       <process command="programs/update_catalog" />
 
-#### Commande *programs/pre_migration*
+#### Commande *programs/pre_migration* {#manex-ref:1dbb94a3-763f-46f7-bb2d-d7029dcf8592}
 
 Prototype :
 
@@ -634,7 +634,7 @@ Exemple :
 
       <process command="programs/pre_migration" />
 
-#### Commande *programs/post_migration*
+#### Commande *programs/post_migration* {#manex-ref:6a525876-dac7-40c3-8f87-01a9bec64837}
 
 Prototype :
 
@@ -657,7 +657,7 @@ Exemple :
       [xml]
       <process command="programs/post_migration" />
 
-#### Commande *programs/set_param*
+#### Commande *programs/set_param* {#manex-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457}
 
 Prototype :
 
@@ -685,7 +685,7 @@ Exemple :
       [...]
     </post-install>
 
-#### Commande *./wsh.php*
+#### Commande *./wsh.php* {#manex-ref:b7ad8be9-55d9-48e3-80e4-9245d6f4f345}
 
 Prototype :
 
@@ -708,7 +708,7 @@ Exemple :
 
       <process command="./wsh.php --api=refreshDocuments --method=postModify --famid=FOO" />
 
-#### Programmes personnalisés
+#### Programmes personnalisés {#manex-ref:afc3d392-bd87-418a-af0e-ceb8924e74a2}
 
 Vous avez la possibilité d'écrire vos propres programmes de post-install,
 post-upgrade, etc. afin d'effectuer des opérations spécifiques à votre module.
@@ -729,7 +729,7 @@ depuis le script :
 * `$WIFF_CONTEXT_NAME` : Le nom du contexte sur lequel est effectué
   l'opération.
 
-##### Ecrire un programme personnalisé en shell Bash
+##### Ecrire un programme personnalisé en shell Bash {#manex-ref:91aa0dd8-af31-4ade-892c-1ac64c7545e6}
 
 Exemple :
 
@@ -797,7 +797,7 @@ Exemple :
       }
     }
 
-### Download
+### Download {#manex-ref:79df376c-b15c-4585-9066-5da67dc798dd}
 
 Les éléments download servent à télécharger un fichier et exécuter un
 traitement sur le fichier téléchargé. Il est utilisé par exemple pour
@@ -830,14 +830,14 @@ action
     L'environnement d'exécution est identique à celui décrit dans la section
     [Programmes personnalisé](#module-programme-perso) ci-dessus.
 
-## Variables dans les actions de phase
+## Variables dans les actions de phase {#manex-ref:3a0d54fd-8005-4f1b-98e9-89df67930c1f}
 
 Certaines propriétés d'actions peuvent contenir des variables.
 Ces variables permettent alors de référencer et d'utiliser la valeur d'un paramètre de module.
 
 La liste des actions et des propriétés supportant l'évaluation de variables est décrite ci-dessous.
 
-### Notation
+### Notation {#manex-ref:3682b0bb-0ab7-4ea8-90c4-4b6af58f150c}
 
 Les variables peuvent être exprimées avec les notations suivantes :
 
@@ -850,9 +850,9 @@ Pour entrer un caractère `@` literal il faut doubler le caractère :
 
 Les noms des variables doivent être de la forme `[a-zA-Z_][a-zA-Z0-9_]*`.
 
-### Actions supportant les variables
+### Actions supportant les variables {#manex-ref:81c7354d-2585-4cbf-a770-c5e3b70a9fca}
 
-#### Action *download*
+#### Action *download* {#manex-ref:b4476cf1-5bcf-44b4-8e4f-a8e200f54abf}
 
 Dans une action `download`, les propriétés suivantes supportent l'évaluation des variables :
 
@@ -862,7 +862,7 @@ Exemple :
 
     <download href="... @PARAM_NAME ..." />
 
-#### Action *process*
+#### Action *process* {#manex-ref:132a458a-2fd4-4a9b-847d-e44a0e48a870}
 
 Dans une action `process`, les propriétés suivantes supportent l'évaluation des variables :
 
@@ -872,7 +872,7 @@ Exemple :
 
     <process command="... @PARAM_NAME ..." />
 
-#### Action *check* de type *exec*
+#### Action *check* de type *exec* {#manex-ref:461dd848-f425-4b8d-80ce-eaeb63cba2a5}
 
 Dans une action `check` de type `exec`, les propriétés suivantes supportent l'évaluation des variables :
 

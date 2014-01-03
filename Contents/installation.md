@@ -1,10 +1,10 @@
-# Installation d'un contexte
+# Installation d'un contexte {#manex-ref:62f81ecf-eaed-46f0-8099-75a5ca7a1775}
 
 L'installation de Dynacase Platform et de ses modules est réalisée en créant un *contexte* Dynacase Control.
 
 Un contexte regroupe l'ensemble des éléments nécessaires au fonctionnement d'une application Dynacase Platform : code des différents modules (installés ou générés), données et paramètres de configuration.
 
-## Création d'un contexte
+## Création d'un contexte {#manex-ref:9256c7d0-f863-47b6-b053-26457ea8d75a}
 
 L'item *Create Context* de l'interface Dynacase Control ouvre la fenêtre de création d'un nouveau contexte.
 
@@ -25,7 +25,7 @@ Lorsque le contexte est créé, celui-ci apparaît dans la rubrique *Context* de
 
 _Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
 
-## Sélection des modules
+## Sélection des modules {#manex-ref:7390e1ee-cd3d-44f0-8582-2144cbeab6cf}
 
 En sélectionnant le contexte créé, son détail et la liste des modules disponibles sont affichés.
 
@@ -42,7 +42,7 @@ Dynacase Control vérifie les dépendances des paquets sélectionnés, et propos
 
 Si vous êtes d'accord avec la liste proposée, vous pouvez valider cette liste et poursuivre l'installation.
 
-## Processus d'installation
+## Processus d'installation {#manex-ref:c9c69494-ce9d-444b-9500-5ad570f97f55}
 
 Chacun des modules sélectionnés pour l'installation va suivre ce même processus d'installation :
 
@@ -61,13 +61,13 @@ Les modules installés avec succès sont marqués par une pastille verte.
 
 Les téléchargements des modules sont lancés.
 
-### Licence
+### Licence {#manex-ref:e9cbd5a5-0c9c-460a-b0cd-0f58783619fd}
 
 Si nécessaire, il vous est demandé d'accepter les contrats de licence affichés.
 
 ![contrat de licence](i10.png "contrat de licence")
 
-### Paramètres
+### Paramètres {#manex-ref:e0f6ca3d-82ac-4e9a-8e03-39f5835edf41}
 
 Les modules peuvent nécessiter des paramètres pour leur installation ou leur fonctionnement.
 
@@ -85,7 +85,7 @@ L'installation de Dynacase Core (exemple ci-dessus) requiert les paramètres sui
 | admin password | mot de passe du compte super administrateur `admin` |
 | enable compression | compression des données avec le module Apache `mod_deflate` |
 
-### Fin de l'installation
+### Fin de l'installation {#manex-ref:e439fe7a-719d-4239-b543-f1f257ab95c5}
  
 À la fin de l'installation, les modules installés sont présentés dans la section “Installed”.
 

@@ -1,8 +1,8 @@
-# Dynacase Control en mode CLI
+# Dynacase Control en mode CLI {#manex-ref:59a0440c-da01-47f9-81a4-76b6953fbcbb}
 
 Le mode CLI de dynacase-control permet d'administrer les contextes Dynacase en ligne de commande.
 
-## Utilisation
+## Utilisation {#manex-ref:9a04eacf-fe22-4761-8535-88da83bdccb5}
 
 La commande `wiff` permet de manipuler et administrer les contextes Dynacase. Les opérations actuellement accessibles à travers l'UI Web, seront accessibles en ligne de commande à l'aide de cette commande `wiff`. Cette commande doit être lancée sous vce les privilèges root. Pour cela, vous pouvez soit vous logger sous le compte root, soit utiliser `sudo` pour l'exécuter (Dans ce cas, vous pouvez également autoriser la commande wiff sans mot de passe en éditant le fichier [sudoers](http://www.manpagez.com/man/5/sudoers/)).
 
@@ -17,9 +17,9 @@ Si vous avez accès au compte 'root' sur le serveur :
     # /var/www/dynacase-control/wiff help
     [message d'aide]
 
-### Commandes
+### Commandes {#manex-ref:1a7837eb-e659-48c8-8635-afbeee899d79}
 
-#### Lister les contextes existants
+#### Lister les contextes existants {#manex-ref:b2e5922d-7e9d-4755-b7ca-974b3f658937}
 
 Cette opération permet d'afficher les contextes installés.
 
@@ -41,9 +41,9 @@ Exemple :
     test               Test
     production         Production
 
-#### Manipuler les modules du contexte
+#### Manipuler les modules du contexte {#manex-ref:6ba2cf7d-38d9-4237-b5a3-6dd64207891b}
 
-##### Lister les modules installés
+##### Lister les modules installés {#manex-ref:1e33d831-1517-4455-a12e-43906759efea}
 
 Cette opération affiche les modules installés dans le contexte sélectionné.
 
@@ -62,7 +62,7 @@ Exemple :
     dynacase-workspace (0.6.1-1)
     dynacase-ecm (0.3.0-1)
 
-##### Lister les modules disponibles
+##### Lister les modules disponibles {#manex-ref:6c727aee-98da-4dde-8918-871a55c7b742}
 
 Cette opération affiche la liste des modules disponibles sur les dépôt de paquets accessibles par HTTP ou FTP.
 
@@ -85,7 +85,7 @@ Exemple :
     dynacase-theme (0.0.1-4)
     dynacase-url (0.0.0-3)
 
-##### Lister les modules avec mise à jour proposée
+##### Lister les modules avec mise à jour proposée {#manex-ref:1e9379b9-0601-4535-bb13-f7213adbadf5}
 
 Cette opération permet d'afficher la liste des modules installés dont une mise-à-jour est disponible sur les dépôts de paquets.
 
@@ -98,7 +98,7 @@ Exemple :
     # /var/www/dynacase-control/wiff context test module list upgrade
     dynacase-core (3.2.6-1)
 
-##### Installer un module
+##### Installer un module {#manex-ref:bec588d2-4e07-4f3f-897f-6958d35e95f9}
 
 Cette opération permet d'installer un module contenu dans un paquet local (archive .webinst stocké en local sur le serveur) ou à partir d'un paquet disponible sur un dépôt de paquets distant accessible par HTTP ou FTP.
 
@@ -143,7 +143,7 @@ Installation d'un paquet local :
     [...]
     Done.
 
-##### Upgrader un module
+##### Upgrader un module {#manex-ref:a0618428-8ffe-41fe-9b4d-f29ae5400d6d}
 
 Cette opération permet d'upgrader un module à partir d'un paquet local (archive .webinst stocké en local sur le serveur) ou à partir d'un paquet disponible sur un dépôt de paquets distant accessible par HTTP ou FTP.
 
@@ -166,9 +166,9 @@ Exemple :
     [...]
     Done.
 
-#### Manipuler les paramètres
+#### Manipuler les paramètres {#manex-ref:f928d938-318c-49f5-ac4a-89f097bdb238}
 
-##### Afficher la liste des paramètres d'un module
+##### Afficher la liste des paramètres d'un module {#manex-ref:9ba44c49-5b81-4dcb-80e0-b262a46a2a03}
 
 Cette opération permet d'afficher la liste des paramètres des modules installés.
 
@@ -193,7 +193,7 @@ Exemple :
     foo:bar = baz
     foo:bir = biz
 
-##### Afficher la valeur d'un paramètre d'un module
+##### Afficher la valeur d'un paramètre d'un module {#manex-ref:5c66ddac-7057-4732-a34f-afc71e7638ca}
 
 Cette opération permet d'afficher la valeur d'un paramètre d'un module donné.
 
@@ -206,7 +206,7 @@ Exemple :
     # /var/www/dynacase-control/wiff context test param get foo:bar
     foo:bar = baz
 
-##### Positionner la valeur d'un paramètre d'un module
+##### Positionner la valeur d'un paramètre d'un module {#manex-ref:3dcef13c-6bd3-44d0-a9c6-eb87f36e7652}
 
 Cette opération permet de positionner la valeur d'un paramètre d'un module donné.
 
@@ -219,7 +219,7 @@ Exemple :
     # /var/www/dynacase-control/wiff context <context-name> param set foo:bar buzz
     foo:bar = buzz
 
-#### Passer un contexte en maintenance
+#### Passer un contexte en maintenance {#manex-ref:b7fac359-18af-42f6-a414-32beaf02666c}
 
 Cette opération permet d'exécuter le script historique 'wstop' sur un contexte.
 Dans ce mode, seul l'utilisateur master default a accès au contexte.
@@ -233,7 +233,7 @@ Exemple :
     # /var/www/dynacase-control/wiff wstop test
     check update needed (/var/www/test/wcheck)
 
-#### Mettre en service un contexte
+#### Mettre en service un contexte {#manex-ref:03198250-37bf-40d2-bc98-036098fa29a3}
 
 Cette opération permet d'exécuter le script historique 'wstart' sur un contexte.
 
@@ -245,7 +245,7 @@ Exemple :
     
     # /var/www/dynacase-control/wiff wstart test
 
-#### Réinitialiser les catalogues de langue
+#### Réinitialiser les catalogues de langue {#manex-ref:d9a9e44b-5076-4a35-8c64-9e860e97a360}
 
 Cette opération permet d'exécuter le script historique 'whattext' sur un contexte.
 
@@ -258,7 +258,7 @@ Exemple :
     # /var/www/dynacase-control/wiff whattext test
     Administration système
 
-#### Ouvrir un shell sous l'uid Apache
+#### Ouvrir un shell sous l'uid Apache {#manex-ref:a122eb25-779a-4379-aa91-ffa1bb90daf7}
 
 Cette opération permet d'ouvrir un shell, ou d'exécuter une commande, sous l'uid de l'utilisateur exécutant le serveur Apache afin d'effectuer manuellement des opérations d'administration spécifiques.
 

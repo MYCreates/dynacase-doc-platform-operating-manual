@@ -1,4 +1,4 @@
-# Pré-requis
+# Pré-requis {#manex-ref:7190c4ba-9c34-430d-9165-522c3ffe8eb9}
 
 
 Ce chapitre identifie l'ensemble des pré-requis pour l'installation et l'utilisation de Dynacase Platform.
@@ -6,13 +6,13 @@ Ce chapitre identifie l'ensemble des pré-requis pour l'installation et l'utilis
 Seuls les pré-requis pour les modules standards sont listés.
 
 
-## Nouveautés 3.2
+## Nouveautés 3.2 {#manex-ref:6b3e79e0-241c-4c6f-b7b4-3835d74d20c8}
 
-### php-intl 
+### php-intl  {#manex-ref:45c0242a-5942-455f-935c-cdb78a19c6be}
 Installer le module php Intl (php5-intl habituellement) et penser à relancer le service apache.
 Ce module est utilisé pour l'internationalisation.
 
-### Implémentation libc de Iconv
+### Implémentation libc de Iconv {#manex-ref:77dcc67e-dca0-43ae-a97c-9ec16d2510a4}
 La fonction `iconv` doit être fournie par PHP compilé avec GLIBC.
 Pour vérifier cela :  
 
@@ -24,16 +24,16 @@ Pour vérifier cela :
     string(5) "glibc"
     string(3) "ete"   
 
-### Locales `fr_FR` et `en_US`
+### Locales `fr_FR` et `en_US` {#manex-ref:05bc59a4-8523-4cfc-be0b-8159b2b152f4}
 
 Les locales `fr_FR.UTF-8` et `en_US.UTF-8` (ainsi que les dictionnaires aspell
 de langue `fr` et `en`) doivent être installés et disponibles sur le serveur.
 
-### Apache mod_headers
+### Apache mod_headers {#manex-ref:78eeb11a-d460-4d4f-bcbf-d46b36c6e5fc}
 
 Installer et activer le module Apache `mod_headers`.
 
-## Poste client
+## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475}
 
 Les navigateurs supportés sont :
 
@@ -41,12 +41,12 @@ Les navigateurs supportés sont :
 * Firefox > 3.6
 * Chrome branche stable
 
-## Serveur
+## Serveur {#manex-ref:30634c94-81c6-40e3-b45e-7c4df94baff4}
 
-### GNU/Linux
+### GNU/Linux {#manex-ref:8ec0b71f-b127-45f9-9e63-b4b28ee26438}
 Dynacase fonctionne sur un système GNU/Linux (Debian, Ubuntu, RedHat, etc.).
 
-#### Commandes système
+#### Commandes système {#manex-ref:e9b858db-a445-417b-b13c-d65c050e4f07}
 
 Dynacase requiert les commandes système suivantes :
 
@@ -68,7 +68,7 @@ Dynacase requiert les commandes système suivantes :
 * `msgcat` (fourni par [gettext](http://www.gnu.org/software/gettext/gettext.html))
 * `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
 
-#### Locales
+#### Locales {#manex-ref:2a7386e4-4345-4549-afb5-9922503b0eee}
 
 Dynacase requiert que les locales systèmes `fr_FR.UTF-8` et `en_US.UTF-8` soient
 actives et correctement configurées sur le système.
@@ -84,13 +84,13 @@ Dynacase Platform nécessite PHP en version **5.4** (ou 5.3) :
 * La version 5.4 est supportée officiellement.
 * La version 5.3 est supportée pour compatibilité. Anakeen se réserve le droit de corriger d'éventuelles anomalies induites par cette version.
 
-#### Zend Server
+#### Zend Server {#manex-ref:28510102-9e79-4551-8f5b-9b65251a3360}
 
 Pour les distributions Linux qui ne fournissent pas la version PHP nécessaire,
 [Zend Server](http://www.zend.com/en/products/server/) fournit différentes
 versions de PHP pour les distributions Linux.
 
-#### Extensions PHP
+#### Extensions PHP {#manex-ref:e0d4bb4c-dd87-4eb4-9c32-703b9108f543}
 Les extensions notées (core) sont normalement incluses de manière statique dans PHP. 
 
 * Core (core)
@@ -120,7 +120,7 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * xsl
 * zip
 
-#### Composants PEAR
+#### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
 
 * XML_Parser
 * XML_RSS 
@@ -128,14 +128,14 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * Mail_Mime
 * Crypt_CHAP (optionnel) 
 
-#### Paramétrage PHP
+#### Paramétrage PHP {#manex-ref:315e62bd-dbfd-4d33-a520-75b1f2c07522}
 
 Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform fonctionne au mieux et en fonction de votre utilisation. Ces valeurs préconisées doivent être revues en fonction de votre configuration réelle et de vos applications.
 
-##### Paramètres INI
+##### Paramètres INI {#manex-ref:04ee4723-a3c8-45c2-ad17-ddbb13e580f2}
 
 date.timezone
-:   Ce paramètre permet de spécifier le fuseau horaire utilisé par les fonctions de manipulation de dates.
+:   Ce paramètre permet de spécifier le fuseau horaire utilisé par les fonctions de manipulation de date.
 
     [ini]
     date.timezone = 'Europe/Paris'
@@ -148,15 +148,15 @@ Par défaut ce paramètre est à “30”.
     max_execution_time = 300 ; 5 min.
 
 max_file_uploads
-:   Ce paramètre permet de spécifier le nombre de fichiers maximum qui seront pris en compte par PHP lors de la soumission d'un formulaire contenant des fichiers.
-Si la valeur est trop basse, vous ne pourrez pas sauvegarder des fichiers lors la sauvegarde de document lorsqu'un document contient beaucoup de fichiers.  
+:   Ce paramètre permet de spécifier le nombre maximun de fichiers qui seront pris en compte par PHP lors de la soumission d'un formulaire contenant des fichiers.
+Cette valeur doit être en cohérence avec le nombre maximun de fichier pouvant être soumis lors de l'enregistrement d'un document. Si ce n'est pas le cas, l'enregistrement du document est refusé à l'utilisateur.  
 Par défaut ce paramètre est à “20”.
 
     [ini]
     max_file_uploads = 100
 
 upload_max_filesize
-:   Ce paramètre permet de spécifier la taille maximale qu'un fichier téléversé peut avoir. Si un fichier d'une taille supérieure est envoyé par le navigateur, alors il ne sera pas pris en compte par PHP.  
+:   Ce paramètre permet de spécifier la taille maximale d'un fichier téléversé. Si un fichier d'une taille supérieure est envoyé par le navigateur, il ne sera pas pris en compte par PHP.  
 Par défaut ce paramètre est à “2M” (2 Mo).
 
     [ini]
@@ -171,7 +171,7 @@ Par défaut ce paramètre est à “8M” (8 Mo).
     post_max_size = 128M
 
 error_reporting
-:   Ce paramètre permet de spécifier le niveau de reporting des notices/warnings/erreurs/etc. Il est nécessaire de ne pas afficher les messages de notices (*E_NOTICE*) de dépréciation (*E_DEPRECATED*) de PHP lors de l'utilisation de Dynacase Platform (hors phase de développement et de mise au point).
+:   Ce paramètre permet de spécifier le niveau de reporting des notices/warnings/erreurs/etc. Il est nécessaire de ne pas afficher les messages de notices (*E_NOTICE*) de dépréciation (*E_DEPRECATED*) de PHP lors de l'utilisation de Dynacase Platform en production.
 
     [ini]
     error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED
@@ -202,7 +202,7 @@ Pour identifier l'emplacement du fichier `pg_service.conf` sur votre distributio
 
     # pg_config --sysconfdir
 
-## HTTPD Apache
+## HTTPD Apache {#manex-ref:89988168-0127-4782-9ec2-2d531fc28fd9}
 
 Dynacase Platform nécessite le serveur HTTPD Apache en version **2.2**
 
@@ -210,7 +210,7 @@ Le répertoire dans lequel sera installé Dynacase doit avoir un `AllowOverride 
 
 * [http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride](http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride)
 
-### Modules Apache
+### Modules Apache {#manex-ref:995b8d07-3121-4775-b71e-7cf79f51fb44}
 
 Les modules Apache suivants sont requis :
 
