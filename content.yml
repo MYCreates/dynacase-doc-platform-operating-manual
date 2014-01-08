@@ -23,6 +23,8 @@ book:
           content:  "tuning-apache2.md"
         - number:   "9"
           content:  "control-cli.md"
+        - number:   "10"
+          content:  "webdav.md"
     appendixes:
         - number:   "A1"
           content:  "check-crc.md"
