@@ -1,5 +1,7 @@
 # Tuning PostgreSQL {#manex-ref:4de10551-45b5-4796-964a-55b3187b5942}
 
+<span class="fixme">Controler que ceci reste applicable avec la version 9.3</span>
+
 Dans le cadre de son utilisation avec Dynacase, une couche d’abstraction logicielle Dynacase sur PostgreSQL permet d’optimiser son utilisation. Les éventuels tuning de la base PostgreSQL dépendent entièrement du modèle documentaire mis en œuvre par Dynacase. Ils sont réalisés ou préconisés si nécessaire lors de la mise en œuvre de la solution par un expert Anakeen.
 
 ## Configuration de PostgreSQL {#manex-ref:8e61f997-bf97-46e6-85b8-0fb78d067a42}

@@ -6,6 +6,8 @@ Un contexte regroupe l'ensemble des éléments nécessaires au fonctionnement d'
 
 ## Création d'un contexte {#manex-ref:9256c7d0-f863-47b6-b053-26457ea8d75a}
 
+<span class="fixme">capture d'écran à mettre à jour</span>
+
 L'item *Create Context* de l'interface Dynacase Control ouvre la fenêtre de création d'un nouveau contexte.
 
 ![création d'un contexte](i7.png "création d'un contexte")

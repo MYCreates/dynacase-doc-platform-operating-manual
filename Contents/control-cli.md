@@ -51,6 +51,8 @@ Syntaxe :
 
     context <context-name> module list installed [--pretty]
 
+<span class="fixme">à mettre à jour</span>
+
 Exemple :
 
     # var/www/dynacase-control/wiff context test module list installed
@@ -69,6 +71,8 @@ Cette opération affiche la liste des modules disponibles sur les dépôt de paq
 Syntaxe :
 
     context <context-name> module list available [--pretty]` 
+
+<span class="fixme">à mettre à jour</span>
 
 Exemple :
 
@@ -93,6 +97,8 @@ Syntaxe :
 
     context <context-name> module list upgrade [--pretty]
 
+<span class="fixme">à mettre à jour</span>
+
 Exemple :
 
     # /var/www/dynacase-control/wiff context test module list upgrade
@@ -116,6 +122,8 @@ Les options disponibles sont :
 
 Exemple :
 
+<span class="fixme">à mettre à jour</span>
+
 Installation d'un paquet distant :
 
     # /var/www/dynacase-control/wiff context test module install dynacase-core
@@ -135,6 +143,8 @@ Installation d'un paquet distant :
     Done.
 
 
+
+<span class="fixme">à mettre à jour</span>
 
 Installation d'un paquet local :
 
