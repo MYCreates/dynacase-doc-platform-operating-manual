@@ -6,39 +6,20 @@ Ce chapitre identifie l'ensemble des pré-requis pour l'installation et l'utilis
 Seuls les pré-requis pour les modules standards sont listés.
 
 
-## Nouveautés 3.2 {#manex-ref:6b3e79e0-241c-4c6f-b7b4-3835d74d20c8}
+## Nouveautés 4 {#manex-ref:6b3e79e0-241c-4c6f-b7b4-3835d74d20c8}
 
-### php-intl  {#manex-ref:45c0242a-5942-455f-935c-cdb78a19c6be}
-Installer le module php Intl (php5-intl habituellement) et penser à relancer le service apache.
-Ce module est utilisé pour l'internationalisation.
+### Environnement de fonctionnement
 
-### Implémentation libc de Iconv {#manex-ref:77dcc67e-dca0-43ae-a97c-9ec16d2510a4}
-La fonction `iconv` doit être fournie par PHP compilé avec GLIBC.
-Pour vérifier cela :  
+La version de PostgreSQL requise est la *9.3*.
 
-    [bash]
-    $ iconv --version
-    iconv (Ubuntu EGLIBC 2.11.1-0ubuntu7.8) 2.11.1  
-    ...
-    $ php -r 'var_dump(ICONV_IMPL); var_dump(iconv("UTF-8", "ASCII//TRANSLIT", "\xc3\xa9t\xc3\xa8"));'  
-    string(5) "glibc"
-    string(3) "ete"   
-
-### Locales `fr_FR` et `en_US` {#manex-ref:05bc59a4-8523-4cfc-be0b-8159b2b152f4}
-
-Les locales `fr_FR.UTF-8` et `en_US.UTF-8` (ainsi que les dictionnaires aspell
-de langue `fr` et `en`) doivent être installés et disponibles sur le serveur.
-
-### Apache mod_headers {#manex-ref:78eeb11a-d460-4d4f-bcbf-d46b36c6e5fc}
-
-Installer et activer le module Apache `mod_headers`.
+La version de PHP requise est la *5.4*.
 
 ## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475}
 
 Les navigateurs supportés sont :
 
-* Internet Explorer 8 & 9
-* Firefox > 3.6
+* Internet Explorer 9, 10 et 11
+* Firefox > 26
 * Chrome branche stable
 
 ## Serveur {#manex-ref:30634c94-81c6-40e3-b45e-7c4df94baff4}
@@ -47,6 +28,8 @@ Les navigateurs supportés sont :
 Dynacase fonctionne sur un système GNU/Linux (Debian, Ubuntu, RedHat, etc.).
 
 #### Commandes système {#manex-ref:e9b858db-a445-417b-b13c-d65c050e4f07}
+
+<span class="fixme">à mettre à jour</span>
 
 Dynacase requiert les commandes système suivantes :
 
@@ -79,10 +62,7 @@ PHP.
 
 ### PHP {#pre-req-php}
 
-Dynacase Platform nécessite PHP en version **5.4** (ou 5.3) :
-
-* La version 5.4 est supportée officiellement.
-* La version 5.3 est supportée pour compatibilité. Anakeen se réserve le droit de corriger d'éventuelles anomalies induites par cette version.
+Dynacase Platform nécessite PHP en version **5.4** et **5.5**.
 
 #### Zend Server {#manex-ref:28510102-9e79-4551-8f5b-9b65251a3360}
 
@@ -91,6 +71,9 @@ Pour les distributions Linux qui ne fournissent pas la version PHP nécessaire,
 versions de PHP pour les distributions Linux.
 
 #### Extensions PHP {#manex-ref:e0d4bb4c-dd87-4eb4-9c32-703b9108f543}
+
+<span class="fixme">à mettre à jour</span>
+
 Les extensions notées (core) sont normalement incluses de manière statique dans PHP. 
 
 * Core (core)
@@ -121,6 +104,8 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * zip
 
 #### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
+
+<span class="fixme">à mettre à jour</span>
 
 * XML_Parser
 * XML_RSS 
@@ -185,24 +170,23 @@ Par défaut ce paramètre est à “On”.
 
 ## PostgreSQL {#pre-req-postgresql}
 
-Dynacase nécessite PostgreSQL version **9.1** (ou 8.4) :
-
-* La version 9.1 est supportée officiellement.
-* La version 8.4 est supportée pour compatibilité. Anakeen se réserve le droit
-de corriger d'éventuelles anomalies induites par cette version.
-
-**Les différentes optimisation, en particulier sur le calcul des droits ne sont
-effectives qu'avec la version 9.1 de PostgreSQL.**
+Dynacase nécessite PostgreSQL version **9.3**.
 
 Dynacase utilise le fichier de service Postgresql (`pg_service.conf`) pour la définition des paramètres de connexion à la base de données :
 
-* [http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html](http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html)
+* [http://www.postgresql.org/docs/9.3/static/libpq-pgservice.html](http://www.postgresql.org/docs/9.3/static/libpq-pgservice.html)
 
 Pour identifier l'emplacement du fichier `pg_service.conf` sur votre distribution Linux, vous pouvez utiliser la commande suivante :
 
     # pg_config --sysconfdir
 
+_Note:_ La version PHP 9.4 est annoncée au Q4/2014.
+Le fonctionnement de Dynacase avec cette version sera validé et pourra faire l'objet d'une mise à jour.
+
+
 ## HTTPD Apache {#manex-ref:89988168-0127-4782-9ec2-2d531fc28fd9}
+
+<span class="fixme">à mettre à jour</span>
 
 Dynacase Platform nécessite le serveur HTTPD Apache en version **2.2**
 
@@ -211,6 +195,8 @@ Le répertoire dans lequel sera installé Dynacase doit avoir un `AllowOverride 
 * [http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride](http://httpd.apache.org/docs/2.2/mod/core.html#allowoverride)
 
 ### Modules Apache {#manex-ref:995b8d07-3121-4775-b71e-7cf79f51fb44}
+
+<span class="fixme">à mettre à jour</span>
 
 Les modules Apache suivants sont requis :
 

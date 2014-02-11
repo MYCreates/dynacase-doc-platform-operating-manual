@@ -9,20 +9,28 @@ book:
           content:  "introduction.md"
         - number:   "2"
           content:  "pre-req.md" 
+          flags:
+             draft: "à revoir"
         - number:   "3"
           content:  "installation-control.md"
         - number:   "4"
           content:  "installation.md"
+          flags:
+             draft: "à revoir"
         - number:   "5"
           content:  "manage-context.md"
         - number:   "6"
           content:  "exploitation.md"
         - number:   "7"
           content:  "tuning-postgresql.md"
+          flags:
+             draft: "à revoir"
         - number:   "8"
           content:  "tuning-apache2.md"
         - number:   "9"
           content:  "control-cli.md"
+          flags:
+             draft: "à revoir"
         - number:   "10"
           content:  "webdav.md"
     appendixes:
@@ -30,5 +38,7 @@ book:
           content:  "check-crc.md"
         - number:   "A2"
           content:  "module.md"
+          flags:
+             draft: "à revoir"
         - number:   "A3"
           content:  "migration.md"
