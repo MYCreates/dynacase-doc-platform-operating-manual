@@ -49,7 +49,6 @@ Dynacase requiert les commandes système suivantes :
 * `psql` (Voir [les pré-requis postgresql](#pre-req-postgresql))
 * `pg_dump` (Voir [les pré-requis postgresql](#pre-req-postgresql))
 * `msgcat` (fourni par [gettext](http://www.gnu.org/software/gettext/gettext.html))
-* `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
 
 #### Locales {#manex-ref:2a7386e4-4345-4549-afb5-9922503b0eee}
 
@@ -179,6 +178,11 @@ Dynacase utilise le fichier de service Postgresql (`pg_service.conf`) pour la d�
 Pour identifier l'emplacement du fichier `pg_service.conf` sur votre distribution Linux, vous pouvez utiliser la commande suivante :
 
     # pg_config --sysconfdir
+
+Les extensions PostgreSQL suivantes sont requises :
+
+- [`pg_trgm`](http://www.postgresql.org/docs/9.3/static/pgtrgm.html)
+- [`unaccent`](http://www.postgresql.org/docs/9.3/static/unaccent.html)
 
 _Note:_ La version PHP 9.4 est annoncée au Q4/2014.
 Le fonctionnement de Dynacase avec cette version sera validé et pourra faire l'objet d'une mise à jour.
