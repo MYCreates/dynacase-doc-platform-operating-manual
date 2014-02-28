@@ -1,3 +1,3 @@
-# Dynacase Platform 3.2 operating manual
+# Dynacase Platform 4 operating manual
 
-[Dynacase Platform 3.2](https://github.com/Anakeen/dynacase-platform/tree/3.2-integration/)
+[Dynacase Platform 4](https://github.com/Anakeen/dynacase-core/tree/3.3-integration/)
