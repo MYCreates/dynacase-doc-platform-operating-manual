@@ -28,14 +28,14 @@ Cette modification entraîne la restriction suivante : un attribut modifié
 "multiple" de l'attribut originel.
 
 Cette modification entraîne aussi une contrainte supplémentaire lié au type. Les
-contrainte de type des différentes valeurs sont vérifiés aussi au niveau de la
+contraintes de type des différentes valeurs sont vérifiées aussi au niveau de la
 base de données. Ces contraintes s'applique aux types "int", "double", "date",
 "timestamp" et "time".
 
 
 ### Vérification d'aptitude pour les types multiples
 
-Le premier point concernant le caractère multiple peut être vérifier depuis la
+Le premier point concernant le caractère multiple peut être vérifié depuis la
 base de données en utilisant le script [validate4.sql][validate4].
 
 Se connecter à la base de donnée (Dynacase 3.2) à l'aide de client `psql` et
@@ -128,6 +128,24 @@ Pour corriger ce problème, il faut modifier les documents indiqués afin d'avoi
 des valeurs correctes. Ceci peut être fait par l'interface web si les documents
 ne sont pas figés. S'ils sont figés, il faut modifier les valeurs directement en
 base de données ou par programmation spécifique.
+
+Exemple de modification sql pour l'exemple précédent :
+
+    [sql]
+    select id from docfam where lower(name)='my_family';
+         id 
+    -------
+      11678
+    (1 ligne)
+    -- 11678 est l'identifiant de la famille qu'il faut utiliser pour connaître
+    -- la table des documents.
+    
+    update doc11678 set frst_z_int=E'0\n20' where id=198649;
+    update doc11678 set frst_z_double=E'0\n4.98' where id=198649;
+    update doc11678 set frst_z_tz=E'2014-02-24 00:00' where id=198652;
+    update doc11678 set frst_z_time=E'00:00\n20:00' where id=198649;
+    update doc11678 set frst_z_time=E'04:17' where id=198651;
+    update doc11678 set frst_z_time=E'04:17' where id=198652;
 
 
 <!-- links -->
