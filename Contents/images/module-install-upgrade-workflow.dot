@@ -1,0 +1,44 @@
+digraph D {
+	node [fontname="Liberation Sans"];
+
+// Install
+
+	"start-install" [label="Install",style=filled,color=transparent,fillcolor=transparent];
+	"pre-install" [style=bold,color=green];
+	"post-install" [style=bold,color=green];
+	{
+		edge [color=green];
+		"start-install" -> "pre-install" -> "Ask parameters" -> "Install" -> "post-install" -> "post-param";
+	}
+
+// Upgrade
+
+	"start-upgrade" [label="Upgrade",style=filled,color=transparent,fillcolor=transparent];
+	"pre-upgrade" [style=bold,color=blue];
+	"post-upgrade" [style=bold,color=blue];
+	{
+		edge [color=blue];
+		"start-upgrade" -> "pre-upgrade" -> "Ask parameters" -> "Upgrade" -> "post-upgrade" -> "post-param";
+	}
+
+// Archive
+
+	"start-archive" [label="Archive",style=filled,color=transparent,fillcolor=transparent];
+	"pre-archive" [style=bold,color=magenta];
+	"post-archive" [style=bold,color=magenta];
+	{
+		edge [color=magenta];
+		"start-archive" -> "pre-archive" -> "Archive" -> "post-archive";
+	}
+
+// Restore
+
+	"start-restore" [label="Restore",style=filled,color=transparent,fillcolor=transparent];
+	"pre-restore" [style=bold,color=magenta];
+	"post-restore" [style=bold,color=magenta];
+	"reconfigure" [style=bold,color=magenta];
+	{
+		edge [color=magenta];
+		"start-restore" -> "pre-restore" -> "Restore" -> "post-restore" -> "reconfigure";
+	}
+}

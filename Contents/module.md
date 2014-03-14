@@ -8,6 +8,38 @@ Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
 les notions d'Applications et d'Actions de Dynacase et le fonctionnement
 général de ceux-ci.
 
+## Format d'une archive `webinst`
+
+Une archive `webinst` de module est une archive [TAR][gnu_tar] compressée par
+[GZIP][gzip] avec pour extension `.webinst`.
+
+L'archive contient les éléments suivants :
+
+`content.tar.gz` (requis)
+:   Une archive ([TAR][gnu_tar] compressé [GZIP][gzip]) contenant les fichiers
+    à  déployer dans le contexte.
+    
+    Cette archive est décompressée dans la racine du contexte sous l'identité
+    de l'utilisateur configuré lors de l'installation de dynacase-core.
+    
+    Les chemins des fichiers contenus dans l'archive sont alors relatifs à la
+    racine du contexte.
+
+`info.xml` (requis)
+:   Un fichier au format XML décrivant le module et les opérations à exécuter
+    pour son installation, mise-à-jour, etc.
+    
+    Voir [Fichier `info.xml`][info_xml] pour la description de ce fichier.
+
+`LICENSE` (optionnel)
+:   Un fichier contenant le texte de la licence du module au format texte brut
+    (`text/plain`).
+    
+    Si ce fichier est présent et que la propriété `license` du module est
+    valuée dans le fichier fichier `info.xml`, alors le contenu de ce fichier
+    est présenté à l'utilisateur pour que ce dernier valide la licence du
+    module.
+
 ## Fichier `info.xml` {#manex-ref:22c8b9e1-1a44-42e9-bc6e-68f3373beac6}
 
 Le fichier `info.xml` permet de décrire le module Dynacase en fournissant en
@@ -92,10 +124,14 @@ author
 :   l'auteur du module (ex. `John Doe  <john.doe@example.net>`)  
     *optionnel*
 
-licence
-:   licence du module  
-    *optionnel*
-    <span class="fixme">préciser le fonctionnement (fichier , etc.)</span>
+license
+:   license du module : nom/label de la license du module (ex. `http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License`).
+    
+    Si un fichier `LICENSE` (contenant le texte de la licence au format
+    text/plain) est présent à la racine de l'archive `.webinst`, alors une
+    fenêtre est ouverte avec le contenu de ce fichier `LICENSE` lorsque le
+    module est installé pour la première fois afin que l'utilisateur accepte
+    la licence. *optionnel*
 
 vendor
 :   fournisseur du module (ex. `ACME Corp.`)  
@@ -114,7 +150,7 @@ Exemple :
         version="1.2.3"
         release="rc1"
         author="John Doe &lt;john.doe@example.net&gt;"
-        licence="GPLV2"
+        license="GPLV2"
         vendor="ACME Corp."
         changelog="https://modules.example.net/changelog/dynacase-foo/1.2.3"
     >
@@ -161,12 +197,12 @@ comp
 
 Exemple :
 
-      [xml]
-      <requires>
-        <installer version="1.0" comp="ge" />
-        <module name="dynacase-bar" version="2.0" comp="ge" />
-        <module name="dynacase-baz" version="1.9" comp="gt" />
-      <requires>
+    [xml]
+    <requires>
+      <installer version="1.0" comp="ge" />
+      <module name="dynacase-bar" version="2.0" comp="ge" />
+      <module name="dynacase-baz" version="1.9" comp="gt" />
+    <requires>
 
 Dans cet exemple, le module requiert un installeur avec une version >= 1.0, le
 module dynacase-bar en version >= 2.0 et le module dynacase-baz en version >1.9.
@@ -325,13 +361,13 @@ onupgrade
 
 Exemple :
 
-      [xml]
-      <parameters>
-        <param name="foo_dir" label="Directory of FOO" type="text" default="/var/foo" needed="yes" />
-        <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="no" />
-      </parameters>
+    [xml]
+    <parameters>
+      <param name="foo_dir" label="Directory of FOO" type="text" default="/var/foo" needed="yes" />
+      <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="no" />
+    </parameters>
 
-## Workflow d'install/upgrade (Pre/post install/upgrade, etc.) {#module-wf-install-upgrade}
+## Workflow d'install/upgrade/archive/restore (Pre/post install/upgrade, etc.) {#module-wf-install-upgrade}
 
 Lors de l'installation, ou de l'upgrade, un ensemble d'actions peuvent être effectués
 avant (pre) et après (post) l'opération suivant l'ordre suivant :
@@ -347,7 +383,7 @@ retourné un statut de réussite.
 
 Si une phase n'est pas validée, alors les messages d'erreurs rencontrés
 sont présenté à l'utilisateur , et celui-ci peut rejouer le check (ou le
-process) après avoir eventuellement corrigé le problème, ou bien il peut
+process) après avoir éventuellement corrigé le problème, ou bien il peut
 choisir d'ignorer les messages d'erreurs et poursuivre l'install/ugprade.
 
 ### Phase pre-install {#manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856}
@@ -451,7 +487,7 @@ Exemple :
     <process command="programs/update_catalog">
       <label lang="en">Re-generate localization catalog</label>
     </process>
-    </post-install>
+    </post-upgrade>
 
 Les actions de post-upgrade serviront généralement à configurer le module qui
 vient d'être installé, lancer les scripts de migration, etc. Une erreur dans la
@@ -464,6 +500,49 @@ Les éléments de reconfigure s'exécutent après la restauration d'un contexte
 depuis une archive.
 
 Les actions possible sont les mêmes que pour les phases de `post-install` ou `post-upgrade`.
+
+### Phase pre-archive {#manex-ref:d31adf2b-c2c6-4536-8473-8cbd415f9228}
+
+Les éléments de pre-archive s'exécutent avant l'archivage d'un contexte.
+
+Les actions possibles sont les mêmes que pour les phases de `post-install` ou
+`post-upgrade`.
+
+Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
+procédure d'archivage.
+
+### Phase post-archive {#manex-ref:455076b2-2265-43cb-9258-4b18006025e7}
+
+Les éléments de post-archive s'exécutent après l'archivage du contexte.
+
+Les actions possible sont les mêmes que pour les phases de `post-install` ou
+`post-upgrade`.
+
+Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
+procédure d'archivage.
+
+### Phase pre-restore {#manex-ref:4f34f078-29f8-4097-8bcd-2a429d20c1b6}
+
+Les éléments de pre-restore s'exécutent avant la restauration d'un contexte à
+partir d'une archive.
+
+Les actions possible sont les mêmes que pour les phases de `post-install` ou
+`post-upgrade`.
+
+Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
+procédure de restauration.
+
+### Phase post-restore {#manex-ref:0b92006c-f874-4cbb-977c-d8c67c0935a8}
+
+Les éléments de post-restore s'exécutent après la restauration d'un contexte à
+partir d'un archive et après l'exécution de la phase de
+[reconfigure][reconfigure].
+
+Les actions possible sont les mêmes que pour les phases de `post-install` ou
+`post-upgrade`.
+
+Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
+procédure de restauration.
 
 ## Les actions de phase {#manex-ref:66ae8fce-e24c-4e1c-b825-fe0de5d12aee}
 
@@ -478,15 +557,17 @@ phpfunction
     
     Exemple :
 
-        <check type="phpfunction" function="pg_connect" />
+    [xml]
+    <check type="phpfunction" function="pg_connect" />
 
 syscommand
 :   Le check de type `syscommand` permet de vérifier la présence d'une commande disponible sur le système.  
     Le nom de la command testé est spécifié avec l'attribut `command`
     
     Exemple :
-    
-        <check type="syscommand" command="convert" />
+
+    [xml]
+    <check type="syscommand" command="convert" />
 
 phpclass
 :   Le check de type `phpclass` permet de vérifier la présence d'une classe objet PHP.  
@@ -495,22 +576,46 @@ phpclass
     *class* : le nom de la classe
     
     Exemple :
-    
-        <check type="phpclass" include="Net/SMTP.php" class="Net_SMTP" />
+
+    [xml]
+    <check type="phpclass" include="Net/SMTP.php" class="Net_SMTP" />
 
 apachemodule
 :   Le check de type `apachemodule` permet de vérifier qu'un module Apache particulier est activé et chargé par celui-ci.  
     Le nom du module est spécifié par l'attribut `module`.
     
     Exemple :
-    
-        <check type="apachemodule" module="mod_expires" />
+
+    [xml]
+    <check type="apachemodule" module="mod_expires" />
 
 ### Process {#manex-ref:796c1c2a-95b8-4bd6-86dd-4ecada2ea22d}
 
 Les éléments process servent à exécuter des commandes/programmes permettant
 d'effectuer les opérations nécessaires au fonctionnement du module suite à son
 installation.
+
+Si le programme référencé par la propriété `command` commence par un `/`
+(slash), alors le chemin du programme est considéré comme étant absolu. Dans
+le cas contraire, le chemin du programme est préfixé avec le chemin de la
+racine du contexte.
+
+Exemples :
+
+    [xml]
+    <process command="programs/foo arg1 arg2 arg3"
+
+La commande exécutée sera `${WIFF_CONTEXT_ROOT}/programs/foo` avec les
+arguments `arg1`, `arg2` et `arg3`.
+
+    [xml]
+    <process command="/usr/local/bin/foo arg1 arg2 arg3"
+
+La commande exécutée sera `/usr/local/bin/foo` avec les arguments `arg1`,
+`arg2` et `arg3`.
+
+Une ensemble de programmes/commandes sont livrés par défaut et leur
+fonctionnement est décrit ci-dessous.
 
 #### Commande *programs/app_post* {#manex-ref:cc8bc194-900b-427a-9f5c-f4b629e81daa}
 
@@ -545,17 +650,17 @@ Les arguments sont :
 
 Exemple :
 
-      [xml]
-      <post-install>
-        <process command="programs/app_post WEBDESK I" />
-        [...]
-      </post-install>
+    [xml]
+    <post-install>
+      <process command="programs/app_post WEBDESK I" />
+      [...]
+    </post-install>
     
-      <post-upgrade>
-        [...]
-        <process command="programs/app_post WEBDESK U" />
-        [...]
-      </post-upgrade>
+    <post-upgrade>
+      [...]
+      <process command="programs/app_post WEBDESK U" />
+      [...]
+    </post-upgrade>
 
 Le script `<APPNAME>_post` est alors exécuté par `app_post` avec un seul
 argument qui est l'argument `I` ou `U` suivant qu'on est dans une installation
@@ -587,7 +692,8 @@ La ligne de commande est spécifié par l'attribut `command`.
 
 Exemple :
 
-      <process command="programs/record_application FOO" />
+    [xml]
+    <process command="programs/record_application FOO" />
 
 #### Commande *programs/update_catalog* {#manex-ref:a3b5b826-2476-4602-8772-4c8e264de1ed}
 
@@ -609,8 +715,8 @@ messages de localisation.
 
 Exemple :
 
-      [xml]
-      <process command="programs/update_catalog" />
+    [xml]
+    <process command="programs/update_catalog" />
 
 #### Commande *programs/pre_migration* {#manex-ref:1dbb94a3-763f-46f7-bb2d-d7029dcf8592}
 
@@ -632,7 +738,8 @@ pre-migration d'un module lors de sa mise-à-jour.
 
 Exemple :
 
-      <process command="programs/pre_migration" />
+    [xml]
+    <process command="programs/pre_migration" />
 
 #### Commande *programs/post_migration* {#manex-ref:6a525876-dac7-40c3-8f87-01a9bec64837}
 
@@ -654,8 +761,8 @@ post-migration d'un module lors de sa mise-à-jour.
 
 Exemple :
 
-      [xml]
-      <process command="programs/post_migration" />
+    [xml]
+    <process command="programs/post_migration" />
 
 #### Commande *programs/set_param* {#manex-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457}
 
@@ -685,11 +792,11 @@ Exemple :
       [...]
     </post-install>
 
-#### Commande *./wsh.php* {#manex-ref:b7ad8be9-55d9-48e3-80e4-9245d6f4f345}
+#### Commande *wsh.php* {#manex-ref:b7ad8be9-55d9-48e3-80e4-9245d6f4f345}
 
 Prototype :
 
-* `./wsh.php`
+* `wsh.php`
 
 Utilisable dans les phases :
 
@@ -701,12 +808,13 @@ Conditions d'utilisation :
 * Le programme peut être utilisé à n'importe quel moment en fonction des
   besoins
 
-Le programme `./wsh.php` est utilisé pour exécuter des méthodes sur des classes
+Le programme `wsh.php` est utilisé pour exécuter des méthodes sur des classes
 documentaires et exécuter des API Dynacase.
 
 Exemple :
 
-      <process command="./wsh.php --api=refreshDocuments --method=postModify --famid=FOO" />
+    [xml]
+    <process command="wsh.php --api=refreshDocuments --method=postModify --famid=FOO" />
 
 #### Programmes personnalisés {#manex-ref:afc3d392-bd87-418a-af0e-ceb8924e74a2}
 
@@ -860,6 +968,7 @@ Dans une action `download`, les propriétés suivantes supportent l'évaluation 
 
 Exemple :
 
+    [xml]
     <download href="... @PARAM_NAME ..." />
 
 #### Action *process* {#manex-ref:132a458a-2fd4-4a9b-847d-e44a0e48a870}
@@ -870,6 +979,7 @@ Dans une action `process`, les propriétés suivantes supportent l'évaluation d
 
 Exemple :
 
+    [xml]
     <process command="... @PARAM_NAME ..." />
 
 #### Action *check* de type *exec* {#manex-ref:461dd848-f425-4b8d-80ce-eaeb63cba2a5}
@@ -880,5 +990,11 @@ Dans une action `check` de type `exec`, les propriétés suivantes supportent l'
 
 Exemple :
 
+    [xml]
     <check type="exec" cmd="... @PARAM_NAME ..." />
 
+<!-- links -->
+[gnu_tar]: https://www.gnu.org/software/tar/
+[gzip]: http://www.gzip.org/
+[info_xml]: #manex-ref:22c8b9e1-1a44-42e9-bc6e-68f3373beac6
+[reconfigure]: #manex-ref:d3679ce1-5475-4de2-a816-b399d881e5c0
