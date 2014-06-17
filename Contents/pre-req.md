@@ -122,11 +122,11 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 
 #### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
 
-* XML_Parser
-* XML_RSS 
-* Net_SMTP
-* Mail_Mime
-* Crypt_CHAP (optionnel) 
+* XML_Parser (1.3.2)
+* XML_RSS (1.0.2)
+* Net_SMTP (1.6.0)
+* Mail_Mime (1.8.0)
+* Crypt_CHAP (optionnel)
 
 #### Paramétrage PHP {#manex-ref:315e62bd-dbfd-4d33-a520-75b1f2c07522}
 
