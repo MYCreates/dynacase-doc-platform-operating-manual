@@ -188,13 +188,13 @@ max_post_size
     post_max_size = 128M
 
 error_reporting
-:   Ce paramètre permet de spécifier le niveau de reporting des notices/warnings/erreurs/etc. Il est nécessaire de ne pas afficher les messages de notices (*E_NOTICE*) de dépréciation (*E_DEPRECATED*) de PHP lors de l'utilisation de Dynacase Platform en production.
+:   Ce paramètre permet de spécifier le niveau de reporting des notices/warnings/erreurs/etc. Il est nécessaire de ne pas afficher les messages de notices (*E_NOTICE*), de dépréciation (*E_DEPRECATED*) et de suggestion (*E_STRICT*) de PHP lors de l'utilisation de Dynacase Platform en production.
 
     [ini]
-    error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED
+    error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT
 
 display_errors
-:   Ce paramètre permet d'activer ou non l'affichage des erreurs PHP dans les réponses émises au client. En production, il est recommandé de désactiver le display_errors.  
+:   Ce paramètre permet d'activer ou non l'affichage des erreurs PHP dans les réponses émises au client. En production, il est recommandé de désactiver le display_errors (les messages d'erreur/warning/suggestion de PHP seront alors consultables sur le serveur dans le fichier spécifié par le paramètre INI `error_log`).
     
     Par défaut ce paramètre est à “On”.
 
