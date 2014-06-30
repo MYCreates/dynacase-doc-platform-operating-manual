@@ -8,3 +8,9 @@ Ce document décrit les procédures d'installation et de mise à jour de Dynacas
 ## Présentation {#manex-ref:b4beabfd-093d-4c99-945d-d836f8631231}
 
 L'installation d'un contexte Dynacase nécessite au préalable l'installation de Dynacase Control qui permet de créer et de gérer les contextes Dynacase. Dans un contexte Dynacase vous pouvez installer Dynacase Platform et les modules spécifiques à votre application.
+
+## Historique des modifications
+
+Édition 6
+:  - précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)
+
