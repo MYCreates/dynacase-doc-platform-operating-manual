@@ -110,7 +110,6 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * XML_RSS 
 * Net_SMTP
 * Mail_Mime
-* Crypt_CHAP (optionnel) 
 
 #### Paramétrage PHP {#manex-ref:315e62bd-dbfd-4d33-a520-75b1f2c07522}
 
