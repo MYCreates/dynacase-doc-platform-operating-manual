@@ -33,13 +33,17 @@ de langue `fr` et `en`) doivent être installés et disponibles sur le serveur.
 
 Installer et activer le module Apache `mod_headers`.
 
-## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475}
+## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475} 
 
 Les navigateurs supportés sont :
 
-* Internet Explorer 8 & 9
+* Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span> 
 * Firefox > 3.6
 * Chrome branche stable
+
+
+<span class="flag inline release from">3.2 R11</span> IE 8,9,10,11 / Chrome stable / Firefox > 3.6  
+<span class="flag inline release until">3.2 R10</span>  IE 8,9 / Chrome stable / Firefox > 3.6  
 
 ## Serveur {#manex-ref:30634c94-81c6-40e3-b45e-7c4df94baff4}
 
@@ -77,12 +81,15 @@ Dynacase requiert aussi que les dictionnaires de langue `fr` et `en` de la
 librairie `aspell` soient installés et accessibles pour l'extension pspell de
 PHP.
 
-### PHP {#pre-req-php}
+### PHP {#pre-req-php}  
 
-Dynacase Platform nécessite PHP en version **5.4** (ou 5.3) :
+<span class="flag update">Updated</span> Dynacase Platform nécessite PHP en version **5.4** ou **5.5** :
 
-* La version 5.4 est supportée officiellement.
-* La version 5.3 est supportée pour compatibilité. Anakeen se réserve le droit de corriger d'éventuelles anomalies induites par cette version.
+<span class="flag inline release from">3.2 R11</span> 5.4 / 5.5   
+<span class="flag inline release obsolete">3.2 R11</span> 5.3  
+<span class="flag inline release until">3.2 R10</span>  5.3[^2] / 5.4   
+
+*La version 5.3 ne sera plus compatible à compter de la prochaine release (Q1/2015).*
 
 #### Zend Server {#manex-ref:28510102-9e79-4551-8f5b-9b65251a3360}
 
@@ -120,13 +127,10 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * xsl
 * zip
 
-#### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
+#### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6} 
 
-* XML_Parser (1.3.2)
-* XML_RSS (1.0.2)
-* Net_SMTP (1.6.0)
-* Mail_Mime (1.8.0)
-* Crypt_CHAP (optionnel)
+: <span class="flag update">Updated</span> module Webdesk et Webdesk Services
+   XML_Parser (1.3.2),  XML_RSS (1.0.2)
 
 #### Paramétrage PHP {#manex-ref:315e62bd-dbfd-4d33-a520-75b1f2c07522}
 
@@ -201,13 +205,15 @@ display_errors
     [ini]
     display_errors = Off
 
-## PostgreSQL {#pre-req-postgresql}
+## PostgreSQL {#pre-req-postgresql} 
 
-Dynacase nécessite PostgreSQL version **9.1** (ou 8.4) :
+<span class="flag update">Updated</span> Dynacase nécessite PostgreSQL version **9.1**, **9.2** et **9.3** :
 
-* La version 9.1 est supportée officiellement.
-* La version 8.4 est supportée pour compatibilité. Anakeen se réserve le droit
-de corriger d'éventuelles anomalies induites par cette version.
+<span class="flag inline release from">3.2 R11</span> 9.1 / 9.2 / 9.3  
+<span class="flag inline release obsolete">3.2 R11</span> 8.4  
+<span class="flag inline release until">3.2 R10</span>  8.4[^1] / 9.1   
+
+*La version 8.4 ne sera plus est compatible à compter de la prochaine release (Q1/2015)*
 
 **Les différentes optimisation, en particulier sur le calcul des droits ne sont
 effectives qu'avec la version 9.1 de PostgreSQL.**
@@ -242,3 +248,9 @@ Les modules Apache suivants sont requis :
 * [setenvif_module](http://httpd.apache.org/docs/2.2/en/mod/mod_setenvif.html)
 * [rewrite_module](http://httpd.apache.org/docs/2.2/en/mod/mod_rewrite.html)
 * [headers_module](http://httpd.apache.org/docs/2.2/en/mod/mod_headers.html)
+
+
+
+
+[^1]: pour compatibilité seulement.
+[^2]: pour compatibilité seulement.

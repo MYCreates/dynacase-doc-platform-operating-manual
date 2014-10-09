@@ -11,6 +11,12 @@ L'installation d'un contexte Dynacase nécessite au préalable l'installation de
 
 ## Historique des modifications
 
-Édition 6
-:  - précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)
+### Édition 7
+
+* précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)  
+* versions  [PHP](#pre-req-php), [PostgreSQL](#pre-req-postgresql) et du [navigateur IE](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475)
+   
+### Édition 6
+
+* précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)
 
