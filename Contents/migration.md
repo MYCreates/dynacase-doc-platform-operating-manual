@@ -136,7 +136,7 @@ Cette notation est aussi obligatoire pour les menus déclarant un appel de la fo
 
 Les méthodes utilisables comme critère de recherche doivent être déclarées avec un tag de commentaire `@searchLabel` et `@searchType`.
 
-> ☞ Voir chapitre "3.3.9. Utilisation de méthodes dans l'interface de recherche détaillée" du manuel de référence.
+> ☞ Voir chapitre [17.8.2.2 Utilisation de méthodes dans l'interface de recherche détaillée](http://docs.anakeen.com/dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:b0bc6976-8eb3-4ba0-9999-241ecf7b1682.html#core-ref:b318bafc-adf9-4ebc-802d-0cb1a8f82054).
 
 Exemple :
 
@@ -177,7 +177,7 @@ Si vous avez utilisé les droits négatifs (boules rouges dans les profils) il v
 
 La structure de la table `docperm` et les interfaces de saisie des droits ont été modifiés pour prendre en compte ce nouveau fonctionnement.
 
-> ☞ Voir chapitres "2.2. Gestion des utilisateurs" et "2.3. Sécurité" du manuel de référence.
+> ☞ Voir chapitres [Comptes : utilisateurs, groupes et rôles](http://docs.anakeen.com/dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:f6d55bb1-7254-480e-9bfa-61f5e532ccad.html) et [Sécurité : authentification, droit applicatif, droit documentaire](http://docs.anakeen.com/dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:4e298112-3c56-4677-a05f-e314b1406326.html).
 
 Nous préconisons de ne plus gérer les droits par des groupes mais de se baser sur le système des rôles.
 
@@ -201,7 +201,7 @@ Par défaut, les adresses de courriel des utilisateurs ne sont plus visibles pou
 
 Pour réactiver l'ancien fonctionnement sur les `IUSER` (et `LDAPUSER`) il vous faudra mettre à jour ces familles pour positionner ce tag `MAILRECIPIENT`.
 
-> ☞ Voir chapitre "2.1.9. Déclarer une famille comme destinataire de courriel" du manuel de référence.
+> ☞ Voir chapitre [4.8.2.2 Définition de propriétés de famille](http://docs.anakeen.com/dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:cfc7f53b-7982-431e-a04b-7b54eddf4a75.html#core-ref:6f013eb8-33c7-11e2-be43-373b9514dea3) du manuel de référence.
 
 Le module `dynacase-contacts` déclare la famille `USER` comme destinataire de courriel (il possède le tag `MAILRECIPIENT`).
 ### Valeur par défaut DEFAULT {#manex-ref:f38e0efc-81e5-4961-8308-7f593970412c}
@@ -216,7 +216,8 @@ La valeur par défaut d'un attribut remonte donc les liens de parenté à la rec
 
 Vos familles de cycle de vie doivent être déclarés "système" à l'aide du mot-clef `USEFOR` avec la valeur `SW`.
 
-> ☞ Voir chapitre "2.1.2.6.2. Caractéristiques générales" du manuel de référence pour l'utilisation du mot-clef `USEFOR`.
+> ☞ Voir chapitre [4.8.2.2 Définition de propriétés de famille](http://docs.anakeen.com/dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:cfc7f53b-7982-431e-a04b-7b54eddf4a75.html#core-ref:6f013eb8-33c7-11e2-be43-373b9514dea3) du manuel de référence.
+
 
 La classification, en familles système et familles non-système, des familles livrées par défaut a été modifiée.
 
