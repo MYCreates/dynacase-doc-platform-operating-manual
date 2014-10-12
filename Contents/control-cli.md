@@ -231,7 +231,6 @@ Syntaxe :
 Exemple :
 
     # /var/www/dynacase-control/wiff wstop test
-    check update needed (/var/www/test/wcheck)
 
 #### Mettre en service un contexte {#manex-ref:03198250-37bf-40d2-bc98-036098fa29a3}
 

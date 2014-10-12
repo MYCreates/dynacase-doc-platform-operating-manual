@@ -2,7 +2,7 @@ book:
     title: "Installation & Exploitation"
     module: "Dynacase Platform"
     version: "3.2"
-    edition: "6"
+    edition: "7"
     githubsrc: "https://github.com/Anakeen/dynacase-doc-platform-operating-manual"
     chapters: 
         - number:   "1"
