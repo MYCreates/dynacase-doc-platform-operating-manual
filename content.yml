@@ -17,8 +17,6 @@ book:
           content:  "manage-context.md"
         - number:   "6"
           content:  "exploitation.md"
-          flags:
-            update: "mis à jour"
         - number:   "7"
           content:  "tuning-postgresql.md"
         - number:   "8"
