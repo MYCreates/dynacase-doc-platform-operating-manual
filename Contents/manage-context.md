@@ -33,7 +33,7 @@ Modify Context
 :   Permet de modifier la description du contexte et la liste des dépôts utilisés par ce dernier.
 
 Import Module
-:   Permet d'installer un module format *.webinst* sans passer par les dépôts de paquets (voir les annexes pour la [description des fichiers webinst](#module)).
+:   Permet d'installer un module format *.webinst* sans passer par les dépôts de paquets (voir les annexes pour la [description des fichiers webinst][#module]).
     Lors de l'utilisation de ce menu, il vous sera demandé d'uploader le fichier webinst, puis de choisir entre les scénarios d'installation et de mise à jour du module.  
     Cette action ne devrait pas être utilisée en dehors des phases de développement.
 
@@ -95,3 +95,5 @@ Pour restaurer une archive il faut cliquer sur le bouton *[Create Context]* et r
 
 Ces répertoires doivent être créés manuellement et être accessibles en écriture à l'utilisateur Apache.
 
+<!-- links -->
+[module]: #manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778

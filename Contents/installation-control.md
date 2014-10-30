@@ -63,7 +63,7 @@ L'interface `Control > Setup` permet de configurer Dynacase Control. Vous pouvez
 * Mettre à jour Dynacase Control lorsqu'une nouvelle version est détectée
 * Changer le mot de passe de connexion à Dynacase Control : “Dynacase Control Information > Password”
 * Enregistrer son Dynacase Control avec son compte EEC : “Dynacase Control Information > Registration > Register”
-* (Dés)Activer le journal local des erreurs de Dynacase Control : “Local log > Local log On/Off”
+* <span class="flag inline release from">control 1.5</span> (Dés)Activer le journal local des erreurs de Dynacase Control : “Local log > Local log On/Off”
 * Ajouter/Supprimer/Modifier des dépôt de paquets : ”Repositories”
 * Modifier les paramètres de Dynacase Control : ”Parameters”
 * Voir les paramètres de PHP : “PHP Info”
@@ -141,6 +141,8 @@ Si vos accès aux dépôts Dynacase Platform nécessitent l'utilisation d'un pro
 | proxy-password   | le mot de passe associé si le proxy requiert une authentification                        |
 
 ## Journal des messages d'erreurs {#manex-ref:022e6b2f-cbe7-4ead-8f84-3ed8d0d718c9}
+
+<span class="flag inline release from">control 1.5</span>
 
 Les messages d'erreurs émis par dynacase-control sont enregistrés de la manière
 suivante :

@@ -1,4 +1,4 @@
-# Format des modules webinst {#module}
+# Format des modules webinst {#manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778}
 
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
 webinst et mettre en œuvre ces éléments pour construire un module d'exemple
