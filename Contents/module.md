@@ -1,12 +1,14 @@
 # Format des modules webinst {#manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778}
 
+<span class="flag inline release from">control 1.5</span>
+
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
 webinst et mettre en œuvre ces éléments pour construire un module d'exemple
 que nous nommerons *dynacase-foo*.
 
 Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
 les notions d'Applications et d'Actions de Dynacase et le fonctionnement
-général de ceux-ci.
+général de celles-ci.
 
 Pour un aperçu rapide des changements apportés par rapport à l'ancien format,
 voir la section "[Changements par rapport à l'ancien format][changes]" ci-
@@ -54,7 +56,7 @@ particulier :
 * la version du module,
 * une description,
 * une liste de dépendances avec d'autres modules Dynacase,
-* un ensemble d'action de pre-install, post-install,
+* un ensemble d'actions de pre-install, post-install,
 * un ensemble de paramètres,
 
 ### Exemple de fichier de info.xml {#manex-ref:7ed1e3fa-7d6b-4563-b78c-1f7f34cc233b}
@@ -182,26 +184,46 @@ Exemple :
     [xml]
     <description>This module allows Dynacase to connect to FOO</description>
 
-### Dépendances entre modules {#manex-ref:bf541424-6320-4eb7-8e50-16ec590e251d}
+### Dépendances {#manex-ref:bf541424-6320-4eb7-8e50-16ec590e251d}
 
 Les dépendances permettent d'exprimer qu'un module requiert d'autres modules
-Dynacase avec éventuellement une contrainte sur la version de ceux-ci.
+Dynacase avec éventuellement une contrainte sur leur version, ou une version
+spécifique de l'installeur.
 
-Le tag `<requires>` est composé d'éléments `<module>` qui ont les attributs
-suivants :
+Les dépendances sont exprimés à l'aide du tag `<requires>`.
+
+#### Dépendances avec des modules {#manex-ref:d811d3f2-b553-43e3-b3c6-510d6e2a3523}
+
+La dépendance avec un module est exprimée avec un élément `<module>` qui
+comporte les attributs suivants :
 
 name
 :   le nom du module Dynacase requis
 
 version
-:   la version que le module requis doit avoir
+:   la version attendue pour le module requis
 
 comp
 :   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
 
-Le module peut aussi exprimer une contrainte sur la version de l'installeur,
-Dynacase Control, lui même à l'aide de l'élément `<installer>`.  Dans ce cas,
-les attributs sont :
+Exemple :
+
+    [xml]
+    <requires>
+      <module name="dynacase-bar" version="2.0" comp="ge" />
+      <module name="dynacase-baz" version="1.9" comp="gt" />
+    <requires>
+
+Dans cet exemple, le module requiert le module dynacase-bar en version >= 2.0
+et le module dynacase-baz en version >1.9.
+
+#### Dépendance avec l'installeur {#manex-ref:1dcb62fb-e40a-4cf0-9992-659773707a49}
+
+Le module peut aussi exprimer une dépendance sur la version de l'installeur
+Dynacase Control.
+
+Dans ce cas, le tag `<requires>` peut contenir un élément `<installer>` avec
+les attributs suivants :
 
 version
 :   la version de l'installeur que requiert le module
@@ -895,15 +917,13 @@ autorisé dans les éléments [`<process/>`][node_process],
 [`<check/>`][node_check] et [`<download/>`][node_download]).
 
 * L'attribut "`basecomponent`" de l'élément racine
-[`<module/>`][node_root_module] doit contenir les valeurs "`Y`" ou "`N`" (et
-non plus "yes" ou "no").
+[`<module/>`][node_root_module] doit contenir les valeurs "`Y`" ou "`N`".
 
 * L'attribut "`volatile`" de l'élément [`<param/>`][node_params] doit contenir
-les valeurs "`Y`" ou "`N`" (et non plus "yes" ou "no").
+les valeurs "`Y`" ou "`N`".
 
 * L'attribut "`optional`" des éléments [`<process/>`][node_process] et
-[`<check/>`][node_check] doit contenir les valeurs "`Y`" ou "`N`" (et non plus
-"yes" ou "no").
+[`<check/>`][node_check] doit contenir les valeurs "`Y`" ou "`N`".
 
 <!-- links -->
 [gnu_tar]: https://www.gnu.org/software/tar/
