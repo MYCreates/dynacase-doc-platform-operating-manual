@@ -329,10 +329,11 @@ Exemple :
       <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="N" />
     </parameters>
 
-## Opération d'install/upgrade/archive/restore et phases {#module-wf-install-upgrade}
+## Opération d'install/upgrade/archive/restore/delete et phases {#module-wf-install-upgrade}
 
-Lors de l'*opération* d'installation ou d'upgrade d'un module, un ensemble de
-*phases* contenant des *process* sont déroulés.
+Lors de l'*opération* d'installation ou d'upgrade d'un module, ou
+d'archivage/restauration/suppression d'un contexte, un ensemble de *phases*
+contenant des *process* sont déroulés.
 
 Les *phases* sur lesquelles vous pouvez spécifier vos *process* sont identifiées
 en couleur dans le diagramme ci-dessous.
@@ -353,9 +354,9 @@ anciens fichiers du module et l'installation des nouveaux fichiers du module
 (phase [`pre-upgrade`][node_pre-upgrade]), et une phase après l'installation
 des nouveaux fichiers du module (phase [`post-upgrade`][node_post-upgrade]).
 
-Chaque phase ([`pre-install`][node_pre-install], [`post-install`][node_post-
-install], etc.) spécifie un ensemble de process (éléments
-[`<check>`][node_check], [`<process>`][node_process] ou
+Chaque phase ([`pre-install`][node_pre-install],
+[`post-install`][node_post-install], etc.) spécifie un ensemble de process
+(éléments [`<check>`][node_check], [`<process>`][node_process] ou
 [`<download>`][node_download]) qui sont exécutés et qui retournent un status
 d'échec ou de réussite.
 
@@ -513,6 +514,22 @@ Les process possibles sont les mêmes que pour les phases de
 
 Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
 procédure de restauration.
+
+### Phase pre-delete {#manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9}
+
+Les process de `<pre-delete>` s'exécutent avant la suppression d'un contexte.
+
+Les process possibles sont les mêmes que pour les phases de
+[`<post-install>`][node_post-install] ou [`<post-upgrade>`][node_post-upgrade].
+
+Le status d'échec/erreur est pris en compte. Lorsqu'un process de `<pre-
+delete>` est mis en échec, l'utilisateur a alors le choix de rejouer le
+process ou bien de poursuivre l'exécution.
+
+### Phase post-delete {#manex-ref:181efd01-521d-492e-8893-5596c696a778}
+
+La phase de `<post-delete>` n'est pas utilisable car les modules n'existent
+plus suite à la suppression du contexte.
 
 ## Les process de phase {#manex-ref:66ae8fce-e24c-4e1c-b825-fe0de5d12aee}
 
@@ -939,7 +956,7 @@ les valeurs "`Y`" ou "`N`".
 [node_description]: #manex-ref:aa5e19bc-1809-42d2-a165-98736747b1da
 [node_label]: #module-wf-install-upgrade
 [node help]: #module-wf-install-upgrade
-[node-pre-install]: #manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856
+[node_pre-install]: #manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856
 [node_post-install]: #manex-ref:ced835d9-ce84-420d-850a-dc655cd203fa
 [node_pre-upgrade]: #manex-ref:894dd826-0669-4ce1-aef5-866b4f9b612f
 [node_post-upgrade]: #manex-ref:ccd2c732-1932-4f8c-bf1c-7311dc48f1de
@@ -948,6 +965,7 @@ les valeurs "`Y`" ou "`N`".
 [node_post-archive]: #manex-ref:455076b2-2265-43cb-9258-4b18006025e7
 [node_pre-restore]: #manex-ref:4f34f078-29f8-4097-8bcd-2a429d20c1b6
 [node_post-restore]: #manex-ref:0b92006c-f874-4cbb-977c-d8c67c0935a8
+[node_pre-delete]: #manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9
 [xsd]: https://github.com/Anakeen/dynacase-xml-schemas/blob/master/webinst-module-1.0.xsd
 [xmllint]: http://xmlsoft.org/xmllint.html
 [dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html

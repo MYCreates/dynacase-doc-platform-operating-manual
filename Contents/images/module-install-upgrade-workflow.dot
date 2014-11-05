@@ -1,9 +1,9 @@
 digraph D {
 	node [fontname="Liberation Sans"];
 
-// Install
+// Install module
 
-	"start-install" [label="Install",style=filled,color=transparent,fillcolor=transparent];
+	"start-install" [label="Install module",style=filled,color=transparent,fillcolor=transparent];
 	"pre-install" [style=bold,color=green];
 	"post-install" [style=bold,color=green];
 	{
@@ -11,9 +11,9 @@ digraph D {
 		"start-install" -> "pre-install" -> "Ask parameters" -> "Install" -> "post-install" -> "post-param";
 	}
 
-// Upgrade
+// Upgrade module
 
-	"start-upgrade" [label="Upgrade",style=filled,color=transparent,fillcolor=transparent];
+	"start-upgrade" [label="Upgrade module",style=filled,color=transparent,fillcolor=transparent];
 	"pre-upgrade" [style=bold,color=blue];
 	"post-upgrade" [style=bold,color=blue];
 	{
@@ -21,9 +21,9 @@ digraph D {
 		"start-upgrade" -> "pre-upgrade" -> "Ask parameters" -> "Upgrade" -> "post-upgrade" -> "post-param";
 	}
 
-// Archive
+// Archive context
 
-	"start-archive" [label="Archive",style=filled,color=transparent,fillcolor=transparent];
+	"start-archive" [label="Archive context",style=filled,color=transparent,fillcolor=transparent];
 	"pre-archive" [style=bold,color=magenta];
 	"post-archive" [style=bold,color=magenta];
 	{
@@ -31,14 +31,22 @@ digraph D {
 		"start-archive" -> "pre-archive" -> "Archive" -> "post-archive";
 	}
 
-// Restore
+// Restore context
 
-	"start-restore" [label="Restore",style=filled,color=transparent,fillcolor=transparent];
-	"pre-restore" [style=bold,color=magenta];
+	"start-restore" [label="Restore context",style=filled,color=transparent,fillcolor=transparent];
 	"post-restore" [style=bold,color=magenta];
 	"reconfigure" [style=bold,color=magenta];
 	{
 		edge [color=magenta];
-		"start-restore" -> "pre-restore" -> "Restore" -> "post-restore" -> "reconfigure";
+		"start-restore" -> "Restore" -> "post-restore" -> "reconfigure";
+	}
+
+// Delete context
+
+	"start-delete" [label="Delete context",style=filled,color=transparent,fillcolor=transparent];
+	"pre-delete" [style=bold,color=magenta];
+	{
+		edge [color=magenta];
+		"start-delete" -> "pre-delete" -> "Delete";
 	}
 }
