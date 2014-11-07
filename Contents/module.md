@@ -25,11 +25,12 @@ L'archive contient les éléments suivants :
 :   Une archive ([TAR][gnu_tar] compressé [GZIP][gzip]) contenant les fichiers
     à déployer dans le contexte.
     
+    Les chemins des fichiers contenus dans l'archive doivent être relatifs à
+    la racine du contexte et êtres conformes à l'arborescence attendue sur le
+    serveur.
+    
     Cette archive est décompressée dans la racine du contexte sous l'identité
     de l'utilisateur configuré lors de l'installation de dynacase-core.
-    
-    Les chemins des fichiers contenus dans l'archive sont alors relatifs à la
-    racine du contexte.
 
 `info.xml` (requis)
 :   Un fichier au format XML conforme au schéma XML
