@@ -1,12 +1,14 @@
 # Format des modules webinst {#manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778}
 
+<span class="flag inline release from">control 1.5</span>
+
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
 webinst et mettre en œuvre ces éléments pour construire un module d'exemple
 que nous nommerons *dynacase-foo*.
 
 Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
 les notions d'Applications et d'Actions de Dynacase et le fonctionnement
-général de ceux-ci.
+général de celles-ci.
 
 Pour un aperçu rapide des changements apportés par rapport à l'ancien format,
 voir la section "[Changements par rapport à l'ancien format][changes]" ci-
@@ -23,11 +25,12 @@ L'archive contient les éléments suivants :
 :   Une archive ([TAR][gnu_tar] compressé [GZIP][gzip]) contenant les fichiers
     à déployer dans le contexte.
     
+    Les chemins des fichiers contenus dans l'archive doivent être relatifs à
+    la racine du contexte et êtres conformes à l'arborescence attendue sur le
+    serveur.
+    
     Cette archive est décompressée dans la racine du contexte sous l'identité
     de l'utilisateur configuré lors de l'installation de dynacase-core.
-    
-    Les chemins des fichiers contenus dans l'archive sont alors relatifs à la
-    racine du contexte.
 
 `info.xml` (requis)
 :   Un fichier au format XML conforme au schéma XML
@@ -54,7 +57,7 @@ particulier :
 * la version du module,
 * une description,
 * une liste de dépendances avec d'autres modules Dynacase,
-* un ensemble d'action de pre-install, post-install,
+* un ensemble d'actions de pre-install, post-install,
 * un ensemble de paramètres,
 
 ### Exemple de fichier de info.xml {#manex-ref:7ed1e3fa-7d6b-4563-b78c-1f7f34cc233b}
@@ -182,26 +185,46 @@ Exemple :
     [xml]
     <description>This module allows Dynacase to connect to FOO</description>
 
-### Dépendances entre modules {#manex-ref:bf541424-6320-4eb7-8e50-16ec590e251d}
+### Dépendances {#manex-ref:bf541424-6320-4eb7-8e50-16ec590e251d}
 
 Les dépendances permettent d'exprimer qu'un module requiert d'autres modules
-Dynacase avec éventuellement une contrainte sur la version de ceux-ci.
+Dynacase avec éventuellement une contrainte sur leur version, ou une version
+spécifique de l'installeur.
 
-Le tag `<requires>` est composé d'éléments `<module>` qui ont les attributs
-suivants :
+Les dépendances sont exprimés à l'aide du tag `<requires>`.
+
+#### Dépendances avec des modules {#manex-ref:d811d3f2-b553-43e3-b3c6-510d6e2a3523}
+
+La dépendance avec un module est exprimée avec un élément `<module>` qui
+comporte les attributs suivants :
 
 name
 :   le nom du module Dynacase requis
 
 version
-:   la version que le module requis doit avoir
+:   la version attendue pour le module requis
 
 comp
 :   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
 
-Le module peut aussi exprimer une contrainte sur la version de l'installeur,
-Dynacase Control, lui même à l'aide de l'élément `<installer>`.  Dans ce cas,
-les attributs sont :
+Exemple :
+
+    [xml]
+    <requires>
+      <module name="dynacase-bar" version="2.0" comp="ge" />
+      <module name="dynacase-baz" version="1.9" comp="gt" />
+    <requires>
+
+Dans cet exemple, le module requiert le module dynacase-bar en version >= 2.0
+et le module dynacase-baz en version >1.9.
+
+#### Dépendance avec l'installeur {#manex-ref:1dcb62fb-e40a-4cf0-9992-659773707a49}
+
+Le module peut aussi exprimer une dépendance sur la version de l'installeur
+Dynacase Control.
+
+Dans ce cas, le tag `<requires>` peut contenir un élément `<installer>` avec
+les attributs suivants :
 
 version
 :   la version de l'installeur que requiert le module
@@ -307,10 +330,11 @@ Exemple :
       <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="N" />
     </parameters>
 
-## Opération d'install/upgrade/archive/restore et phases {#module-wf-install-upgrade}
+## Opération d'install/upgrade/archive/restore/delete et phases {#module-wf-install-upgrade}
 
-Lors de l'*opération* d'installation ou d'upgrade d'un module, un ensemble de
-*phases* contenant des *process* sont déroulés.
+Lors de l'*opération* d'installation ou d'upgrade d'un module, ou
+d'archivage/restauration/suppression d'un contexte, un ensemble de *phases*
+contenant des *process* sont déroulés.
 
 Les *phases* sur lesquelles vous pouvez spécifier vos *process* sont identifiées
 en couleur dans le diagramme ci-dessous.
@@ -331,9 +355,9 @@ anciens fichiers du module et l'installation des nouveaux fichiers du module
 (phase [`pre-upgrade`][node_pre-upgrade]), et une phase après l'installation
 des nouveaux fichiers du module (phase [`post-upgrade`][node_post-upgrade]).
 
-Chaque phase ([`pre-install`][node_pre-install], [`post-install`][node_post-
-install], etc.) spécifie un ensemble de process (éléments
-[`<check>`][node_check], [`<process>`][node_process] ou
+Chaque phase ([`pre-install`][node_pre-install],
+[`post-install`][node_post-install], etc.) spécifie un ensemble de process
+(éléments [`<check>`][node_check], [`<process>`][node_process] ou
 [`<download>`][node_download]) qui sont exécutés et qui retournent un status
 d'échec ou de réussite.
 
@@ -491,6 +515,22 @@ Les process possibles sont les mêmes que pour les phases de
 
 Le status d'échec/erreur n'est pas pris en compte et ne bloque pas la
 procédure de restauration.
+
+### Phase pre-delete {#manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9}
+
+Les process de `<pre-delete>` s'exécutent avant la suppression d'un contexte.
+
+Les process possibles sont les mêmes que pour les phases de
+[`<post-install>`][node_post-install] ou [`<post-upgrade>`][node_post-upgrade].
+
+Le status d'échec/erreur est pris en compte. Lorsqu'un process de `<pre-
+delete>` est mis en échec, l'utilisateur a alors le choix de rejouer le
+process ou bien de poursuivre l'exécution.
+
+### Phase post-delete {#manex-ref:181efd01-521d-492e-8893-5596c696a778}
+
+La phase de `<post-delete>` n'est pas utilisable car les modules n'existent
+plus suite à la suppression du contexte.
 
 ## Les process de phase {#manex-ref:66ae8fce-e24c-4e1c-b825-fe0de5d12aee}
 
@@ -895,15 +935,13 @@ autorisé dans les éléments [`<process/>`][node_process],
 [`<check/>`][node_check] et [`<download/>`][node_download]).
 
 * L'attribut "`basecomponent`" de l'élément racine
-[`<module/>`][node_root_module] doit contenir les valeurs "`Y`" ou "`N`" (et
-non plus "yes" ou "no").
+[`<module/>`][node_root_module] doit contenir les valeurs "`Y`" ou "`N`".
 
 * L'attribut "`volatile`" de l'élément [`<param/>`][node_params] doit contenir
-les valeurs "`Y`" ou "`N`" (et non plus "yes" ou "no").
+les valeurs "`Y`" ou "`N`".
 
 * L'attribut "`optional`" des éléments [`<process/>`][node_process] et
-[`<check/>`][node_check] doit contenir les valeurs "`Y`" ou "`N`" (et non plus
-"yes" ou "no").
+[`<check/>`][node_check] doit contenir les valeurs "`Y`" ou "`N`".
 
 <!-- links -->
 [gnu_tar]: https://www.gnu.org/software/tar/
@@ -919,7 +957,7 @@ les valeurs "`Y`" ou "`N`" (et non plus "yes" ou "no").
 [node_description]: #manex-ref:aa5e19bc-1809-42d2-a165-98736747b1da
 [node_label]: #module-wf-install-upgrade
 [node help]: #module-wf-install-upgrade
-[node-pre-install]: #manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856
+[node_pre-install]: #manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856
 [node_post-install]: #manex-ref:ced835d9-ce84-420d-850a-dc655cd203fa
 [node_pre-upgrade]: #manex-ref:894dd826-0669-4ce1-aef5-866b4f9b612f
 [node_post-upgrade]: #manex-ref:ccd2c732-1932-4f8c-bf1c-7311dc48f1de
@@ -928,6 +966,7 @@ les valeurs "`Y`" ou "`N`" (et non plus "yes" ou "no").
 [node_post-archive]: #manex-ref:455076b2-2265-43cb-9258-4b18006025e7
 [node_pre-restore]: #manex-ref:4f34f078-29f8-4097-8bcd-2a429d20c1b6
 [node_post-restore]: #manex-ref:0b92006c-f874-4cbb-977c-d8c67c0935a8
+[node_pre-delete]: #manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9
 [xsd]: https://github.com/Anakeen/dynacase-xml-schemas/blob/master/webinst-module-1.0.xsd
 [xmllint]: http://xmlsoft.org/xmllint.html
 [dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html

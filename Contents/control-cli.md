@@ -186,6 +186,23 @@ Exemple :
 
     # /var/www/dynacase-control/wiff context test repository disable --all
 
+### Supprimer un contexte {#manex-ref:186bb0a7-f7b2-49da-9a84-9af5a0a5d306}
+
+<span class="flag inline release from">control 1.5</span>
+
+Syntaxe :
+
+    delete context [options] <context-name>
+
+Les options disponibles sont :
+
+* `--nopre` permet de ne pas exécuter les processus de 'pre-delete' déclarés par les paquets.
+* `--force` permet de ne pas tenir compte des statuts d'échec des processus de 'pre-delete'.
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff delete context --force test
+
 ### Manipuler les modules du contexte {#manex-ref:6ba2cf7d-38d9-4237-b5a3-6dd64207891b}
 
 #### Lister les modules installés {#manex-ref:1e33d831-1517-4455-a12e-43906759efea}
