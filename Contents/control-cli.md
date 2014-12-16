@@ -344,6 +344,105 @@ modules webinst][module] et [Changements par rapport à l'ancien format
 ][module-changes] pour les changements à apporter à vos fichier `info.xml` de
 description de module.
 
+### Archives de contextes {#manex-ref:fdb27535-7e93-4d14-927f-5c8d88fcd4f9}
+
+#### Archiver un contexte {#manex-ref:6dd36914-0dd0-43fd-bfde-f90174642f2a}
+
+<span class="flag inline release from">control 1.5</span>
+
+Syntaxe :
+
+    context <context-name> archive <archive-name> [--without-vault] [--description=<description>]
+
+Les options disponibles sont :
+
+* `--without-vault` permet de ne pas inclure l'archivage du vault dans
+  l'archive du contexte.
+* `--description=<description>` permet de saisir le champ de description de
+  l'archive.
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff context dev archive test
+    test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5
+
+#### Lister les archives {#manex-ref:91f85936-80db-4358-98a5-84c6dd5c7833}
+
+<span class="flag inline release from">control 1.5</span>
+
+Syntaxe :
+
+    list archive
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff list archive
+    test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5
+    pre-prod-838ac13e91d439d5c3a8bed86ea8adfee800c949
+
+#### Voir les informations d'une archive {#manex-ref:6f6239c7-8f75-4932-8dc0-31bc99c1bad2}
+
+<span class="flag inline release from">control 1.5</span>
+
+Syntaxe :
+
+    archive <archive-id> info
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff archive test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5 info
+    Archive 'test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5'
+    -------------------------------------------------------
+    
+    id          = test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5
+    date        = 2014-12-15 09:03:04
+    name        = test
+    size        = 42.121 Mo
+    vault       = Yes
+    description = dev@2014-12-15T09:03:04
+    
+    Installed modules:
+    - dynacase-core (3.2.17-1)
+    [...]
+
+#### Restaurer l'archive d'un contexte {#manex-ref:74fa0502-c504-4ed0-8614-dccf6648c094}
+
+<span class="flag inline release from">control 1.5</span>
+
+Syntaxe :
+
+    archive <archive-id> restore <context-name> <context-root> <pg-service-name> <vault-root>
+                                   [--remove-profiles --user-login=<login> --user-password=<password>]
+                                   [--clean-tmp-directory=<'yes'|'no'>]
+
+Les options disponibles sont :
+
+* `--remove-profiles` permet de donner tous les privilèges sur tous les
+  documents à un nouvel utilisateur
+  lors de la restauration du contexte (à utiliser en conjonction avec
+  `--user-login` et `--user-password`).
+* `--user-login` et `--user-password` permet de spécifier le login et le mot de
+  passe du nouvel utilisateur auquel sont donnés tous les privilèges sur tous
+  les documents.
+* `--clean-tmp-directory=<'yes'|'no'>` permet de supprimer si les fichiers
+  temporaires de la restauration sont effacés (`yes` ou comportement par
+  défaut) ou s'il sont conservés (`no`).
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff archive test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5 restore test2 /var/www/test2 db-test-2 /var/www/test2/vaultfs
+    Context 'test2' successfully created from archive 'test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5'.
+
+### Supprimer une archive de contexte {#manex-ref:cff48830-cf99-4698-903d-69ab3ede7b2d}
+
+Syntaxe :
+
+    delete <archive-id>
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff delete archive test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5
+
 ### Manipuler les paramètres des modules {#manex-ref:f928d938-318c-49f5-ac4a-89f097bdb238}
 
 #### Afficher la liste des paramètres d'un module {#manex-ref:9ba44c49-5b81-4dcb-80e0-b262a46a2a03}
@@ -696,7 +795,6 @@ Syntaxe :
 Exemple :
 
     # /var/www/dynacase-control/wiff whattext test
-    Administration système
 
 ### Ouvrir un shell sous l'uid Apache {#manex-ref:a122eb25-779a-4379-aa91-ffa1bb90daf7}
 
@@ -711,11 +809,11 @@ Syntaxe :
 Par défaut, si aucune commande n'est spécifiée, le shell par défaut définit pour l'utilisateur du serveur Apache est lancé. Si l'utilisateur n'a pas de shell associé, il faudra alors spécifier le chemin du shell qu'on souhaite exécuter avec la variante 'exec'.
 Lors de l'ouverture du shell, ou de l'exécution de la commande, les variables d'environnement suivantes sont pré-positionnés :
 
-* 'HOME' : le répertoire racine du contexte.
-* 'wpub' : le répertoire racine du contexte (pour compatibilité scripts post/migr de Dynacase).
-* 'pgservice_core' : le service Postgresql de la base 'core' (pour compatibilité scripts post/migr de Dynacase).
-* 'pgservice_freedom' : le service Postgresql de la base 'freedom' (pour compatibilité scripts post/migr de Dynacase).
-* 'freedom_context' : vaut toujours ”default” (pour compatibilité scripts post/migr de Dynacase).
+* `HOME` : le répertoire racine du contexte.
+* `wpub` : le répertoire racine du contexte (pour compatibilité scripts post/migr de Dynacase).
+* `pgservice_core` : le service Postgresql de la base 'core' (pour compatibilité scripts post/migr de Dynacase).
+* `pgservice_freedom` : le service Postgresql de la base 'freedom' (pour compatibilité scripts post/migr de Dynacase).
+* `freedom_context` : vaut toujours ”default” (pour compatibilité scripts post/migr de Dynacase).
 
 Exemple :
 
@@ -732,7 +830,7 @@ Exemple :
 
 <span class="flag inline release from">control 1.5</span>
 
-Les opération suivantes sont soumises à l'obtention du verrou exclusif :
+Les opérations suivantes sont soumises à l'obtention du verrou exclusif :
 
 * [Créer un nouveau contexte][create-context]
 * [Installer un module][module-install]
@@ -748,6 +846,9 @@ Les opération suivantes sont soumises à l'obtention du verrou exclusif :
 * [Voir le status d'enregistrement][wiff-register]
 * [Enregistrer dynacase-control avec son compte EEC][wiff-register-auth]
 * [Enregistrer un contexte avec son compte EEC][context-register]
+* [Restaurer l'archive d'un contexte][archive_restore]
+* [Archiver un contexte][context_archive]
+* [Supprimer une archive de contexte][delete_archive]
 
 Le verrou est implémenté avec un appel système `flock` sur le fichier
 `conf/contexts.xml.lock`.
@@ -781,3 +882,8 @@ dans l'accès au fichier `conf/contexts.xml.lock`).
 [create-context]: #manex-ref:e1011c80-4563-4df0-858a-29f49e6582c6
 [module-changes]: #manex-ref:8005debe-6796-4c93-bf66-78889b153bfb
 [module]: #manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778
+[context_archive]: #manex-ref:6dd36914-0dd0-43fd-bfde-f90174642f2a
+[list_archive]: #manex-ref:91f85936-80db-4358-98a5-84c6dd5c7833
+[archive_info]: #manex-ref:6f6239c7-8f75-4932-8dc0-31bc99c1bad2
+[archive_restore]: #manex-ref:74fa0502-c504-4ed0-8614-dccf6648c094
+[delete_archive]: #manex-ref:cff48830-cf99-4698-903d-69ab3ede7b2d
