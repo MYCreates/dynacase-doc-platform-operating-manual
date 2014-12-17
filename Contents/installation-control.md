@@ -63,7 +63,7 @@ L'interface `Control > Setup` permet de configurer Dynacase Control. Vous pouvez
 * Mettre à jour Dynacase Control lorsqu'une nouvelle version est détectée
 * Changer le mot de passe de connexion à Dynacase Control : “Dynacase Control Information > Password”
 * Enregistrer son Dynacase Control avec son compte EEC : “Dynacase Control Information > Registration > Register”
-* (Dés)Activer le mode debug de Dynacase Control : “Debug > Debug Mode On/Off”
+* <span class="flag inline release from">control 1.5</span> (Dés)Activer le journal local des erreurs de Dynacase Control : “Local log > Local log On/Off”
 * Ajouter/Supprimer/Modifier des dépôt de paquets : ”Repositories”
 * Modifier les paramètres de Dynacase Control : ”Parameters”
 * Voir les paramètres de PHP : “PHP Info”
@@ -140,3 +140,51 @@ Si vos accès aux dépôts Dynacase Platform nécessitent l'utilisation d'un pro
 | proxy-username   | Le nom d'utiliteur pour le proxy, s'il requiert une authentification                     |
 | proxy-password   | le mot de passe associé si le proxy requiert une authentification                        |
 
+## Journal des messages d'erreurs {#manex-ref:022e6b2f-cbe7-4ead-8f84-3ed8d0d718c9}
+
+<span class="flag inline release from">control 1.5</span>
+
+Les messages d'erreurs émis par dynacase-control sont enregistrés de la manière
+suivante :
+
+* Le message est systématiquement envoyé au gestionnaire syslog local avec le
+tag `dynacase-control` et la "facility" déclarée par le paramètre
+[`syslog-facility`][syslog-facility] (`LOG_USER` par défaut).
+
+* Si le paramètre `Local log > Local log On/Off` est activé (dans la section
+[`Setup`][setup]), le message est aussi envoyé dans le fichier `log/wiff.log` et
+consultable avec le bouton `Local log > View` de la section [`Setup`][setup].
+
+### Paramétrage syslog {#manex-ref:cedce829-1eb2-4610-bb0f-c0f8ad17cbeb}
+
+#### `syslog-facility` {#manex-ref:95dce35e-55b5-4b57-8087-d743dc6f022d}
+
+La "facility" des messages émis par syslog est paramétrable par le paramètre
+`syslog-facility` qui peut prendre les valeurs suivantes :
+
+`LOG_AUTH`, `LOG_AUTHPRIV`, `LOG_CRON`, `LOG_DAEMON`, `LOG_KERN`, `LOG_LOCAL0`,
+`LOG_LOCAL1`, `LOG_LOCAL2`, `LOG_LOCAL3`, `LOG_LOCAL4`, `LOG_LOCAL5`,
+`LOG_LOCAL6`, `LOG_LOCAL7`, `LOG_LPR`, `LOG_MAIL`, `LOG_NEWS`, `LOG_SYSLOG`,
+`LOG_USER`, `LOG_UUCP`.
+
+La valeur du paramètre n'est pas modifiable par l'interface Web Pour modifier sa
+valeur il faut éditer le fichier `conf/params.xml` et changer la propriété
+`value` du paramètre `syslog-facility`.
+
+Exemple pour logger avec la "facility" `LOG_LOCAL0` :
+
+    [xml]
+    <param name="syslog-facility" mode="hidden" value="LOG_LOCAL0" />
+
+Si la valeur de ` syslog-facility` est vide, alors la "facility" `LOG_USER` est
+utilisée.
+
+Si la valeur de `syslog-facility` n'est pas une "facility" valide, alors la
+"facility" `LOG_USER` est utilisée et un message d'erreur est émis indiquant que
+la "facility" spécifiée est invalide (`Invalid syslog-facility 'XXX'. Using
+default facility.`).
+
+<!-- links -->
+[setup]: #manex-ref:8f810563-02e8-4636-8dcf-d2b36ce50828
+[php:error_log]: http://www.php.net/manual/errorfunc.configuration.php#ini.error-log
+[syslog-facility]: #manex-ref:95dce35e-55b5-4b57-8087-d743dc6f022d
