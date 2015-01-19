@@ -732,6 +732,16 @@ depuis le script :
 * `$WIFF_CONTEXT_NAME` : Le nom du contexte sur lequel est effectué
   l'opération.
 
+Lors de l'*installation* d'un module :
+
+* `$MODULE_VERSION_TO` : La version (sans la release) du nouveau module.
+
+Lors de la *mise à jour* d'un module :
+
+* `$MODULE_VERSION_FROM` : La version (sans la release) du module actuellement
+  installé.
+* `$MODULE_VERSION_TO` : La version (sans la release) du nouveau module.
+
 ##### Écrire un programme personnalisé en shell Bash {#manex-ref:91aa0dd8-af31-4ade-892c-1ac64c7545e6}
 
 Exemple :
