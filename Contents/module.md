@@ -132,6 +132,11 @@ name
 
 version
 :   la version du module (sous la forme `N.N.N`)
+    
+    La comparaison des versions entre deux modules est faite à l'aide de la
+    fonction PHP [`version_compare()`][php_version_compare].  La comparaison
+    est faite en deux étapes : d'abord comparaison des valeurs `version`, puis,
+    si les versions sont identiques, comparaison des valeurs `release`.
 
 release
 :   le numéro de release de la version
@@ -970,3 +975,4 @@ les valeurs "`Y`" ou "`N`".
 [xsd]: https://github.com/Anakeen/dynacase-xml-schemas/blob/master/webinst-module-1.0.xsd
 [xmllint]: http://xmlsoft.org/xmllint.html
 [dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html
+[php_version_compare]: http://www.php.net/manual/function.version-compare.php
