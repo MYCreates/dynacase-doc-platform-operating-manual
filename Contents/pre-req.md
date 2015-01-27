@@ -85,11 +85,11 @@ PHP.
 
 <span class="flag update">Updated</span> Dynacase Platform nécessite PHP en version **5.4** ou **5.5** :
 
+<span class="flag inline release from">3.2 R12</span> 5.4 / 5.5   
 <span class="flag inline release from">3.2 R11</span> 5.4 / 5.5   
 <span class="flag inline release obsolete">3.2 R11</span> 5.3  
-<span class="flag inline release until">3.2 R10</span>  5.3[^2] / 5.4   
 
-*La version 5.3 ne sera plus compatible à compter de la prochaine release (Q1/2015).*
+__La version 5.3 n'est plus compatible à compter de la release 3.2 R12.__
 
 #### Zend Server {#manex-ref:28510102-9e79-4551-8f5b-9b65251a3360}
 
@@ -212,11 +212,11 @@ display_errors
 
 <span class="flag update">Updated</span> Dynacase nécessite PostgreSQL version **9.1**, **9.2** et **9.3** :
 
+<span class="flag inline release from">3.2 R12</span> 9.1 / 9.2 / 9.3  
 <span class="flag inline release from">3.2 R11</span> 9.1 / 9.2 / 9.3  
 <span class="flag inline release obsolete">3.2 R11</span> 8.4  
-<span class="flag inline release until">3.2 R10</span>  8.4[^1] / 9.1   
 
-*La version 8.4 ne sera plus est compatible à compter de la prochaine release (Q1/2015)*
+__La version 8.4 n'est plus compatible à compter de la release 3.2 R12__
 
 **Les différentes optimisation, en particulier sur le calcul des droits ne sont
 effectives qu'avec la version 9.1 de PostgreSQL.**
