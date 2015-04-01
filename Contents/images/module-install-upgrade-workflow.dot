@@ -34,11 +34,11 @@ digraph D {
 // Restore context
 
 	"start-restore" [label="Restore context",style=filled,color=transparent,fillcolor=transparent];
-	"post-restore" [style=bold,color=magenta];
 	"reconfigure" [style=bold,color=magenta];
+	"post-restore" [style=bold,color=magenta];
 	{
 		edge [color=magenta];
-		"start-restore" -> "Restore" -> "post-restore" -> "reconfigure";
+		"start-restore" -> "Restore" -> "reconfigure" -> "post-restore";
 	}
 
 // Delete context
