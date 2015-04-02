@@ -11,6 +11,13 @@ L'installation d'un contexte Dynacase nécessite au préalable l'installation de
 
 ## Historique des modifications
 
+### Édition 9
+
+* Mise à jour [pré-requis PHP](#pre-req-php) et [PostgreSQL](#pre-req-postgresql)
+* Mise à jour `post-restore` du [workflow des opérations](#module-wf-install-upgrade) des modules webinst
+* Précision sur la [comparaison des versions](#manex-ref:d168e9ea-78dc-4e23-b2a6-814bee0e4e2e) de modules webinst
+* Précision sur les variables [`MODULE_VERSION_{TO,FROM}`](#manex-ref:afc3d392-bd87-418a-af0e-ceb8924e74a2) dans les programmes personnalisés
+
 ### Édition 8
 
 * Ajout [Journal des messages d'erreurs](#manex-ref:022e6b2f-cbe7-4ead-8f84-3ed8d0d718c9)
