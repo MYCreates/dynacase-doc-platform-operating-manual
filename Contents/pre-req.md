@@ -38,11 +38,11 @@ Installer et activer le module Apache `mod_headers`.
 Les navigateurs supportés sont :
 
 * Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span> 
-* Firefox > 3.6
+* Firefox >= 4.0.1 <span class="flag update">Updated</span>
 * Chrome branche stable
 
 
-<span class="flag inline release from">3.2 R11</span> IE 8,9,10,11 / Chrome stable / Firefox > 3.6  
+<span class="flag inline release from">3.2 R11</span> IE 8,9,10,11 / Chrome stable / Firefox >= 4.0.1
 <span class="flag inline release until">3.2 R10</span>  IE 8,9 / Chrome stable / Firefox > 3.6  
 
 ## Serveur {#manex-ref:30634c94-81c6-40e3-b45e-7c4df94baff4}
