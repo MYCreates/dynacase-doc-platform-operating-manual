@@ -11,6 +11,8 @@ L'installation d'un contexte Dynacase nécessite au préalable l'installation de
 
 ## Historique des modifications
 
+### Édition 10
+
 ### Édition 9
 
 * Mise à jour [pré-requis PHP](#pre-req-php) et [PostgreSQL](#pre-req-postgresql)
