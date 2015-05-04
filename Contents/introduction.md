@@ -11,6 +11,10 @@ L'installation d'un contexte Dynacase nécessite au préalable l'installation de
 
 ## Historique des modifications
 
+### Édition 10
+
+* Mise à jour [pré-requis](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475) Firefox >= 4.0.1
+
 ### Édition 9
 
 * Mise à jour [pré-requis PHP](#pre-req-php) et [PostgreSQL](#pre-req-postgresql)
