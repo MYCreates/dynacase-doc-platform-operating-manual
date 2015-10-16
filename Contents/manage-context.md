@@ -95,5 +95,33 @@ Pour restaurer une archive il faut cliquer sur le bouton *[Create Context]* et r
 
 Ces répertoires doivent être créés manuellement et être accessibles en écriture à l'utilisateur Apache.
 
+## Suppression d'un contexte {#manex-ref:e9f9ddf2-f6bb-40de-be19-e44d66e5397b}
+
+Un contexte peut être supprimé via `Informations` > `Delete context`. Une
+demande de confirmation est alors affichée afin de confirmer ou non l'exécution
+de l'opération.
+
+La suppression d'un contexte comporte deux phases :
+
+* La suppression "_physique_" des éléments du contexte.
+* La suppression "_logique_" pour supprimer le contexte de la liste des
+  contextes gérés par dynacase-control.
+
+La suppression "_physique_" d'un contexte supprime dans l'ordre les éléments
+suivants :
+
+* L'enregistrement de la crontab `FREEDOM/freedom.conf`.
+* Le contenu des vaults du contexte.
+* Le contenu de la base de données du contexte.
+* Le contenu du répertoire racine du contexte.
+
+Si la suppression d'un de ces éléments retourne une erreur, l'opération de
+suppression se poursuit avec les éléments suivants, et à la fin de l'opération
+un récapitulatif des erreurs rencontrés est affiché.
+
+À la fin de l'opération de suppression "_physique_" (qu'il y ait eu des erreurs
+ou non), le contexte est alors supprimé "_logiquement_" de la liste des
+contextes gérés par dynacase-control.
+
 <!-- links -->
 [module]: #manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778
