@@ -140,6 +140,25 @@ Si vos accès aux dépôts Dynacase Platform nécessitent l'utilisation d'un pro
 | proxy-username   | Le nom d'utiliteur pour le proxy, s'il requiert une authentification                     |
 | proxy-password   | le mot de passe associé si le proxy requiert une authentification                        |
 
+## Délai de connexion {#manex-ref:d6ee7ebc-0711-49e2-b776-f4e9077683af}
+
+Le paramètre `connect-timeout` (par défaut à `3`) permet de spécifier le temps
+d'attente maximum pour l'établissement d'une connexion HTTP (e.g. connexion à
+un dépôt de paquet pour vérifier son statut ou lister son contenu).
+
+| Nom du paramètre | description |
+| - | - |
+| connect-timeout  | Temps d'attente maximum (en secondes) pour l'établissement d'une connexion HTTP |
+
+* Si la valeur est positionnée à `0` (zéro), alors le temps d'attente maximum
+  sera le temps d'attente maximum par défaut de la librairie cURL (soit `300`
+  secondes).
+* Si vous avez déclaré de nombreux dépôts de paquets inaccessibles, cela peut
+  entrainer des ralentissements et des blocages transitoires dans l'interface.
+  Dans ces cas là, il est préférable de supprimer les dépôts inaccessibles et
+  éviter ainsi de devoir attendre l'expiration du délais de connexion à chaque
+  accès à ces dépôts par dynacase-control.
+
 ## Journal des messages d'erreurs {#manex-ref:022e6b2f-cbe7-4ead-8f84-3ed8d0d718c9}
 
 <span class="flag inline release from">control 1.5</span>
