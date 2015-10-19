@@ -123,5 +123,33 @@ un récapitulatif des erreurs rencontrés est affiché.
 ou non), le contexte est alors supprimé "_logiquement_" de la liste des
 contextes gérés par dynacase-control.
 
+## Enregistrement de contexte {#manex-ref:294bc6dc-9685-4d2a-92c5-3ed35dd2a8b3}
+
+La procédure d'enregistrement d'un contexte peut vous être demandée dans le
+cadre du support EEC.
+
+* Les informations collectées sont consultables sur le contexte dans
+  `Informations` > `Registration` > `Show configuration`.
+
+![ Informations d'enregistrement du contexte ](i15.png "Consultation des informations d'enregistrement du contexte")
+
+* Ces informations peuvent être téléchargés sous la forme d'une archive Zip sur
+  le contexte dans `Informations` > `Registration` > `Download configuration`.
+
+Les informations collectées sont :
+
+* Informations générales :
+  * date de collecte des informations ;
+  * nombre de comptes utilisateur du contexte ;
+  * version de dynacase-control ;
+  * version de PHP ;
+  * version de PostgreSQL.
+* Liste des modules installés avec leur version.
+* Informations système :
+  * informations système (`uname -a`) du serveur ;
+  * capacité mémoire du serveur ;
+  * nombre de processeurs du serveur ;
+  * caractéristiques des processeurs du serveur.
+
 <!-- links -->
 [module]: #manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778
