@@ -93,7 +93,17 @@ Pour restaurer une archive il faut cliquer sur le bouton *[Create Context]* et r
 | Core Database Service | Le nom du service PostgreSQL dans lequel sera restauré le dump de la base de données.  |
 | Vault Root            | Le chemin d'accès du répertoire dans lequel les fichiers du vault seront restaurés.    |
 
-Ces répertoires doivent être créés manuellement et être accessibles en écriture à l'utilisateur Apache.
+
+Notes :
+
+* Ces répertoires doivent être créés manuellement et être accessibles en
+  écriture à l'utilisateur Apache.
+* <span class="flag inline release from">3.2 R14</span> Lors de la restauration
+  d'une archive de contexte, si la valeur de `CORE_TMPDIR`, ou
+  `FREEDOM_UPLOADDIR`, référence un répertoire à l'extérieur du répertoire du
+  contexte, alors sa valeur est réinitialisée à sa valeur initiale (i.e.
+  `./var/tmp`).
+
 
 ## Suppression d'un contexte {#manex-ref:e9f9ddf2-f6bb-40de-be19-e44d66e5397b}
 
