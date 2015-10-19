@@ -366,6 +366,18 @@ Exemple :
     # /var/www/dynacase-control/wiff context dev archive test
     test-1f84e69f127a5fb3f2d920c35beb12f2f2a6c4d5
 
+Note :
+
+* L'archivage d'un contexte peut nécessiter jusqu'à deux fois la taille des
+  éléments à archiver. Une estimation de l'espace disque minimal nécessaire
+  peut être obtenue avec la formule suivante :
+    
+        s1 := taille( dump de la base de données )
+        s2 := taille( contenu du répertoire racine du contexte )
+        s3 := taille( contenu des vaults )
+        
+        espace_libre_necessaire := ( s1 + s2 + s3 ) * 2
+
 #### Lister les archives {#manex-ref:91f85936-80db-4358-98a5-84c6dd5c7833}
 
 <span class="flag inline release from">control 1.5</span>
