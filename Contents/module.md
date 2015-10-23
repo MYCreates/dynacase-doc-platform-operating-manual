@@ -3,7 +3,7 @@
 <span class="flag inline release from">control 1.5</span>
 
 Dans ce paragraphe nous allons détailler les éléments constitutifs d'un module
-webinst et mettre en œuvre ces éléments pour construire un module d'exemple
+`webinst` et mettre en œuvre ces éléments pour construire un module d'exemple
 que nous nommerons *dynacase-foo*.
 
 Pour bien suivre cette présentation, il est souhaitable d'avoir bien en tête
@@ -47,6 +47,11 @@ L'archive contient les éléments suivants :
     valuée dans le fichier fichier `info.xml`, alors le contenu de ce fichier
     est présenté à l'utilisateur pour que ce dernier valide la licence du
     module.
+
+Restrictions sur le nom de l'archive :
+
+* Le nom de l'archive ne doit pas contenir les caractères `#` (dièse), `?`
+  (point d'interrogation), `%` (symbole pourcent).
 
 ## Fichier `info.xml` {#manex-ref:22c8b9e1-1a44-42e9-bc6e-68f3373beac6}
 
@@ -128,7 +133,11 @@ xmlns
     module.
 
 name
-:   le nom du module
+:   le nom du module.
+    
+    Restrictions sur le nom du module :
+    
+    * Le nom du module ne doit pas contenir les caractères : `'` (apostrophe).
 
 version
 :   la version du module (sous la forme `N.N.N`)
