@@ -2,18 +2,32 @@
 
 ## Abstract {#manex-ref:76586fb4-24a3-4303-93ac-5fc11149aef3}
 
-Ce document décrit les procédures d'installation et de mise à jour de Dynacase Platform, et présente les principales procédures
- d'exploitation.
+Ce document décrit les procédures d'installation et de mise à jour de Dynacase
+Platform, et présente les principales procédures d'exploitation.
 
 ## Présentation {#manex-ref:b4beabfd-093d-4c99-945d-d836f8631231}
 
-L'installation d'un contexte Dynacase nécessite au préalable l'installation de Dynacase Control qui permet de créer et de gérer les contextes Dynacase. Dans un contexte Dynacase vous pouvez installer Dynacase Platform et les modules spécifiques à votre application.
+L'installation d'un contexte Dynacase nécessite au préalable l'installation de
+Dynacase Control qui permet de créer et de gérer les contextes Dynacase. Dans
+un contexte Dynacase vous pouvez installer Dynacase Platform et les modules
+spécifiques à votre application.
 
 ## Historique des modifications
 
+### Édition 11
+
+* Mise à jour [pré-requis](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475) PHP {5.4, 5.5, 5.6} et Pg {9.1, 9.2, 9.3, 9.4}
+* Restrictions sur le nom d'un paquet `webinst` et le nom d'un module dans [Format des modules webinst](#manex-ref:f28ae532-05cf-4a2d-a959-fbf258f1a778)
+* Ré-initialisation de `CORE_TMPDIR` et `FREEDOM_UPLOADDIR` lors de la [Restauration](#manex-ref:170bfc5e-ef81-4e75-9cb3-88836ec2d12f) d'un contexte
+* Ajout [Enregistrement de contexte](#manex-ref:294bc6dc-9685-4d2a-92c5-3ed35dd2a8b3)
+* Mise à jour [Check base documentaire](#manex-ref:4504ec92-23b6-4c70-af16-923ebc29e5f4)
+* Espace disque minimal requis pour [Archiver un contexte](#manex-ref:6dd36914-0dd0-43fd-bfde-f90174642f2a)
+* Paramètre WIFF [`connect-timeout`](#manex-ref:d6ee7ebc-0711-49e2-b776-f4e9077683af)
+* Ajout [Suppression d'un contexte](#manex-ref:e9f9ddf2-f6bb-40de-be19-e44d66e5397b) par l'interface Web
+
 ### Édition 10
 
-* Mise à jour [pré-requis](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475) Firefox >= 4.0.1
+* Mise à jour [pré-requis](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475) Firefox &gt;= 4.0.1
 
 ### Édition 9
 
