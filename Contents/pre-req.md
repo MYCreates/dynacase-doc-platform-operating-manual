@@ -97,10 +97,7 @@ PHP.
 
 ### PHP {#pre-req-php}  
 
-<span class="flag update">Updated</span> Dynacase Platform nécessite PHP en
-version **5.6** :
-
-* les versions PHP **5.4** et **5.6** ne seront plus supportées à compter de la
+* les versions PHP **5.4** et **5.5** ne seront plus supportées à compter de la
   prochaine release de maintenance (mai 2016)
 * la version **5.6** est désormais supportée.
 
@@ -257,12 +254,9 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 
 ## PostgreSQL {#pre-req-postgresql} 
 
-<span class="flag update">Updated</span> Dynacase nécessite PostgreSQL version
-**9.4** :
-
-* Les versions **9.1** et **9.2** de PostgreSQL ne seront plus supportées à
+* La version **9.1** de PostgreSQL ne sera plus supportée à
   compter de la release de maintenance publiée en mai 2016.
-* La version **9.4** est désormais supportées.
+* La version **9.4** est désormais supportée.
 
 <span class="flag inline release from">3.2 R14</span> 9.1 / 9.2 / 9.3 / 9.4  
 <span class="flag inline release from">3.2 R12</span> 9.1 / 9.2 / 9.3  
