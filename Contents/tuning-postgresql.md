@@ -276,8 +276,3 @@ Conclusion :
 Si le réseau entre le serveur Dynacase et la base de données est « sûr », et si le niveau de sécurité souhaité le permet,
 il peut être avantageux en terme de performance de désactiver le support SSL.
 
-### Connexions persistentes {#manex-ref:3d0d954f-dafe-4dfd-b270-107a05148949}
-
-Par défaut, Dynacase effectue une nouvelle connexion à la base de données pour chaque traitement de requête HTTP.
-
-L'utilisation de connexions persistantes est déconseillée.
