@@ -85,6 +85,7 @@ Dynacase requiert les commandes système suivantes :
 * `msgcat` (fourni par
   [gettext](http://www.gnu.org/software/gettext/gettext.html))
 * `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
+* `patch` (fourni par [patch](http://savannah.gnu.org/projects/patch/))
 
 #### Locales {#manex-ref:2a7386e4-4345-4549-afb5-9922503b0eee}
 
