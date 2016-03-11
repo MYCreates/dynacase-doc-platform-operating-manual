@@ -274,11 +274,9 @@ Note : ces paramètres de module n'ont pas de lien avec les paramètres
 d'applications ou de familles de dynacase-platform. Par contre, un `<process/>`
 spécifique peut être déclaré et utilisé pour enregistrer un paramètre de
 module comme valeur d'un paramètre d'application et de famille en utilisant
-par exemple le programme `program/set_param`.
-
-<p style="background-color: yellow">
-[TODO] Faire le lien avec program/set_param.
-</p>
+par exemple le programme `program/set_param` (voir chapitre [Commande
+programs/set\_param][core_ref_programs_set_param] du [Manuel de référence
+Dynacase Core][dynacase-doc-core-reference]).
 
 Les éléments `<param>` ont les attributs suivants :
 
@@ -995,3 +993,4 @@ les valeurs "`Y`" ou "`N`".
 [xmllint]: http://xmlsoft.org/xmllint.html
 [dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html
 [php_version_compare]: http://www.php.net/manual/function.version-compare.php
+[core_ref_programs_set_param]: /dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:6556b95c-7513-478e-8750-1cbc6c4f6e6d.html#core-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457 "Manuel de référence Dynacase Core"
