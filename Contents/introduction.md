@@ -31,7 +31,7 @@ spécifiques à votre application.
 
 ### Édition 9
 
-* Mise à jour [pré-requis PHP](#pre-req-php) et [PostgreSQL](#pre-req-postgresql)
+* Mise à jour [pré-requis PHP](#manex-ref:pre-req-php) et [PostgreSQL](#manex-ref:pre-req-postgresql)
 * Mise à jour `post-restore` du [workflow des opérations](#module-wf-install-upgrade) des modules webinst
 * Précision sur la [comparaison des versions](#manex-ref:d168e9ea-78dc-4e23-b2a6-814bee0e4e2e) de modules webinst
 * Précision sur les variables [`MODULE_VERSION_{TO,FROM}`](#manex-ref:afc3d392-bd87-418a-af0e-ceb8924e74a2) dans les programmes personnalisés
@@ -52,7 +52,7 @@ spécifiques à votre application.
 ### Édition 7
 
 * précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)  
-* versions  [PHP](#pre-req-php), [PostgreSQL](#pre-req-postgresql) et du [navigateur IE](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475)
+* versions  [PHP](#manex-ref:pre-req-php), [PostgreSQL](#manex-ref:pre-req-postgresql) et du [navigateur IE](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475)
 * ajout chapitre [Ajustement des références à la machine](#manex-ref:042483fb-9812-4df3-9829-ff3970767e29)
 
 ### Édition 6
