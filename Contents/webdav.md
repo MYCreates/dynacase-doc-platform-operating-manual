@@ -355,6 +355,6 @@ Cette solution est à appliquer au cas par cas.
 <!-- links -->
 
 [WebDAV]: http://fr.wikipedia.org/wiki/WebDAV
-[FREEDAV_SERVEUR]: #manref-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
-[WEBDAV_SERVEUR]: #manref-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
+[FREEDAV_SERVEUR]: /ref/core-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
+[WEBDAV_SERVEUR]: /ref/core-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
 [apache_vhosts]: http://httpd.apache.org/docs/2.2/vhosts/
