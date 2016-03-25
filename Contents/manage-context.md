@@ -59,7 +59,7 @@ sur le bouton *[Install Selection]*.
 Une archive de contexte contient tous les éléments d'un contexte (base de donnée, fichiers, etc.)
 Ces archives peuvent permettre la restauration d'un contexte sur une autre machine.
 
-**Attention** : Cette fonctionnalité ne doit pas se substituer à une sauvegarde réguière de vos données. c'est une commodité de développement (voir [Les procédures d'exploitation](#exploitation-save-restore)).
+**Attention** : Cette fonctionnalité ne doit pas se substituer à une sauvegarde réguière de vos données. c'est une commodité de développement (voir [Les procédures d'exploitation](#manex-ref:exploitation-save-restore)).
 
 ### Archivage {#manex-ref:manage-context-archivage}
 
