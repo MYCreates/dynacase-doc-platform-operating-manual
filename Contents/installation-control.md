@@ -79,7 +79,7 @@ Si c'est le cas, alors une popup propose de télécharger et d'appliquer la mise
 
 Si vous refusez la mise à jour, il est alors possible d'appliquer ultérieurement la mise à jour en allant dans la section *Setup > Dynacase Control Information*, en cliquant sur le bouton *[Update]*.
 
-##### Configuration des mises-à-jour de Dynacase Control {#installation-control-update}
+##### Configuration des mises-à-jour de Dynacase Control {#manex-ref:installation-control-update}
 
 Vous pouvez configurer l'hôte sur lequel Dynacase Control effectuera les recherches et téléchargements de mises-à-jour (c'est particulièrement utile lors de l'installation sur une machine n'ayant pas accès à internet).
 Par défaut, la configuration pointe sur [le dépôt officiel Anakeen de Dynacase Control](http://dynacase.anakeen.com/control/).
@@ -95,9 +95,9 @@ Par défaut, la configuration pointe sur [le dépôt officiel Anakeen de Dynacas
 
 L'enregistrement permet d'associer une instance de Dynacase Control avec votre contrat EEC.
 Cet enregistrement va automatiquement envoyer sur les serveurs de Dynacase certaines informations de configuration de votre serveur, permettant de simplifier les éventuelles interventions ultérieures de support.
-Enfin, l'enregistrement avec votre compte EEC va également ajouter automatiquement à Dynacase Control la liste des [dépôts de paquets](#installation-control-repositories) privés associés à votre contrat.
+Enfin, l'enregistrement avec votre compte EEC va également ajouter automatiquement à Dynacase Control la liste des [dépôts de paquets](#manex-ref:installation-control-repositories) privés associés à votre contrat.
 
-#### Dépôts de paquets {#installation-control-repositories}
+#### Dépôts de paquets {#manex-ref:installation-control-repositories}
 
 La section *Repositories* permet d'ajouter, supprimer et éditer des dépôts de paquets qui pourront être utilisés pour créer un contexte Dynacase.
 

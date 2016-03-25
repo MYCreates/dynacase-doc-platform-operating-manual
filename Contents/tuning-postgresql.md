@@ -123,7 +123,7 @@ Les valeurs suivantes sont admises comme étant un bon compromis entre la réduc
 
 Le volume occupé par les fichiers WAL sera alors approximativement de 1.5GB.
 
-### Bulk data loading {#752E8DED-D951-42E9-BF23-73AD28622D03}
+### Bulk data loading {#manex-ref:752E8DED-D951-42E9-BF23-73AD28622D03}
 
 Dans le cas de la restauration d'une base de donnée, ou du chargement massif de données, ces paramètres de WAL peuvent être augmentés afin de réduire le nombre d'opérations d'écritures sur la base de donnée, moyennant une utilisation d'un plus grand volume par les fichiers WAL.
 
@@ -144,7 +144,7 @@ Les valeurs données ci-dessus sont des exemples qu'il faudra bien sûr adapter/
 
 ### Dépannage/troubleshoot {#manex-ref:7b74a4e0-6dff-42c4-834e-4b07765d9aec}
 
-#### Voir les requêtes en cours d'exécution {#tuning-postgres-pg_stat_activity}
+#### Voir les requêtes en cours d'exécution {#manex-ref:tuning-postgres-pg_stat_activity}
 
 Pour voir les requêtes en cours d'exécution, Postgresql dispose de la table
 [pg_stat_activity](http://www.postgresql.org/docs/9.1/static/monitoring-stats.html#MONITORING-STATS-VIEWS-TABLE) :
@@ -193,7 +193,7 @@ rechargement de la configuration :
 
 ##### Journaliser les requêtes longues {#manex-ref:2b296094-4059-417f-8d7a-c6af72173a4e}
 
-Lorsque l'observation de longues requêtes par [pg_stat_activity](#tuning-postgres-pg_stat_activity) n'est pas possible
+Lorsque l'observation de longues requêtes par [pg_stat_activity](#manex-ref:tuning-postgres-pg_stat_activity) n'est pas possible
 (parce que le problème n'est pas reproductible ou observable à une heure précise de la journée par exemple),
 on peut indiquer à Postgresql de logger les requêtes qui mettent plus N secondes à s'exécuter.
 La durée est paramétrable via le paramètre [log_min_duration_statement](http://www.postgresql.org/docs/9.1/static/runtime-config-logging.html#GUC-LOG-MIN-DURATION-STATEMENT)

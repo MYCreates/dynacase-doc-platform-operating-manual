@@ -79,9 +79,9 @@ Dynacase requiert les commandes système suivantes :
 * `recode`
 * `html2ps`
 * `ps2pdf` (fourni par [Ghostscript](http://www.ghostscript.com/))
-* `php` (PHP en ligne de commande. Voir [les pré-requis php](#pre-req-php))
-* `psql` (Voir [les pré-requis postgresql](#pre-req-postgresql))
-* `pg_dump` (Voir [les pré-requis postgresql](#pre-req-postgresql))
+* `php` (PHP en ligne de commande. Voir [les pré-requis php](#manex-ref:pre-req-php))
+* `psql` (Voir [les pré-requis postgresql](#manex-ref:pre-req-postgresql))
+* `pg_dump` (Voir [les pré-requis postgresql](#manex-ref:pre-req-postgresql))
 * `msgcat` (fourni par
   [gettext](http://www.gnu.org/software/gettext/gettext.html))
 * `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
@@ -96,7 +96,7 @@ Dynacase requiert aussi que les dictionnaires de langue `fr` et `en` de la
 librairie `aspell` soient installés et accessibles pour l'extension `pspell` de
 PHP.
 
-### PHP {#pre-req-php}  
+### PHP {#manex-ref:pre-req-php}  
 
 * les versions PHP **5.4** et **5.5** ne seront plus supportées à compter de la
   prochaine release de maintenance (mai 2016)
@@ -253,7 +253,7 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
         [ini]
         display_errors = Off
 
-## PostgreSQL {#pre-req-postgresql} 
+## PostgreSQL {#manex-ref:pre-req-postgresql} 
 
 * La version **9.1** de PostgreSQL ne sera plus supportée à
   compter de la release de maintenance publiée en mai 2016.
@@ -297,7 +297,7 @@ L'utilisation avec Apache **2.4** requiert l'utilisation du module `mod_access_c
 
 Les modules Apache suivants sont requis :
 
-* `php5_module` (Voir [les pré-requis php](#pre-req-php))
+* `php5_module` (Voir [les pré-requis php](#manex-ref:pre-req-php))
 * [`env_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_env.html)
 * [`expires_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_expires.html)
 * [`dir_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_dir.html)

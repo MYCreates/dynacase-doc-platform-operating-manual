@@ -1,6 +1,6 @@
-# FreeDAV/WebDAV {#core-ref:fc665742-8616-41cd-9448-452801333408}
+# FreeDAV/WebDAV {#manex-ref:fc665742-8616-41cd-9448-452801333408}
 
-## Présentation de l'application `DAV` {#core-ref:5362ffa9-bcc9-4dc1-aeb3-a8fe563606a5}
+## Présentation de l'application `DAV` {#manex-ref:5362ffa9-bcc9-4dc1-aeb3-a8fe563606a5}
 
 Le protocole [WebDAV][WebDAV] permet aux utilisateurs d'éditer et de sauver les
 fichiers inclus dans les documents directement depuis leur traitement de texte,
@@ -28,9 +28,9 @@ que le serveur WEB. Le serveur Web Apache doit être configuré pour avoir deux
 hôtes virtuels (Apache [`VirtualHost`][apache_vhosts]) correspondant aux deux
 serveurs DAV.
 
-## Configuration des postes client éditer et sauver en ligne {#core-ref:bbd74861-5f0c-496a-8452-034614896be2}
+## Configuration des postes client éditer et sauver en ligne {#manex-ref:bbd74861-5f0c-496a-8452-034614896be2}
 
-### Windows {#core-ref:bb4bed72-e18f-47cb-8bb3-5b4a7a783de4}
+### Windows {#manex-ref:bb4bed72-e18f-47cb-8bb3-5b4a7a783de4}
 
 Le navigateur Web ne peut pas nativement exécuter un autre programme. Pour
 autoriser votre navigateur à ouvrir les éditeurs vous devez installer deux
@@ -60,7 +60,7 @@ accentués : <http://support.microsoft.com/kb/907306>
 * Si votre accès Internet se fait via un proxy, il peut être nécessaire de
 modifier la configuration de votre poste.
 
-### Linux {#core-ref:e1f3b16e-1b32-4204-81a6-1e3411b44c1a}
+### Linux {#manex-ref:e1f3b16e-1b32-4204-81a6-1e3411b44c1a}
 
 Dans Firefox, entrez l'URL : `about:config`
 
@@ -102,7 +102,7 @@ Si tout fonctionne correctement, vous allez avoir cette fenêtre :
 
 ![](dav4.png)
 
-### Mac OS X {#core-ref:1ee08b2c-b103-4da4-830d-087f9dc4253d}
+### Mac OS X {#manex-ref:1ee08b2c-b103-4da4-830d-087f9dc4253d}
 
 Télécharger et installer l'application `Asdav.app` :
 
@@ -132,21 +132,21 @@ la clef `CFBundleExecutable` par `soffice.bin` :
 
 Note : ce problème doit être à présent résolu à partir de OpenOffice.org 3.0.1
 
-## Configuration serveur web apache {#core-ref:f3c50808-5b1c-43a5-b537-a0981004945d}
+## Configuration serveur web apache {#manex-ref:f3c50808-5b1c-43a5-b537-a0981004945d}
 
 L'utilisation de la fonction DAV nécessite la création de deux configurations
 Apache à base de VirtualHosts. Comme cette conf n'est pas accessible et
 réalisable par dynacase-control, vous devrez insérer les configurations données
 ci-dessous dans la configuration de votre serveur Apache.
 
-### Pré-requis {#core-ref:3d9c8431-99c8-4065-8a62-1d042be4f826}
+### Pré-requis {#manex-ref:3d9c8431-99c8-4065-8a62-1d042be4f826}
 
 Ce module nécessite en pré-requis l'activation du module `rewrite` :
 
     # a2enmod rewrite
     # /etc/init.d/apache2 restart
 
-### Base de données webdav {#core-ref:74fb8845-4557-44b5-8bab-55dfa870c66f}
+### Base de données webdav {#manex-ref:74fb8845-4557-44b5-8bab-55dfa870c66f}
 
 L'utilisation du protocole dav utilise un schéma `dav` dédié dans la base
 données générale.
@@ -154,7 +154,7 @@ données générale.
 Les tables `dav.locks`, `dav.properties` et `dav.sessions` sont automatiquement
 crées lors de l'installation de dynacase-core.
 
-### VirtualHosts Apache pour l'accès aux fonctions WebDAV {#core-ref:56de6612-c48d-4ffb-9254-3cd5ba5d7d1c}
+### VirtualHosts Apache pour l'accès aux fonctions WebDAV {#manex-ref:56de6612-c48d-4ffb-9254-3cd5ba5d7d1c}
 
 Pour utiliser les fonctions d'édition et de montage WebDAV, vous devez mettre en
 place deux VirtualHosts Apache.
@@ -236,7 +236,7 @@ VirtualHost fonctionnent correctement :
 * `http://ged-webdav.example.net` : Doit demander un mot de passe et afficher
 “WebDAV Server: HTML view is not implemented yet”.
 
-## Paramétrage de l'application dav {#core-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3}
+## Paramétrage de l'application dav {#manex-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3}
 
 L'application dav comporte quatre paramètres accessibles via :
 
@@ -268,7 +268,7 @@ L'application dav comporte quatre paramètres accessibles via :
     limite permet d'éviter d'afficher trop d'éléments pouvant provoquer un
     ralentissement du client.
 
-## Test de débogage du dav {#core-ref:c1ef9917-3693-4b77-88c6-b3dcef521f97}
+## Test de débogage du dav {#manex-ref:c1ef9917-3693-4b77-88c6-b3dcef521f97}
 
 En cas de problème dans la mise en place de l'application dav, il est possible
 d'effectuer différents tests pour identifier la source du problème.
@@ -299,9 +299,9 @@ correctement :
 En cas de problèmes, regarder les éventuels messages d'erreur le error_log PHP
 ou Apache.
 
-## Troubleshoot de l'application dav {#core-ref:382b6c42-5641-4df3-9f30-e52164138c20}
+## Troubleshoot de l'application dav {#manex-ref:382b6c42-5641-4df3-9f30-e52164138c20}
 
-### Delocker un document {#core-ref:23fe9936-2119-4739-bfbb-30fb2b27f8c7}
+### Delocker un document {#manex-ref:23fe9936-2119-4739-bfbb-30fb2b27f8c7}
 
 Situation : Le document a été chargé en édition avec OpenOffice.org, et ce
 dernier s'est terminé anormalement en laissant le document locké au niveau
@@ -314,7 +314,7 @@ et supprimer le lock du document dans la table locks :
     # PGSERVICE=dynacase psql \
     -c "DELETE FROM dav.locks WHERE path = '/freedav/vid-12765-4870-3a0404dfe29f7c88bb58ac8a6943559d/Foo.odt'"
 
-### Lenteur d'ouverture des fichiers {#core-ref:8ac94034-acdb-4a46-beaa-d08e56817df3}
+### Lenteur d'ouverture des fichiers {#manex-ref:8ac94034-acdb-4a46-beaa-d08e56817df3}
 
 Il arrive sur certains postes en Windows XP d'avoir des lenteurs d'accès aux
 documents : les temps d'accès constatés sont d'environ 30 secondes.
@@ -322,7 +322,7 @@ documents : les temps d'accès constatés sont d'environ 30 secondes.
 Ces problèmes sont inhérents à Windows, il existe 2 solutions possibles pour
 pallier à ces lenteurs :
 
-#### 1. Solution pour intranet (modification du serveur dynacase) {#core-ref:ce27c195-948b-43df-89e6-8b67e4b5a1c3}
+#### 1. Solution pour intranet (modification du serveur dynacase) {#manex-ref:ce27c195-948b-43df-89e6-8b67e4b5a1c3}
 
 L'installation du service Samba (sur le serveur Dynacase) semble réduire dans
 certains cas le temps d'attente du poste Windows pour l'accès aux ressources
@@ -355,6 +355,6 @@ Cette solution est à appliquer au cas par cas.
 <!-- links -->
 
 [WebDAV]: http://fr.wikipedia.org/wiki/WebDAV
-[FREEDAV_SERVEUR]: #core-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
-[WEBDAV_SERVEUR]: #core-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
+[FREEDAV_SERVEUR]: #manref-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
+[WEBDAV_SERVEUR]: #manref-ref:a87094d7-e5b1-49c7-9086-35489d2b69d3
 [apache_vhosts]: http://httpd.apache.org/docs/2.2/vhosts/

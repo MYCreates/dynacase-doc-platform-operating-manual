@@ -38,7 +38,7 @@ Import Module
     Cette action ne devrait pas être utilisée en dehors des phases de développement.
 
 Create Archive
-:   Permet d'archiver le contexte (voir [la gestion des archives](#manage-context-archivage-management))
+:   Permet d'archiver le contexte (voir [la gestion des archives](#manex-ref:manage-context-archivage-management))
 
 Delete context
 :   Permet de supprimer le contexte et ses éléments associés (base de donnée, vault, etc.)
@@ -54,14 +54,14 @@ La section “Available” présente la liste des modules disponibles sur les d�
 Vous pouvez cocher les modules que vous souhaitez installer dans le contexte, et lancer l'installation en cliquant
 sur le bouton *[Install Selection]*.
 
-## Archivage et restauration de contexte {#manage-context-archivage-management}
+## Archivage et restauration de contexte {#manex-ref:manage-context-archivage-management}
 
 Une archive de contexte contient tous les éléments d'un contexte (base de donnée, fichiers, etc.)
 Ces archives peuvent permettre la restauration d'un contexte sur une autre machine.
 
 **Attention** : Cette fonctionnalité ne doit pas se substituer à une sauvegarde réguière de vos données. c'est une commodité de développement (voir [Les procédures d'exploitation](#exploitation-save-restore)).
 
-### Archivage {#manage-context-archivage}
+### Archivage {#manex-ref:manage-context-archivage}
 
 Lors de l'utilisation du bouton [archivage], un assistant s'ouvre pour vous permettre de créer une archive.
 
