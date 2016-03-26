@@ -20,10 +20,10 @@ Vous êtes invité à saisir les paramètres du contexte :
 | Url              | URL d'accès à Dynacase Platform, dépend de la configuration de votre serveur Apache (optionnel)                                                                                                                                     |
 | Registration     | Si Dynacase Control est enregistré avec votre compte EEC, vous pouvez enregistrer ce contexte avec votre compte EEC en cochant cette case.                                                                                          |
 | Repositories     | Cocher la liste des dépôts de paquets que vous souhaitez utiliser pour installer ce contexte. Par défaut les dépôts de paquets configurés (dans l'interface Control > Setup > Repositories) avec “Default” seront pré-sélectionnés. |
- 
+
 Lorsque le contexte est créé, celui-ci apparaît dans la rubrique *Context* de l'interface de Dynacase Control.
 
-_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
+_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#manex-ref:47791968-b802-4620-baa4-ebeb5cb9b9a3) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
 
 ## Sélection des modules {#manex-ref:7390e1ee-cd3d-44f0-8582-2144cbeab6cf}
 
@@ -73,7 +73,7 @@ Les modules peuvent nécessiter des paramètres pour leur installation ou leur f
 
 ![paramètres du module](i11.png "paramètres du module")
 
-L'installation de Dynacase Core (exemple ci-dessus) requiert les paramètres suivants : 
+L'installation de Dynacase Core (exemple ci-dessus) requiert les paramètres suivants :
 
 | Nom du paramètre | Description |
 | - | - |
@@ -86,7 +86,7 @@ L'installation de Dynacase Core (exemple ci-dessus) requiert les paramètres sui
 | enable compression | compression des données avec le module Apache `mod_deflate` |
 
 ### Fin de l'installation {#manex-ref:e439fe7a-719d-4239-b543-f1f257ab95c5}
- 
+
 À la fin de l'installation, les modules installés sont présentés dans la section “Installed”.
 
 ![fin de l'installation](i13.png "fin de l'installation")

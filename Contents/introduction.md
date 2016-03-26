@@ -31,8 +31,8 @@ spécifiques à votre application.
 
 ### Édition 9 {#manex-ref:433308c7-d097-4865-b0c2-885286e989b6}
 
-* Mise à jour [pré-requis PHP](#manex-ref:pre-req-php) et [PostgreSQL](#manex-ref:pre-req-postgresql)
-* Mise à jour `post-restore` du [workflow des opérations](#module-wf-install-upgrade) des modules webinst
+* Mise à jour [pré-requis PHP](#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802) et [PostgreSQL](#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8)
+* Mise à jour `post-restore` du [workflow des opérations](#manex-ref:a85f6c53-baa9-4f8e-8f40-f01784843808) des modules webinst
 * Précision sur la [comparaison des versions](#manex-ref:d168e9ea-78dc-4e23-b2a6-814bee0e4e2e) de modules webinst
 * Précision sur les variables [`MODULE_VERSION_{TO,FROM}`](#manex-ref:afc3d392-bd87-418a-af0e-ceb8924e74a2) dans les programmes personnalisés
 
@@ -52,10 +52,9 @@ spécifiques à votre application.
 ### Édition 7 {#manex-ref:94da8570-5c57-4a07-8fca-101dfec3394e}
 
 * précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)  
-* versions  [PHP](#manex-ref:pre-req-php), [PostgreSQL](#manex-ref:pre-req-postgresql) et du [navigateur IE](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475)
+* versions  [PHP](#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802), [PostgreSQL](#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8) et du [navigateur IE](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475)
 * ajout chapitre [Ajustement des références à la machine](#manex-ref:042483fb-9812-4df3-9829-ff3970767e29)
 
 ### Édition 6 {#manex-ref:68d657b1-384d-4d80-884a-c212d863f8db}
 
 * précision des [versions des modules PEAR supportés](#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6)
-

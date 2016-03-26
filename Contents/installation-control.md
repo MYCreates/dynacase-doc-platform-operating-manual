@@ -6,7 +6,7 @@ Dynacase Control est l'outil qui permet d'installer et de gérer des contextes D
 
 Dynacase Control est téléchargeable ici : [http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control").
 
-_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#controle-integrite) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
+_Vous pouvez vous reporter à l'annexe [Vérification de l'intégrité des éléments téléchargés](#manex-ref:47791968-b802-4620-baa4-ebeb5cb9b9a3) pour plus d'explication sur le contrôle de l'intégrité des données téléchargées._
 
 ## Installation {#manex-ref:a5697be7-1b68-4111-8673-4fa91e2687cf}
 
@@ -15,7 +15,7 @@ L'archive "tar.gz" récupérée doit être décompressée dans un répertoire se
 
     [bash]
     root@server: cd /var/www      # Debian/Ubuntu  
-    root@server: cd /var/www/html # RedHat/CentOS     
+    root@server: cd /var/www/html # RedHat/CentOS
 
 Télécharger [l'archive de Dynacase Control](http://dynacase.anakeen.com/control/dynacase-control-current.tar.gz "Téléchargement de Dynacase Control"):
 
@@ -38,7 +38,7 @@ Modifier le propriétaire du répertoire de Dynacase Control pour être celui de
 
 L'url de connexion dépend de votre configuration Apache. Si Dynacase Control a été installé dans votre Document Root, l'URL de connexion est : [http://localhost/dynacase-control/](http://localhost/dynacase-control/ "Connexion à Dynacase Control")
 
-Lors de la première connexion à Dynacase Control, vous devez saisir un login et un mot de passe afin de contrôler l'accès à l'interface de Dynacase Control. 
+Lors de la première connexion à Dynacase Control, vous devez saisir un login et un mot de passe afin de contrôler l'accès à l'interface de Dynacase Control.
 
 ![ définition du login d'accès à Dynacase Control ](i1.png "définition du login d'accès à Dynacase Control")
 
@@ -122,7 +122,7 @@ Lors de l'édition d'un dépôt, vous avez à renseigner les champs suivants:
 
 ##### Dépôts pré-configurées {#manex-ref:f2b331d4-7389-44de-8ef5-f7cb31686966}
 Par défaut, le [dépôt de la version communautaire de Dynacase Platform](https://dynacase.anakeen.com/stable/) est pré-configuré :
- 
+
 * Repository : Dynacase
 * Protocol : https
 * Host : dynacase.anakeen.com

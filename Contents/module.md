@@ -267,7 +267,7 @@ Les paramètres d'installation/upgrade nécessaires au module sont spécifiés a
 un élément `<parameters>` contenant des éléments `<param>`.
 
 La valeur du paramètre peut ensuite être lue par un programme lancé lors de
-l'install/upgrade via le mécanisme de [Process](#module-wf-install-upgrade)
+l'install/upgrade via le mécanisme de [Process](#manex-ref:a85f6c53-baa9-4f8e-8f40-f01784843808)
 décrit ci-dessous.
 
 Note : ces paramètres de module n'ont pas de lien avec les paramètres
@@ -342,7 +342,7 @@ Exemple :
       <param name="foo_color" label="Color of FOO" type="enum" values="red|green|blue" default="green" needed="N" />
     </parameters>
 
-## Opération d'install/upgrade/archive/restore/delete et phases {#module-wf-install-upgrade}
+## Opération d'install/upgrade/archive/restore/delete et phases  {#manex-ref:a85f6c53-baa9-4f8e-8f40-f01784843808}
 
 Lors de l'*opération* d'installation ou d'upgrade d'un module, ou
 d'archivage/restauration/suppression d'un contexte, un ensemble de *phases*
@@ -770,7 +770,7 @@ Exemple :
     # -- `foo_dir.list' dans le sous-répertoire de mon module `FOO'
     echo "$PARAM_FOO_DIR" >> "$WIFF_CONTEXT_ROOT"/FOO/foo_dir.list
 
-##### Écrire un programme personnalisé en PHP {#module-programme-perso}
+##### Écrire un programme personnalisé en PHP  {#manex-ref:6f47859d-9647-4584-ad75-6ae1018bebba}
 
 Note : Le programme PHP a aussi accès aux variables d'environnement,
 comme le script Bash, mais le chemin d'include doit être construit
@@ -854,7 +854,7 @@ action
     téléchargé comme argument (e.g. `programs/foo_install /tmp/foo_url_xxx`).
     
     L'environnement d'exécution est identique à celui décrit dans la section
-    [Programmes personnalisé](#module-programme-perso) ci-dessus.
+    [Programmes personnalisé](#manex-ref:91aa0dd8-af31-4ade-892c-1ac64c7545e6) ci-dessus.
 
 ## Variables dans les process de phase {#manex-ref:3a0d54fd-8005-4f1b-98e9-89df67930c1f}
 
@@ -977,8 +977,6 @@ les valeurs "`Y`" ou "`N`".
 [node_check]: #manex-ref:dd6c4985-b5eb-4a0e-a4fb-d3ec067cfa2d
 [node_download]: #manex-ref:79df376c-b15c-4585-9066-5da67dc798dd
 [node_description]: #manex-ref:aa5e19bc-1809-42d2-a165-98736747b1da
-[node_label]: #module-wf-install-upgrade
-[node help]: #module-wf-install-upgrade
 [node_pre-install]: #manex-ref:a57ff321-d00f-4f55-ba88-6633a686d856
 [node_post-install]: #manex-ref:ced835d9-ce84-420d-850a-dc655cd203fa
 [node_pre-upgrade]: #manex-ref:894dd826-0669-4ce1-aef5-866b4f9b612f
@@ -991,6 +989,6 @@ les valeurs "`Y`" ou "`N`".
 [node_pre-delete]: #manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9
 [xsd]: https://github.com/Anakeen/dynacase-xml-schemas/blob/master/webinst-module-1.0.xsd
 [xmllint]: http://xmlsoft.org/xmllint.html
-[dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html
+[dynacase-doc-core-reference]: #core-ref:0557a832-8d4a-4df5-a9cb-84cee78c6fb2
 [php_version_compare]: http://www.php.net/manual/function.version-compare.php
 [core_ref_programs_set_param]: /dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:6556b95c-7513-478e-8750-1cbc6c4f6e6d.html#core-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457 "Manuel de référence Dynacase Core"
