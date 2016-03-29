@@ -28,7 +28,7 @@ Pour vérifier cela :
     ...
     $ php -r 'var_dump(ICONV_IMPL); var_dump(iconv("UTF-8", "ASCII//TRANSLIT", "\xc3\xa9t\xc3\xa8"));'  
     string(5) "glibc"
-    string(3) "ete"   
+    string(3) "ete"
 
 ### Locales `fr_FR` et `en_US` {#manex-ref:05bc59a4-8523-4cfc-be0b-8159b2b152f4}
 
@@ -39,11 +39,11 @@ de langue `fr` et `en`) doivent être installés et disponibles sur le serveur.
 
 Installer et activer le module Apache `mod_headers`.
 
-## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475} 
+## Poste client {#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475}
 
 Les navigateurs supportés sont :
 
-* Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span> 
+* Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span>
 * Firefox &gt;= 4.0.1 <span class="flag update">Updated</span>
 * Chrome branche stable
 
@@ -79,9 +79,9 @@ Dynacase requiert les commandes système suivantes :
 * `recode`
 * `html2ps`
 * `ps2pdf` (fourni par [Ghostscript](http://www.ghostscript.com/))
-* `php` (PHP en ligne de commande. Voir [les pré-requis php](#manex-ref:pre-req-php))
-* `psql` (Voir [les pré-requis postgresql](#manex-ref:pre-req-postgresql))
-* `pg_dump` (Voir [les pré-requis postgresql](#manex-ref:pre-req-postgresql))
+* `php` (PHP en ligne de commande. Voir [les pré-requis php](#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802))
+* `psql` (Voir [les pré-requis postgresql](#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8))
+* `pg_dump` (Voir [les pré-requis postgresql](#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8)
 * `msgcat` (fourni par
   [gettext](http://www.gnu.org/software/gettext/gettext.html))
 * `ldapdelete` (fourni par [OpenLDAP](http://www.openldap.org/)) (*optionnel*)
@@ -96,15 +96,15 @@ Dynacase requiert aussi que les dictionnaires de langue `fr` et `en` de la
 librairie `aspell` soient installés et accessibles pour l'extension `pspell` de
 PHP.
 
-### PHP {#manex-ref:pre-req-php}  
+### PHP  {#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802}
 
 * les versions PHP **5.4** et **5.5** ne seront plus supportées à compter de la
   prochaine release de maintenance (mai 2016)
 * la version **5.6** est désormais supportée.
 
 <span class="flag inline release from">3.2 R14</span> 5.4 / 5.5 / 5.6  
-<span class="flag inline release from">3.2 R12</span> 5.4 / 5.5   
-<span class="flag inline release from">3.2 R11</span> 5.4 / 5.5   
+<span class="flag inline release from">3.2 R12</span> 5.4 / 5.5
+<span class="flag inline release from">3.2 R11</span> 5.4 / 5.5
 <span class="flag inline release obsolete">3.2 R11</span> 5.3  
 
 __La version 5.3 n'est plus compatible à compter de la release 3.2 R12.__
@@ -116,7 +116,7 @@ Pour les distributions Linux qui ne fournissent pas la version PHP nécessaire,
 versions de PHP pour les distributions Linux.
 
 #### Extensions PHP {#manex-ref:e0d4bb4c-dd87-4eb4-9c32-703b9108f543}
-Les extensions notées (core) sont normalement incluses de manière statique dans PHP. 
+Les extensions notées (core) sont normalement incluses de manière statique dans PHP.
 
 * Core (core)
 * SimpleXML
@@ -145,7 +145,7 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 * xsl
 * zip
 
-#### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6} 
+#### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
 
 <span class="flag update">Updated</span> modules Webdesk et Webdesk Services :
 :  `XML_Parser` (1.3.2) / `XML_RSS` (1.0.2)
@@ -162,14 +162,14 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 `date.timezone`
 :   Ce paramètre permet de spécifier le fuseau horaire utilisé par les
     fonctions de manipulation de date.
-    
+
         [ini]
         date.timezone = 'Europe/Paris'
 
 `max_execution_time`
 :   Ce paramètre permet de spécifier le temps maximal (en seconde) de
     traitement d'une requête par PHP.  Par défaut ce paramètre est à “30”.
-    
+
         [ini]
         max_execution_time = 300 ; 5 min.
 
@@ -177,33 +177,33 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 :   Ce paramètre permet de spécifier le nombre maximum de fichiers qui seront
     pris en compte par PHP lors de la soumission d'un formulaire contenant des
     fichiers.
-    
+
     Cette valeur doit être en cohérence avec le nombre maximum de fichier
     pouvant être soumis lors de l'enregistrement d'un document.
-    
+
     Si ce n'est pas le cas, l'enregistrement du document est refusé à
     l'utilisateur et le message d'erreur suivant est présenté à l'utilisateur :
     "`Trop de fichiers dans le formulaire. Veuillez contacter votre
     administrateur système pour augmenter max_file_uploads dans php.ini. Le
-    maximum est de %s`". 
-    
+    maximum est de %s`".
+
     Par défaut ce paramètre est à “20”.
-    
+
         [ini]
         max_file_uploads = 100
 
 `max_input_vars`
 :   Ce paramètre permet de spécifier le nombre maximum de variables de
     formulaires prises en compte par PHP lors de la soumission des formulaires.
-    
+
     Si vous avez beaucoup d'attributs sur vos familles et que la valeur
     déclarée de ce paramètre est trop basse, le message d'erreur suivant est
     présenté à l'utilisateur lors de la soumission des formulaire d'édition de
     documents : "`Variables d'entrée dépassées %s. Veuillez contacter votre
     administrateur système pour augmenter max_input_vars dans php.ini.`".
-    
+
     Par défaut ce paramètre est à "1000".
-    
+
         [ini]
         max_input_vars = 1000
 
@@ -211,23 +211,23 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 :   Ce paramètre permet de spécifier la taille maximale d'un fichier téléversé.
     Si un fichier d'une taille supérieure est envoyé par le navigateur, il ne
     sera pas pris en compte par PHP.  
-    
+
     Par défaut ce paramètre est à “2M” (2 Mo).
-    
+
         [ini]
         upload_max_filesize = 20M
 
 `max_post_size`
 :   Ce paramètre permet de spécifier la taille maximale d'une requête de type
     `POST`.
-    
+
     Généralement, il doit être supérieur à `upload_max_filesize` et être au
     plus égal à `max_file_uploads` * `upload_max_filesize` :
     `upload_max_filesize` &lt; `post_max_size` &lt;= ( `max_file_uploads` *
     `upload_max_filesize` )  
-    
+
     Par défaut ce paramètre est à “8M” (8 Mo).
-    
+
         [ini]
         post_max_size = 128M
 
@@ -237,7 +237,7 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
     messages de notices (*`E_NOTICE`*), de dépréciation (*`E_DEPRECATED`*) et
     de suggestion (*`E_STRICT`*) de PHP lors de l'utilisation de Dynacase
     Platform en production.
-    
+
         [ini]
         error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT
 
@@ -247,13 +247,13 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
     le `display_errors` (les messages d'erreur/warning/suggestion de PHP seront
     alors consultables sur le serveur dans le fichier spécifié par le paramètre
     INI `error_log`).
-    
+
     Par défaut ce paramètre est à `On`.
-    
+
         [ini]
         display_errors = Off
 
-## PostgreSQL {#manex-ref:pre-req-postgresql} 
+## PostgreSQL   {#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8}
 
 * La version **9.1** de PostgreSQL ne sera plus supportée à
   compter de la release de maintenance publiée en mai 2016.
@@ -297,7 +297,7 @@ L'utilisation avec Apache **2.4** requiert l'utilisation du module `mod_access_c
 
 Les modules Apache suivants sont requis :
 
-* `php5_module` (Voir [les pré-requis php](#manex-ref:pre-req-php))
+* `php5_module` (Voir [les pré-requis php](#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802))
 * [`env_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_env.html)
 * [`expires_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_expires.html)
 * [`dir_module`](http://httpd.apache.org/docs/2.2/en/mod/mod_dir.html)

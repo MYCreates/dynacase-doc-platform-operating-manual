@@ -273,7 +273,7 @@ L'application dav comporte quatre paramètres accessibles via :
 En cas de problème dans la mise en place de l'application dav, il est possible
 d'effectuer différents tests pour identifier la source du problème.
 
-### Test avec cadaver
+### Test avec cadaver {#manex-ref:96137b35-5afa-4693-8a37-d8b18a0debad}
 
 Le client WebDAV `cadaver`e n ligne de commande disponible sous Linux permet de
 vérifier que la connexion au serveur webdav et au serveur freedav fonctionne
@@ -328,7 +328,7 @@ L'installation du service Samba (sur le serveur Dynacase) semble réduire dans
 certains cas le temps d'attente du poste Windows pour l'accès aux ressources
 WebDAV.
 
-#### 2. Solution pour tous les cas (modification de chaque poste client)
+#### 2. Solution pour tous les cas (modification de chaque poste client) {#manex-ref:786a9739-9fbd-4fa0-911a-687658c441a5}
 
 Dans certains cas, le changement d'ordre des "Fournisseurs de réseau" peut
 réduire le temps d'attente du poste Windows pour l'accès aux ressources WebDAV.
