@@ -1,4 +1,4 @@
-# Vérification de l'intégrité des éléments téléchargés {#controle-integrite}
+# Vérification de l'intégrité des éléments téléchargés  {#manex-ref:47791968-b802-4620-baa4-ebeb5cb9b9a3}
 
 L'intégrité des paquets Control (webinst), archives compressées ou description de l'index du dépôt (content.xml) peut être contrôlée.
 
