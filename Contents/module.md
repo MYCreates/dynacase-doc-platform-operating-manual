@@ -989,6 +989,7 @@ les valeurs "`Y`" ou "`N`".
 [node_pre-delete]: #manex-ref:e132707d-8080-4d9d-90b4-3fa73dcec0e9
 [xsd]: https://github.com/Anakeen/dynacase-xml-schemas/blob/master/webinst-module-1.0.xsd
 [xmllint]: http://xmlsoft.org/xmllint.html
-[dynacase-doc-core-reference]: /dynacase/3.2/dynacase-doc-core-reference/website/book/index.html
+[dynacase-doc-core-reference]: #core-ref: "Manuel de référence Dynacase Core"
+[core_ref_programs_set_param]: #core-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457 "Manuel de référence Dynacase Core"
 [php_version_compare]: http://www.php.net/manual/function.version-compare.php
-[core_ref_programs_set_param]: /dynacase/3.2/dynacase-doc-core-reference/website/book/core-ref:6556b95c-7513-478e-8750-1cbc6c4f6e6d.html#core-ref:39167ac3-e1e7-4d07-a784-ef9f365a6457 "Manuel de référence Dynacase Core"
+
