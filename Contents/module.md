@@ -219,7 +219,8 @@ version
 :   la version attendue pour le module requis
 
 comp
-:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
+:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge`
+    (>=), `eq` (==) ou `ne` (!=)
 
 Exemple :
 
@@ -229,8 +230,15 @@ Exemple :
       <module name="dynacase-baz" version="1.9" comp="gt" />
     <requires>
 
-Dans cet exemple, le module requiert le module dynacase-bar en version >= 2.0
-et le module dynacase-baz en version >1.9.
+Dans cet exemple, le module requiert le module `dynacase-bar` en version `>=
+2.0` et le module `dynacase-baz` en version `> 1.9`.
+
+Note :
+
+* La comparaison avec l'opérateur d'égalité `eq` se fait sur la version des
+  modules en ignorant la release. Si plusieurs modules sont disponibles pour la
+  même version requise, alors c'est celui avec la release la plus haute qui
+  sera pris en compte.
 
 #### Dépendance avec l'installeur {#manex-ref:1dcb62fb-e40a-4cf0-9992-659773707a49}
 
@@ -244,7 +252,8 @@ version
 :   la version de l'installeur que requiert le module
 
 comp
-:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge` (>=), `eq` (==) ou `ne` (!=)
+:   opérateur de comparaison de version : `lt` (<), `le` (<=), `gt` (>), `ge`
+    (>=), `eq` (==) ou `ne` (!=)
 
 Exemple :
 
@@ -255,8 +264,9 @@ Exemple :
       <module name="dynacase-baz" version="1.9" comp="gt" />
     <requires>
 
-Dans cet exemple, le module requiert un installeur avec une version >= 1.0, le
-module dynacase-bar en version >= 2.0 et le module dynacase-baz en version >1.9.
+Dans cet exemple, le module requiert un installeur avec une version `>= 1.0`,
+le module `dynacase-bar` en version `>= 2.0` et le module `dynacase-baz en
+version `> 1.9`.
 
 ### Paramètres d'installation/upgrade {#manex-ref:3b643797-d2e5-4906-9c81-a6e59bd93bbd}
 
