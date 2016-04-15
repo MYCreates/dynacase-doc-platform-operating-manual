@@ -253,9 +253,9 @@ L'application dav comporte quatre paramètres accessibles via :
     machine serveur. Le virtual host associé doit être authentifié.
 
 `WEBDAV_DB`
-:   coordonnées d'accès à la base de données webdav. Doit être égale
-    aux coordonnées de la base principale - automatiquement renseignée lors de
-    l'installation.
+:   <span class="flag inline release obsolete">3.2 R15</span> coordonnées
+    d'accès à la base de données webdav. Doit être égale aux coordonnées de la
+    base principale - automatiquement renseignée lors de l'installation.
 
 `WEBDAV_ROOTID`
 :   Identifiant du dossier racine pour l'accès authentifié. Identifiant du
