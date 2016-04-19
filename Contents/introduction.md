@@ -14,6 +14,12 @@ spécifiques à votre application.
 
 ## Historique des modifications {#manex-ref:2750f605-a6bc-4b29-9d3a-9728fef45f5e}
 
+### Édition 12 {#manex-ref:636a3570-3bb4-401f-b7a8-7f96900af16f}
+
+* Dépréciation sous-commande [`wiff wstart`](#manex-ref:03198250-37bf-40d2-bc98-036098fa29a3) et [`wiff wstop`](#manex-ref:b7fac359-18af-42f6-a414-32beaf02666c)
+* Modification [Sauvegarde et restauration](#manex-ref:exploitation-save-restore) vis-à-vis de la [mise en mode maintenance du contexte](#manex-ref:a80540f8-1750-41f9-a9e6-33e451660608) et de la [sortie du mode maintenance du contexte](#manex-ref:61ae4846-d1d2-4f4a-b531-895dfecbd5f2)
+* Modification [Sauvegarde et restauration](#manex-ref:exploitation-save-restore) avec [Sauvegarde de dynacase-control](#manex-ref:cf043ae2-e73d-4732-b967-2b9fdd17d2c6) et [Restauration de dynacase-control](#manex-ref:41d4a686-8933-4bb5-9fee-1420041690ee)
+
 ### Édition 11 {#manex-ref:e9fd06c3-3ce2-49ab-9216-392a59b3068d}
 
 * Mise à jour [pré-requis](#manex-ref:1636e34c-7f63-4cc7-84d2-721c68d69475) PHP {5.4, 5.5, 5.6} et Pg {9.1, 9.2, 9.3, 9.4}
