@@ -771,7 +771,14 @@ Exemple :
 
     # /var/www/dynacase-control/wiff send_configuration
 
-### Passer un contexte en maintenance {#manex-ref:b7fac359-18af-42f6-a414-32beaf02666c}
+### Passer un contexte en mode maintenance {#manex-ref:b7fac359-18af-42f6-a414-32beaf02666c}
+
+Le mode maintenance d'un contexte permet de bloquer l'accès des utilisateurs au
+contexte, et de désactiver l'exécution des crons, afin d'effectuer des
+opérations pour lesquelles il est nécessaire que les données ne soient pas
+modifiés.
+
+<span class="flag inline release until">dynacase-control 1.5.2</span>
 
 Cette opération permet d'exécuter le script historique 'wstop' sur un contexte.
 Dans ce mode, seul l'utilisateur master default a accès au contexte.
@@ -784,7 +791,27 @@ Exemple :
 
     # /var/www/dynacase-control/wiff wstop test
 
-### Mettre en service un contexte {#manex-ref:03198250-37bf-40d2-bc98-036098fa29a3}
+<span class="flag inline release from">dynacase-control 1.5.3</span>
+
+Cette opération est dépréciée et doit être remplacée par le lancement de la
+commande [`./wstop`][core-ref-wstop] dans le contexte à l'aide de l'opération
+WIFF [`exec`][wiff-context-exec].
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff context test exec ./wstop
+
+Voir :
+
+* [`./wstop`][core-ref-wstop]
+
+### Sortir un contexte du mode maintenance {#manex-ref:03198250-37bf-40d2-bc98-036098fa29a3}
+
+La sortie du mode maintenance d'un contexte permet de rétablir l'accès des
+utilisateurs, et l'exécution des crons, lorsque l'opération de maintenance est
+terminée.
+
+<span class="flag inline release until">dynacase-control 1.5.2</span>
 
 Cette opération permet d'exécuter le script historique 'wstart' sur un contexte.
 
@@ -795,6 +822,20 @@ Syntaxe :
 Exemple :
     
     # /var/www/dynacase-control/wiff wstart test
+
+<span class="flag inline release from">dynacase-control 1.5.3</span>
+
+Cette opération est dépréciée et doit être remplacée par le lancement de la
+commande [`./wstart -m`][core-ref-wstart] dans le contexte à l'aide de
+l'opération WIFF [`exec`][wiff-context-exec].
+
+Exemple :
+
+    # /var/www/dynacase-control/wiff context test exec ./wstart -m
+
+Voir :
+
+* [`./wstart`][core-ref-wstart]
 
 ### Réinitialiser les catalogues de langue {#manex-ref:d9a9e44b-5076-4a35-8c64-9e860e97a360}
 
@@ -899,3 +940,6 @@ dans l'accès au fichier `conf/contexts.xml.lock`).
 [archive_info]: #manex-ref:6f6239c7-8f75-4932-8dc0-31bc99c1bad2
 [archive_restore]: #manex-ref:74fa0502-c504-4ed0-8614-dccf6648c094
 [delete_archive]: #manex-ref:cff48830-cf99-4698-903d-69ab3ede7b2d
+[core-ref-wstop]: #core-ref:f88c39a9-dc65-4443-a344-ab0ab56f4ca1
+[core-ref-wstart]: #core-ref:04a8b73b-c1b3-44a9-bb19-6a712592a7f3
+[wiff-context-exec]: #manex-ref:a122eb25-779a-4379-aa91-ffa1bb90daf7
