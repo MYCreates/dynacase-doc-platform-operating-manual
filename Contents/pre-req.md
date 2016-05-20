@@ -98,13 +98,15 @@ PHP.
 
 ### PHP  {#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802}
 
-* les versions PHP **5.4** et **5.5** ne seront plus supportées à compter de la
-  prochaine release de maintenance (mai 2016)
-* la version **5.6** est désormais supportée.
+<span class="flag inline release from">3.2 R15</span> 5.6 / 7.0  
 
-<span class="flag inline release from">3.2 R14</span> 5.4 / 5.5 / 5.6  
-<span class="flag inline release from">3.2 R12</span> 5.4 / 5.5
-<span class="flag inline release from">3.2 R11</span> 5.4 / 5.5
+Les versions 5.4 et 5.5 restent compatibles mais **ne sont pas supportés**. Les
+éventuels problèmes dus à ces versions obsolètes de PHP ne sont pas supportés
+par Anakeen.
+
+<span class="flag inline release from">3.2 R14</span> 5.4.4 / 5.5 / 5.6  
+<span class="flag inline release from">3.2 R12</span> 5.4.4 / 5.5
+<span class="flag inline release from">3.2 R11</span> 5.4.4 / 5.5
 <span class="flag inline release obsolete">3.2 R11</span> 5.3  
 
 __La version 5.3 n'est plus compatible à compter de la release 3.2 R12.__
@@ -147,7 +149,10 @@ Les extensions notées (core) sont normalement incluses de manière statique dan
 
 #### Composants PEAR {#manex-ref:5987ddd7-fd7f-4bcd-8ad6-1d9cafadd8a6}
 
-<span class="flag update">Updated</span> modules Webdesk et Webdesk Services :
+<span class="flag inline release from">3.2 R15</span> Aucune dépendance sur les 
+composants PEAR n'est requise.
+
+<span class="flag inline release until">3.2 R14</span> modules Webdesk et Webdesk Services :
 :  `XML_Parser` (1.3.2) / `XML_RSS` (1.0.2)
 
 <span class="flag inline release until">3.2 R10</span>module Core :
@@ -255,24 +260,25 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 
 ## PostgreSQL   {#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8}
 
-* La version **9.1** de PostgreSQL ne sera plus supportée à
-  compter de la release de maintenance publiée en mai 2016.
-* La version **9.4** est désormais supportée.
+<span class="flag inline release from">3.2 R15</span> 9.1 / 9.2 / 9.3 / **9.4** / **9.5**  
 
-<span class="flag inline release from">3.2 R14</span> 9.1 / 9.2 / 9.3 / 9.4  
+Les versions 9.1 / 9.2 / 9.3 restent compatibles. Néanmoins, les versions recommandées
+par Anakeen sont les dernières versions de [Postgresql](http://www.postgresql.org) 9.4 et 9.5.
+
+<span class="flag inline release from">3.2 R14</span> 9.1 / 9.2 / **9.3** / **9.4**  
 <span class="flag inline release from">3.2 R12</span> 9.1 / 9.2 / 9.3  
 <span class="flag inline release from">3.2 R11</span> 9.1 / 9.2 / 9.3  
 <span class="flag inline release obsolete">3.2 R11</span> 8.4  
 
 __La version 8.4 n'est plus compatible à compter de la release 3.2 R12__
 
-**Les différentes optimisation, en particulier sur le calcul des droits ne sont
+**Les différentes optimisations, en particulier sur le calcul des droits ne sont
 effectives qu'avec la version 9.1 de PostgreSQL.**
 
 Dynacase utilise le fichier de service Postgresql (`pg_service.conf`) pour la
 définition des paramètres de connexion à la base de données :
 
-* [http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html](http://www.postgresql.org/docs/9.1/static/libpq-pgservice.html)
+* [http://www.postgresql.org/docs/9.4/static/libpq-pgservice.html](http://www.postgresql.org/docs/9.4/static/libpq-pgservice.html)
 
 Pour identifier l'emplacement du fichier `pg_service.conf` sur votre
 distribution Linux, vous pouvez utiliser la commande suivante :
