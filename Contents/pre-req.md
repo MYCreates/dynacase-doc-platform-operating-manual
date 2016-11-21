@@ -43,10 +43,12 @@ Installer et activer le module Apache `mod_headers`.
 
 Les navigateurs supportés sont :
 
-* Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span>
-* Firefox &gt;= 4.0.1 <span class="flag update">Updated</span>
-* Chrome branche stable
+-   Internet Explorer 8, 9 10 et 11 <span class="flag update">Updated</span>
+-   Firefox branche stable <span class="flag update">Updated</span>
+-   Chrome branche stable
 
+<span class="flag inline release from">3.2 R17</span> IE 8, 9, 10 et 11 /
+Chrome stable / Firefox stable
 
 <span class="flag inline release from">3.2 R11</span> IE 8, 9, 10 et 11 /
 Chrome stable / Firefox &gt;= 4.0.1
@@ -98,16 +100,20 @@ PHP.
 
 ### PHP  {#manex-ref:1f48eb68-2268-45b7-8281-259ec22d4802}
 
-<span class="flag inline release from">3.2 R15</span> 5.6 / 7.0  
+<span class="flag inline release from">3.2 R17</span> 5.6 / 7.0
 
-Les versions 5.4 et 5.5 restent compatibles mais **ne sont pas supportés**. Les
+<span class="flag inline release from">3.2 R15</span> 5.6 / 7.0
+(Les versions 5.4 et 5.5 restent compatibles mais **ne sont pas supportés**. Les
 éventuels problèmes dus à ces versions obsolètes de PHP ne sont pas supportés
-par Anakeen.
+par Anakeen.)
 
-<span class="flag inline release from">3.2 R14</span> 5.4.4 / 5.5 / 5.6  
+<span class="flag inline release from">3.2 R14</span> 5.4.4 / 5.5 / 5.6
+
 <span class="flag inline release from">3.2 R12</span> 5.4.4 / 5.5
+
 <span class="flag inline release from">3.2 R11</span> 5.4.4 / 5.5
-<span class="flag inline release obsolete">3.2 R11</span> 5.3  
+
+<span class="flag inline release obsolete">3.2 R11</span> 5.3
 
 __La version 5.3 n'est plus compatible à compter de la release 3.2 R12.__
 
@@ -260,11 +266,9 @@ Ils doivent êre redéfinis dans ce fichier, et doivent être repositionnés apr
 
 ## PostgreSQL {#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8}
 
-<span class="flag inline release from">3.2 R15</span> 9.1 / 9.2 / 9.3 / **9.4** / **9.5**  
-
-Les versions 9.1 / 9.2 / 9.3 restent compatibles. Néanmoins, les versions recommandées
-par Anakeen sont les dernières versions de [Postgresql](http://www.postgresql.org) 9.4 et 9.5.
-
+<span class="flag inline release from">3.2 R15</span> 9.1 / 9.2 / 9.3 / **9.4** / **9.5**
+(Les versions 9.1 / 9.2 / 9.3 restent compatibles. Néanmoins, les versions recommandées
+par Anakeen sont les dernières versions de [Postgresql](http://www.postgresql.org) 9.4 et 9.5.)
 <span class="flag inline release from">3.2 R14</span> 9.1 / 9.2 / **9.3** / **9.4**  
 <span class="flag inline release from">3.2 R12</span> 9.1 / 9.2 / 9.3  
 <span class="flag inline release from">3.2 R11</span> 9.1 / 9.2 / 9.3  
