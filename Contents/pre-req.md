@@ -167,14 +167,14 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 `date.timezone`
 :   Ce paramètre permet de spécifier le fuseau horaire utilisé par les
     fonctions de manipulation de date.
-
+    
         [ini]
         date.timezone = 'Europe/Paris'
 
 `max_execution_time`
 :   Ce paramètre permet de spécifier le temps maximal (en seconde) de
     traitement d'une requête par PHP.  Par défaut ce paramètre est à “30”.
-
+    
         [ini]
         max_execution_time = 300 ; 5 min.
 
@@ -182,59 +182,35 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
 :   Ce paramètre permet de spécifier le nombre maximum de fichiers qui seront
     pris en compte par PHP lors de la soumission d'un formulaire contenant des
     fichiers.
-
+    
     Cette valeur doit être en cohérence avec le nombre maximum de fichier
     pouvant être soumis lors de l'enregistrement d'un document.
-
+    
     Si ce n'est pas le cas, l'enregistrement du document est refusé à
     l'utilisateur et le message d'erreur suivant est présenté à l'utilisateur :
     "`Trop de fichiers dans le formulaire. Veuillez contacter votre
     administrateur système pour augmenter max_file_uploads dans php.ini. Le
     maximum est de %s`".
-
+    
     Par défaut ce paramètre est à “20”.
-
+    
         [ini]
         max_file_uploads = 100
 
 `max_input_vars`
 :   Ce paramètre permet de spécifier le nombre maximum de variables de
     formulaires prises en compte par PHP lors de la soumission des formulaires.
-
+    
     Si vous avez beaucoup d'attributs sur vos familles et que la valeur
     déclarée de ce paramètre est trop basse, le message d'erreur suivant est
     présenté à l'utilisateur lors de la soumission des formulaire d'édition de
     documents : "`Variables d'entrée dépassées %s. Veuillez contacter votre
     administrateur système pour augmenter max_input_vars dans php.ini.`".
-
+    
     Par défaut ce paramètre est à "1000".
-
+    
         [ini]
         max_input_vars = 1000
-
-`upload_max_filesize`
-:   Ce paramètre permet de spécifier la taille maximale d'un fichier téléversé.
-    Si un fichier d'une taille supérieure est envoyé par le navigateur, il ne
-    sera pas pris en compte par PHP.  
-
-    Par défaut ce paramètre est à “2M” (2 Mo).
-
-        [ini]
-        upload_max_filesize = 20M
-
-`max_post_size`
-:   Ce paramètre permet de spécifier la taille maximale d'une requête de type
-    `POST`.
-
-    Généralement, il doit être supérieur à `upload_max_filesize` et être au
-    plus égal à `max_file_uploads` * `upload_max_filesize` :
-    `upload_max_filesize` &lt; `post_max_size` &lt;= ( `max_file_uploads` *
-    `upload_max_filesize` )  
-
-    Par défaut ce paramètre est à “8M” (8 Mo).
-
-        [ini]
-        post_max_size = 128M
 
 `error_reporting`
 :   Ce paramètre permet de spécifier le niveau de reporting des
@@ -242,7 +218,7 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
     messages de notices (*`E_NOTICE`*), de dépréciation (*`E_DEPRECATED`*) et
     de suggestion (*`E_STRICT`*) de PHP lors de l'utilisation de Dynacase
     Platform en production.
-
+    
         [ini]
         error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT
 
@@ -252,13 +228,37 @@ Certains paramètres de PHP doivent être modifiés afin que Dynacase Platform f
     le `display_errors` (les messages d'erreur/warning/suggestion de PHP seront
     alors consultables sur le serveur dans le fichier spécifié par le paramètre
     INI `error_log`).
-
+    
     Par défaut ce paramètre est à `On`.
-
+    
         [ini]
         display_errors = Off
 
-## PostgreSQL   {#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8}
+#### htaccess {#manex-ref:a1f65ee8-e121-41fd-bfa6-a7e0db254d68}
+
+Les paramètres suivants sont définis dans le fichire `.htaccess` à la racine du contexte.
+Ils doivent êre redéfinis dans ce fichier, et doivent être repositionnés après chaque mise à jour de Dynacase.
+
+`post_max_size`
+:   Ce paramètre permet de spécifier la taille maximale d'une requête de type
+    `POST`.
+    
+    Par défaut ce paramètre est à `"80M"` (80 Mo).
+    
+        [ini]
+        post_max_size = "128M"
+
+`upload_max_filesize`
+:   Ce paramètre permet de spécifier la taille maximale d'un fichier téléversé.
+    Si un fichier d'une taille supérieure est envoyé par le navigateur, il ne
+    sera pas pris en compte par PHP.  
+    
+    Par défaut ce paramètre est à `"80M"` (80 Mo).
+    
+        [ini]
+        upload_max_filesize = "20M"
+
+## PostgreSQL {#manex-ref:6446ba24-a9ae-4c1b-a84c-f31df81bcea8}
 
 <span class="flag inline release from">3.2 R15</span> 9.1 / 9.2 / 9.3 / **9.4** / **9.5**  
 
